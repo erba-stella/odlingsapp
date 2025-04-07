@@ -1,0 +1,464 @@
+[
+    {
+        "name_sv": "Basilika",
+        "name_latin": "Ocimum basilicum",
+        "category": "Kryddväxter",
+        "start_seeds_indoors": {
+            "min": 6,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": 4,
+            "max": 6
+        },
+        "start_seeds_outdoors": {
+            "min": 4,
+            "max": 4
+        }
+    },
+    {
+        "name_sv": "Dill",
+        "name_latin": "Anethum graveolens",
+        "category": "Kryddväxter",
+        "start_seeds_indoors": false,
+        "plant_seedlings_outdors": false,
+        "start_seeds_outdoors": {
+            "min": 2,
+            "max": 2
+        }
+    },
+    {
+        "name_sv": "Fänkål",
+        "name_latin": "Foeniculum vulgare",
+        "category": "Kryddväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": 1,
+            "max": 2
+        },
+        "start_seeds_outdoors": {
+            "min": 3,
+            "max": 3
+        }
+    },
+    {
+        "name_sv": "Persilja",
+        "name_latin": "Petroselinum crispum",
+        "category": "Kryddväxter",
+        "start_seeds_indoors": {
+            "min": 9,
+            "max": 10
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -3
+        },
+        "start_seeds_outdoors": {
+            "min": -2,
+            "max": -2
+        }
+    },
+    {
+        "name_sv": "Blomkål",
+        "name_latin": "Brassica oleracea",
+        "category": "Kålväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Broccoli",
+        "name_latin": "Brassica oleracea",
+        "category": "Kålväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Kålrabbi",
+        "name_latin": "Brassica oleracea",
+        "category": "Kålväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -4,
+            "max": -4
+        },
+        "start_seeds_outdoors": {
+            "min": -2,
+            "max": -2
+        }
+    },
+    {
+        "name_sv": "Huvudkål (t.ex. vitkål, rödkål, spetskål)",
+        "name_latin": "Brassica oleracea var. capitata",
+        "category": "Kålväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -4,
+            "max": -4
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Bladkål (grönkål, palmkål, svartkål)",
+        "name_latin": "Brassica oleracea",
+        "category": "Kålväxter",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -4,
+            "max": -4
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Gurka",
+        "name_latin": "Cucumis sativus",
+        "category": "Gurkväxter",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 1,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Melon",
+        "name_latin": "Cucumis melo",
+        "category": "Gurkväxter",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Vattenmelon",
+        "name_latin": "Citrullus lanatus",
+        "category": "Gurkväxter",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Morot",
+        "name_latin": "Daucus carota sativus",
+        "category": "Rotgrönsaker",
+        "start_seeds_indoors": false,
+        "plant_seedlings_outdors": false,
+        "start_seeds_outdoors": {
+            "min": -5,
+            "max": -5
+        }
+    },
+    {
+        "name_sv": "Rädisa",
+        "name_latin": "Raphanus sativus var. sativus",
+        "category": "Rotgrönsaker",
+        "start_seeds_indoors": false,
+        "plant_seedlings_outdors": false,
+        "start_seeds_outdoors": {
+            "min": -4,
+            "max": -4
+        }
+    },
+    {
+        "name_sv": "Beta (rödbeta, gulbeta, polkabeta)",
+        "name_latin": "Beta vulgaris",
+        "category": "Rotgrönsaker",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -2
+        },
+        "start_seeds_outdoors": {
+            "min": -4,
+            "max": -4
+        }
+    },
+    {
+        "name_sv": "Bönor",
+        "name_latin": "Phaseolus vulgaris",
+        "category": "Baljväxter",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": {
+            "min": 3,
+            "max": 3
+        }
+    },
+    {
+        "name_sv": "Ärtor",
+        "name_latin": "Pisum sativum",
+        "category": "Baljväxter",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": -6,
+            "max": -8
+        },
+        "start_seeds_outdoors": {
+            "min": -4,
+            "max": -4
+        }
+    },
+    {
+        "name_sv": "Chilli",
+        "name_latin": "Capsicum annuum",
+        "category": "Tomat & Chilli",
+        "start_seeds_indoors": {
+            "min": 8,
+            "max": 8
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Paprika",
+        "name_latin": "Capsicum annuum",
+        "category": "Tomat & Chilli",
+        "start_seeds_indoors": {
+            "min": 8,
+            "max": 8
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Majs",
+        "name_latin": "Zea mays",
+        "start_seeds_indoors": {
+            "min": 2,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 0,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Mangold",
+        "name_latin": "Beta vulgaris",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -2
+        },
+        "start_seeds_outdoors": {
+            "min": -2,
+            "max": -2
+        }
+    },
+    {
+        "name_sv": "Pac Choi",
+        "name_latin": "Citrullus lanatus",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Potatis",
+        "name_latin": "Solanum tuberosum",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -3,
+            "max": -3
+        },
+        "start_seeds_outdoors": {
+            "min": -3,
+            "max": -3
+        }
+    },
+    {
+        "name_sv": "Pumpa",
+        "name_latin": "Cucurbita pepo",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Purjolök",
+        "name_latin": "Allium ampeloprasum",
+        "start_seeds_indoors": {
+            "min": 8,
+            "max": 10
+        },
+        "plant_seedlings_outdors": {
+            "min": -2,
+            "max": -5
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Sallad",
+        "name_latin": "Lactuca sativa",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 5
+        },
+        "plant_seedlings_outdors": {
+            "min": -3,
+            "max": -4
+        },
+        "start_seeds_outdoors": {
+            "min": -2,
+            "max": -2
+        }
+    },
+    {
+        "name_sv": "Salladssenap",
+        "name_latin": "Brassica juncea",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -4,
+            "max": -4
+        },
+        "start_seeds_outdoors": {
+            "min": -4,
+            "max": -4
+        }
+    },
+    {
+        "name_sv": "Selleri",
+        "name_latin": "Apium graveolens",
+        "start_seeds_indoors": {
+            "min": 10,
+            "max": 12
+        },
+        "plant_seedlings_outdors": {
+            "min": 1,
+            "max": 1
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Spenat",
+        "name_latin": "Spinacia oleracea",
+        "start_seeds_indoors": {
+            "min": 4,
+            "max": 6
+        },
+        "plant_seedlings_outdors": {
+            "min": -3,
+            "max": -6
+        },
+        "start_seeds_outdoors": {
+            "min": -4,
+            "max": -4
+        }
+    },
+    {
+        "name_sv": "Zuccini, Sommarsquash",
+        "name_latin": "Cucurbita pepo",
+        "start_seeds_indoors": {
+            "min": 3,
+            "max": 4
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Tomater",
+        "name_latin": "Solanum lycopersicum",
+        "start_seeds_indoors": {
+            "min": 6,
+            "max": 8
+        },
+        "plant_seedlings_outdors": {
+            "min": 1,
+            "max": 2
+        },
+        "start_seeds_outdoors": false
+    },
+    {
+        "name_sv": "Aubergine / Äggplanta",
+        "name_latin": "Solanum melongena",
+        "start_seeds_indoors": {
+            "min": 8,
+            "max": 10
+        },
+        "plant_seedlings_outdors": {
+            "min": 2,
+            "max": 3
+        },
+        "start_seeds_outdoors": false
+    }
+]
