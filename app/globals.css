@@ -1,13 +1,22 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 
+    RESET 
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* remove default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* min body height */
+body {
+  min-height: 100svh;
 }
 
 html,
@@ -16,18 +25,114 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* responsive images/videos */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+svg {
+  transform-origin: 50% 50%;
+}
+
+svg * {
+  transform-box: fill-box;
+}
+
+/* make headings wrap better */
+:is(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  max-width: 55ch;
+  hyphens: auto;
+}
+
+/* 
+hyphens: manual -  insert soft hyphen character: &shy
+https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
+*/
+
+
+/* performance enhancements */
+section, article, footer {
+  contain: content;
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--intrrinsic-size, 80swh);
+}
+
+/* 
+    GLOBAL VARIABLES 
+*/
+
+:root {
+
+  /* FONTS */
+
+  --font-base: "Open Sans", "Segoe UI", Tahoma, sans-serif;
+  --font-heading: "Open Sans", "Segoe UI", Tahoma, sans-serif;
+  /* font-sizes */
+  --fs-small: 0.75rem;
+  --fs-medium: 1rem;
+  --fs-large: 1.25rem;
+  --fs-xlarge: 1.5rem;
+
+/* SPACING */
+
+--flow-space: 1rem;
+--gap: 1rem;
+
+
+  /* COLOR */
+
+  /* Base colors */
+  --color-primary: #9ED36A;
+  --color-secondary: #65558F;
+  --color-accent: #FECD57;
+  /* --color-inverse */
+
+  /* Backgrounds */
+  --color-bg: #D6D6D6;
+  --color-surface: #f9f9f9;
+
+    /* Text */
+  --color-text: #1a1a1a;
+  --color-text-muted: #666666;
+  --color-heading: #004072;
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--color-text);
+    --color-text: var(--color-bg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+
+/* 
+    BASE STYLING 
+*/
+
+body {
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -35,8 +140,62 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+input,
+select,
+textarea {
+	display: block;
+	width: 100%;
+	margin: 0 0 0.5em;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: 1em;
+	max-width: 100%;
+	width: 100%;
+}
+
+/* 
+  LAYOUT 
+*/
+
+.card-container > * {
+  padding: clamp(.75rem, 3%, 2rem);
+  /* prevent overflow */
+  word-break: break-word;
+}
+
+/* 
+  INTERACTIONS / UTILITY CLASSES
+*/
+
+.flow>*+* {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*  tab-focus-visible class for keyboard-only links/skip links 
+    from: https://a11y-blog.dev/en/articles/understanding-a-skip-link/
+*/
+.tab-focus-visible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+
+  /* Show keyboard focus */
+  &:focus-visible {
+    transform: translateY(0%);
   }
 }
