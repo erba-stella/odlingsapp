@@ -1,6 +1,7 @@
 .page {
     grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
 
+    --navlink-color: 
     /* transitions */
     /* nav-menu: open/close */
     --menu_open: 1s;
@@ -53,14 +54,36 @@
   list-style: none;
 }
 
+.navmenu a {
+    color: var(--color-navlink);
+}
+
+.navmenu a[aria-current="page"]  {
+    color: var(--color-navlink-current);
+}
+
 .navmenu.desktop ul {
     display: flex;
     gap: var(--gap);
 }
 
-.navmenu.mobil {
-
+@media (max-width: 600px) {
+    .navmenu.desktop {
+        display: none;
+    }
 }
+
+@media (min-width: 601px) {
+    .navToggleButton, .navToggleMenu {
+        display: none;
+    }
+}
+
+
+
+
+
+
 
 
 /* HAMBURGER - NavToggleButton */
@@ -125,7 +148,7 @@
 /* close nav-menu */
 .navToggleMenu {
     transform: translateY(-100%);
-    transition: transform var(--menu_close);
+    transition-duration: var(--menu_close);
     transition-timing-function: ease-in;
 }
 

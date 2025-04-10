@@ -114,6 +114,9 @@ section, article, footer {
   --color-header: var(--color-primary);
   --color-main: inherit;
 
+  --color-navlink: var(--color-text);
+  --color-navlink-current: var(--color-text-muted);
+
 
 @media (prefers-color-scheme: dark) {
   :root {
