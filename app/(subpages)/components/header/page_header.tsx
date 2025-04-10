@@ -1,32 +1,7 @@
 import styles from "@/app/(subpages)/subpages.module.css"
-import Link from "next/link"
 import { NavToggleButton } from "./nav_toggle_button"
+import { NavList } from "./nav_list";
 
-
-const NavList = () => {
-
-  return (
-    
-      <ul role="menubar">
-        <li role="none">
-          <Link role="menuitem" href="/">
-            Start
-          </Link>
-        </li>
-        <li role="none">
-          <Link role="menuitem" href="/vaxtlista">
-            Min Växtlista
-          </Link>
-        </li>
-        <li role="none">
-          <Link role="menuitem" href="/odlingskalender">
-            Odlingskalender
-          </Link>
-        </li>
-      </ul>
-    
-  );
-}
 
 export const PageHeader = () => {
   return (

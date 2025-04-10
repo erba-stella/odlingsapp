@@ -21,7 +21,7 @@ export const NavToggleButton = ({
 
     return (
       <button
-        className={styles.navToggleButton}
+        className={`${styles.navToggleButton}`}
         aria-haspopup="menu"
         aria-controls="nav-toggle-menu"
         aria-expanded={isOpen}
