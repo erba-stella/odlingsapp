@@ -80,12 +80,6 @@
 }
 
 
-
-
-
-
-
-
 /* HAMBURGER - NavToggleButton */
 
 .navToggleButton {
@@ -137,9 +131,6 @@
 }
 
 .navToggleMenu {
-    /* position: relative;
-    bottom: 0;  */
-    /* z-index: -2; */
     width: 100%;
     background: yellow;
     padding: 2rem;
@@ -148,13 +139,13 @@
 /* close nav-menu */
 .navToggleMenu {
     transform: translateY(-100%);
-    transition-duration: var(--menu_close);
+    transition-duration: var(--menu_close, .4s);
     transition-timing-function: ease-in;
 }
 
 /* open nav-menu */
 .page:has(.navToggleButton[aria-expanded="true"]) .navToggleMenu {
     transform: translateY(0%);
-    transition-duration: var(--menu_open);
+    transition-duration: var(--menu_open, .4s);
     transition-timing-function: ease-out;
 } 
