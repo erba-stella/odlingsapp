@@ -1,3 +1,4 @@
+import styles from "@/app/(subpages)/subpages.module.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function OdlingskalenderPage() {
-    return (
-        <main>VÄXTLISTA-SIDAN</main>
-    )
+  return <main className={styles.main}>VÄXTLISTA-SIDAN</main>;
 }

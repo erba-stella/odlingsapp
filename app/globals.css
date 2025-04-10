@@ -53,14 +53,13 @@ li,
 figcaption {
   text-wrap: pretty;
   max-width: 55ch;
-  hyphens: auto;
+  hyphens: manual;
 }
 
 /* 
 hyphens: manual -  insert soft hyphen character: &shy
 https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
 */
-
 
 /* performance enhancements */
 section, article, footer {
@@ -85,10 +84,12 @@ section, article, footer {
   --fs-large: 1.25rem;
   --fs-xlarge: 1.5rem;
 
-/* SPACING */
+/* SPACING and SIZING */
 
 --flow-space: 1rem;
+--min-click-target-size: 44px;
 --gap: 1rem;
+--button-border-radius: .5rem;
 
 
   /* COLOR */
@@ -102,11 +103,19 @@ section, article, footer {
   /* Backgrounds */
   --color-bg: #D6D6D6;
   --color-surface: #f9f9f9;
+  --color-surface-secondary:rgb(200, 198, 206);
 
     /* Text */
   --color-text: #1a1a1a;
   --color-text-muted: #666666;
   --color-heading: #004072;
+
+  /* Specifics */
+  --color-header: var(--color-primary);
+  --color-main: inherit;
+
+  --color-navlink: var(--color-text);
+  --color-navlink-current: var(--color-text-muted);
 
 
 @media (prefers-color-scheme: dark) {
@@ -135,9 +144,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-large);
+  color: var(--color-heading);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xlarge);
+  color: var(--color-heading);
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-large);
+  color: var(--color-heading);
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 input,
@@ -160,6 +191,11 @@ table {
   LAYOUT 
 */
 
+.global-container {
+  min-height: 100svh;
+  display: grid;
+}
+
 .card-container > * {
   padding: clamp(.75rem, 3%, 2rem);
   /* prevent overflow */
@@ -173,7 +209,6 @@ table {
 .flow>*+* {
   margin-block-start: var(--flow-space, 1em);
 }
-
 
 .visually-hidden {
   clip: rect(0 0 0 0);

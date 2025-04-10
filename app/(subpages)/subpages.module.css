@@ -1,0 +1,151 @@
+.page {
+    grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
+
+    --navlink-color: 
+    /* transitions */
+    /* nav-menu: open/close */
+    --menu_open: 1s;
+    --menu_close: calc(var(--ts__nav_open) * 0.66);
+}
+
+.page>.header {
+    grid-row: header;
+    grid-column: 1/1;
+    z-index: 2;
+}
+
+.page>.navToggleMenu {
+    grid-row: menu;
+    grid-column: 1/1;
+}
+
+.page>.main {
+    grid-row: header-end / rest-end;
+    grid-column: 1/1;
+}
+
+:is(.header, .main) {
+    /* padding-inline: 2rem; */
+}
+
+.main {
+    background-color: var(--color-main);  
+}
+
+.header {
+    --header-height: 7rem;
+    /* height: var(--header-height); */
+    background-color: var(--color-header, #9ED36A);
+    display: grid;
+}
+
+.header:is(.navmenu) {
+    font-size: var(--fs-600);
+}
+
+.headerContentContainer {
+    place-self: center;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.navmenu li {
+  list-style: none;
+}
+
+.navmenu a {
+    color: var(--color-navlink);
+}
+
+.navmenu a[aria-current="page"]  {
+    color: var(--color-navlink-current);
+}
+
+.navmenu.desktop ul {
+    display: flex;
+    gap: var(--gap);
+}
+
+@media (max-width: 600px) {
+    .navmenu.desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    .navToggleButton, .navToggleMenu {
+        display: none;
+    }
+}
+
+
+/* HAMBURGER - NavToggleButton */
+
+.navToggleButton {
+    height: max(4em, var(--min-click-target-size));
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    border-radius: var(--button-border-radius);
+    margin-inline-start: auto;
+}
+
+.navToggleIcon {
+    width: 2.6em;
+    height: 2.6em;
+    margin: 0 auto;
+    stroke-width: .35em;
+    stroke-linecap: round;
+    stroke: currentColor;
+    fill: none;
+    stroke: var(--color-icon, #333);
+    transition: var(--hover-transition);
+}
+
+/* "HAMBURGER"-icon to "CLOSE"-icon transition */
+
+.navToggleIcon path {
+    transition: .3s ease-in;
+    transform-origin: 50% 50%;
+    opacity: 1;
+}
+
+.navToggleButton[aria-expanded="true"] path:nth-of-type(1) {
+    transform:translateY(20%);
+    scale:0% 0%;
+    opacity: 0;
+}
+
+.navToggleButton[aria-expanded="true"] path:nth-of-type(2) {
+    transform:rotate(45deg)
+}
+
+.navToggleButton[aria-expanded="true"] path:nth-of-type(3) {
+    transform:rotate(-45deg)
+}
+
+.navToggleButton[aria-expanded="true"] path:nth-of-type(4) {
+    transform:translateY(-20%);
+    scale:0% 0%;
+    opacity: 0;
+}
+
+.navToggleMenu {
+    width: 100%;
+    background: yellow;
+    padding: 2rem;
+}
+
+/* close nav-menu */
+.navToggleMenu {
+    transform: translateY(-100%);
+    transition-duration: var(--menu_close, .4s);
+    transition-timing-function: ease-in;
+}
+
+/* open nav-menu */
+.page:has(.navToggleButton[aria-expanded="true"]) .navToggleMenu {
+    transform: translateY(0%);
+    transition-duration: var(--menu_open, .4s);
+    transition-timing-function: ease-out;
+} 
