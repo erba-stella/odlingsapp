@@ -1,0 +1,12 @@
+
+.addPlantSection {
+    margin: 2rem;
+    padding: 2rem;
+    background-color: var(--color-surface-secondary);
+    display:grid;
+    gap: var(--gap);
+
+    &>*{
+        margin: .3rem;
+    }
+}

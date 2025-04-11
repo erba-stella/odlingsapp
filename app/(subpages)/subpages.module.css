@@ -1,7 +1,7 @@
 .page {
     grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
 
-    --navlink-color: 
+    /* --navlink-color: #333; */
     /* transitions */
     /* nav-menu: open/close */
     --menu_open: 1s;
@@ -24,6 +24,11 @@
     grid-column: 1/1;
 }
 
+.main {
+    /* z-index: -3; */
+}
+
+
 :is(.header, .main) {
     /* padding-inline: 2rem; */
 }
@@ -37,6 +42,8 @@
     /* height: var(--header-height); */
     background-color: var(--color-header, #9ED36A);
     display: grid;
+    min-height: 5rem;
+    padding-inline: 2rem;
 }
 
 .header:is(.navmenu) {
@@ -44,7 +51,6 @@
 }
 
 .headerContentContainer {
-    place-self: center;
     display: flex;
     align-items: center;
     gap: var(--gap);
@@ -60,6 +66,10 @@
 
 .navmenu a[aria-current="page"]  {
     color: var(--color-navlink-current);
+}
+
+.navmenu.desktop {
+    margin-inline-start: auto;
 }
 
 .navmenu.desktop ul {
@@ -87,14 +97,16 @@
     aspect-ratio: 1 / 1;
     background-color: transparent;
     border-radius: var(--button-border-radius);
+    border-radius: 50%;
     margin-inline-start: auto;
+    border: none;
 }
 
 .navToggleIcon {
     width: 2.6em;
     height: 2.6em;
     margin: 0 auto;
-    stroke-width: .35em;
+    stroke-width: .5em;
     stroke-linecap: round;
     stroke: currentColor;
     fill: none;

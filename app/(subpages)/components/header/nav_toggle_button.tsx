@@ -3,7 +3,6 @@
 import styles from "@/app/(subpages)/subpages.module.css";
 import { useState, useRef } from "react";
 
-
 export const NavToggleButton = ({
   children,
 }: {
