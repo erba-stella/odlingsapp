@@ -6,6 +6,8 @@ import {
   fetchPlantCategoryData,
 } from "@/data-access/fetch-data";
 
+import { useLocalStorage } from "@/lib/utils/localstorage";
+
 type Plant = {
   name_sv: string;
   name_latin: string;
@@ -22,6 +24,10 @@ export const AddPlantForm = () => {
   const [searchSwedish, setSearchSwedish] = useState(true);
   const [searchLatin, setSearchLatin] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
+  const [storedPlantList, setStoredPlantList] = useLocalStorage(
+    "my-plant-list",
+    ""
+  );
 
   // Fetch categories once ()
   useEffect(() => {
@@ -81,6 +87,19 @@ export const AddPlantForm = () => {
     setSearchTerm("");
     setFilteredPlants([]);
     setSelectedPlant(null);
+
+    const plantList =
+      storedPlantList && typeof storedPlantList === "string"
+        ? JSON.parse(storedPlantList)
+        : [];
+
+    plantList.unshift({
+      customName,
+      created: new Date().toISOString(),
+      linkedTo: selectedPlant,
+    });
+
+    setStoredPlantList(JSON.stringify(plantList));
   };
 
   return (
