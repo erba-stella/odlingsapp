@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 
 type Plant = {
+  id: string;
   name_sv: string;
   name_latin: string;
   alias: string[];
@@ -25,46 +26,50 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const categoryFilter = searchParams.get("category");
     const searchQuery = searchParams.get("search");
-    const onlyCategories = searchParams.get("categories") === "true";
+    const lang = searchParams.get("lang");
 
-    if (onlyCategories) {
-      const uniqueCategories = Array.from(
-        new Set(plants.map((p) => p.category))
-      ).sort();
-      return NextResponse.json(uniqueCategories);
-    }
+    let result = plants;
 
-    let filtered = plants;
-
+    // Filter by category
     if (categoryFilter) {
-      filtered = filtered.filter(
-        (p) => p.category?.toLowerCase() === categoryFilter.toLowerCase()
+      result = result.filter(
+        (plant) =>
+          plant.category?.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
 
+    // Search plant by name (name_sv, name_latin or alias)
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
 
-      const startsWithWord = (text: string) =>
-        text
-          .toLowerCase()
-          .split(/\s+/)
-          .some((word) => word.startsWith(query));
+      result = result.filter((plant) => {
+        const matchSwedish =
+          lang === "sv" || !lang
+            ? plant.name_sv.toLowerCase().startsWith(query) ||
+              plant.alias?.some((alias) =>
+                alias.toLowerCase().startsWith(query)
+              )
+            : false;
 
-      filtered = filtered.filter((p) => {
-        const matchName = startsWithWord(p.name_sv || "");
-        const matchLatin = startsWithWord(p.name_latin || "");
-        const matchAlias = Array.isArray(p.alias)
-          ? p.alias.some((alias) => startsWithWord(alias))
-          : false;
+        const matchLatin =
+          lang === "latin" || !lang
+            ? plant.name_latin.toLowerCase().startsWith(query)
+            : false;
 
-        return matchName || matchLatin || matchAlias;
+        return matchSwedish || matchLatin;
       });
     }
 
-    return NextResponse.json(filtered);
+    // Sort result by name_sv (A–Ö)
+    result.sort((a, b) =>
+      (a.name_sv || "").localeCompare(b.name_sv || "", "sv", {
+        sensitivity: "base",
+      })
+    );
+
+    return NextResponse.json(result);
   } catch (error) {
-    console.error("API error:", error);
+    console.error("API / plants error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
