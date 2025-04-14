@@ -1,4 +1,5 @@
-export interface Plant {
+export interface PlantData {
+  id: string;
   name_sv: string;
   name_latin: string;
   alias: string[];
@@ -7,3 +8,12 @@ export interface Plant {
   plant_seedlings_outdors?: { min: number; max: number };
   start_seeds_outdoors?: { min: number; max: number };
 }
+
+export interface CustomPlant {
+  id: string;
+  name_sv: string;
+  name_latin: string;
+  created: string;
+  alias?: string[];
+  category?: string;
+};

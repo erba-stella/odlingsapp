@@ -1,5 +1,6 @@
 [
     {
+      "id": "b01",
       "name_sv": "Basilika",
       "name_latin": "Ocimum basilicum",
       "alias": [],
@@ -18,6 +19,7 @@
       }
     },
     {
+      "id": "d02",
       "name_sv": "Dill",
       "name_latin": "Anethum graveolens",
       "alias": [],
@@ -30,6 +32,7 @@
       }
     },
     {
+      "id": "f03",
       "name_sv": "Fänkål",
       "name_latin": "Foeniculum vulgare",
       "alias": [],
@@ -48,6 +51,7 @@
       }
     },
     {
+      "id": "p04",
       "name_sv": "Persilja",
       "name_latin": "Petroselinum crispum",
       "alias": [],
@@ -66,6 +70,7 @@
       }
     },
     {
+      "id": "b05",
       "name_sv": "Blomkål",
       "name_latin": "Brassica oleracea",
       "alias": [],
@@ -81,6 +86,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "b06",
       "name_sv": "Broccoli",
       "name_latin": "Brassica oleracea",
       "alias": [],
@@ -96,6 +102,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "k07",
       "name_sv": "Kålrabbi",
       "name_latin": "Brassica oleracea",
       "alias": [],
@@ -114,6 +121,7 @@
       }
     },
     {
+      "id": "h08",
       "name_sv": "Huvudkål",
       "name_latin": "Brassica oleracea var. capitata",
       "alias": ["vitkål", "rödkål", "spetskål"],
@@ -129,6 +137,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "b09",
       "name_sv": "Bladkål",
       "name_latin": "Brassica oleracea",
       "alias": ["Grönkål", "Palmkål", "Svartkål"],
@@ -144,6 +153,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "g10",
       "name_sv": "Gurka",
       "name_latin": "Cucumis sativus",
       "alias": [],
@@ -159,6 +169,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "m11",
       "name_sv": "Melon",
       "name_latin": "Cucumis melo",
       "alias": [],
@@ -174,6 +185,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "v12",
       "name_sv": "Vattenmelon",
       "name_latin": "Citrullus lanatus",
       "alias": [],
@@ -189,6 +201,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "m13",
       "name_sv": "Morot",
       "name_latin": "Daucus carota sativus",
       "alias": [],
@@ -201,6 +214,7 @@
       }
     },
     {
+      "id": "r14",
       "name_sv": "Rädisa",
       "name_latin": "Raphanus sativus var. sativus",
       "alias": [],
@@ -213,6 +227,7 @@
       }
     },
     {
+      "id": "b15",
       "name_sv": "Beta",
       "name_latin": "Beta vulgaris",
       "alias": ["rödbeta", "gulbeta", "polkabeta"],
@@ -231,6 +246,7 @@
       }
     },
     {
+      "id": "b16",
       "name_sv": "Bönor",
       "name_latin": "Phaseolus vulgaris",
       "alias": [],
@@ -249,6 +265,7 @@
       }
     },
     {
+      "id": "a17",
       "name_sv": "Ärtor",
       "name_latin": "Pisum sativum",
       "alias": [],
@@ -267,6 +284,7 @@
       }
     },
     {
+      "id": "c18",
       "name_sv": "Chilli",
       "name_latin": "Capsicum annuum",
       "alias": ["Peppar"],
@@ -297,6 +315,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "m19",
       "name_sv": "Majs",
       "name_latin": "Zea mays",
       "alias": [],
@@ -312,6 +331,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "m20",
       "name_sv": "Mangold",
       "name_latin": "Beta vulgaris",
       "alias": ["Bladbeta"],
@@ -330,6 +350,7 @@
       }
     },
     {
+      "id": "p21",
       "name_sv": "Pac Choi",
       "name_latin": "Brassica rapa chinensis",
       "alias": ["Sellerikål"],
@@ -345,6 +366,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "p22",
       "name_sv": "Potatis",
       "name_latin": "Solanum tuberosum",
       "alias": [],
@@ -363,6 +385,7 @@
       }
     },
     {
+      "id": "p23",
       "name_sv": "Pumpa",
       "name_latin": "Cucurbita pepo",
       "alias": [],
@@ -378,6 +401,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "p24",
       "name_sv": "Purjolök",
       "name_latin": "Allium ampeloprasum",
       "alias": [],
@@ -393,6 +417,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "s25",
       "name_sv": "Sallad",
       "name_latin": "Lactuca sativa",
       "alias": [],
@@ -411,6 +436,7 @@
       }
     },
     {
+      "id": "s26",
       "name_sv": "Salladssenap",
       "name_latin": "Brassica juncea",
       "alias": [],
@@ -429,6 +455,7 @@
       }
     },
     {
+      "id": "s27",
       "name_sv": "Selleri",
       "name_latin": "Apium graveolens",
       "alias": [],
@@ -444,6 +471,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "s28",
       "name_sv": "Spenat",
       "name_latin": "Spinacia oleracea",
       "alias": [],
@@ -462,6 +490,7 @@
       }
     },
     {
+      "id": "s29",
       "name_sv": "Sommarsquash",
       "name_latin": "Cucurbita pepo",
       "alias": ["Zuccini"],
@@ -477,6 +506,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "t30",
       "name_sv": "Tomater",
       "name_latin": "Solanum lycopersicum",
       "alias": ["Tomat"],
@@ -492,6 +522,7 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "a31",
       "name_sv": "Aubergine",
       "name_latin": "Solanum melongena",
       "alias": ["Äggplanta"],
