@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "@/app/(subpages)/subpages.module.css";
 import React, { useEffect, useState } from "react";
 import {
   fetchPlantData,
@@ -78,8 +79,8 @@ export const AddPlantForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!customName || !selectedPlant) {
-      alert("Fyll i ett växtnamn och välj en växttyp.");
+    if (!selectedPlant) {
+      alert("Välj en växttyp.");
       return;
     }
 
@@ -103,24 +104,30 @@ export const AddPlantForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
-        <legend>Ge växten ett namn</legend>
-        <label htmlFor="plantName">Växtnamn</label>
+    <form
+      onSubmit={handleSubmit}
+      className={styles.addPlantForm}
+      aria-labelledby="heading-plantform"
+    >
+      <h3 id="heading-plantform">Lägg till ny växt</h3>
+      <fieldset aria-label="Ange växtens namn">
+        <label htmlFor="plantName">Växtens namn:</label>
         <input
           type="text"
           id="plantName"
           placeholder='t.ex. "Stupice tomat"'
           value={customName}
+          autoComplete="off"
           required
           onChange={(e) => setCustomName(e.target.value)}
         />
       </fieldset>
 
       <fieldset>
-        <legend>Välj växttyp</legend>
+        <legend>Välj typ av växt</legend>
 
-        <div>
+        {/* FILTER BY CATEGORY */}
+        <div className={styles.categoryfilterWrapper}>
           <label htmlFor="filter">Filtrera efter kategori</label>
           <select
             id="filter"
@@ -136,10 +143,15 @@ export const AddPlantForm = () => {
           </select>
         </div>
 
-        <div>
+        <div className={styles.comboboxWrapper}>
           <label htmlFor="search-plant">Sök växttyp</label>
           <input
             id="search-plant"
+            role="combobox"
+            aria-controls="plant-type-list"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            aria-expanded="false"
             type="text"
             placeholder="t.ex. tomat"
             value={searchTerm}
@@ -149,64 +161,75 @@ export const AddPlantForm = () => {
             }}
           />
 
-          <div>
-            <label htmlFor="search-swedish">svenska namn</label>
-            <input
-              type="checkbox"
-              id="search-swedish"
-              checked={searchSwedish}
-              onChange={() => setSearchSwedish((prev) => !prev)}
-            />
-
-            <label htmlFor="search-latin">latinska namn</label>
-            <input
-              type="checkbox"
-              id="search-latin"
-              checked={searchLatin}
-              onChange={() => setSearchLatin((prev) => !prev)}
-            />
+          <div className={styles.checkboxGroup}>
+            <p>Sök på namn:</p>
+            <label>
+              svenska
+              <input
+                type="checkbox"
+                id="search-swedish"
+                checked={searchSwedish}
+                onChange={() => setSearchSwedish((prev) => !prev)}
+              />
+            </label>
+            <label>
+              latin
+              <input
+                type="checkbox"
+                id="search-latin"
+                checked={searchLatin}
+                onChange={() => setSearchLatin((prev) => !prev)}
+              />
+            </label>
           </div>
 
           {filteredPlants.length > 0 && (
-            <ul
-              style={{
-                border: "1px solid #ccc",
-                padding: "0.5rem",
-                maxHeight: "150px",
-                overflowY: "auto",
-              }}
-            >
-              {filteredPlants.map((p) => (
-                <li
-                  key={p.name_sv}
-                  style={{
-                    padding: "0.3rem",
-                    cursor: "pointer",
-                    backgroundColor:
-                      selectedPlant?.name_sv === p.name_sv
-                        ? "#e0f7fa"
-                        : "white",
-                  }}
-                  onClick={() => {
-                    setSelectedPlant(p);
-                    setSearchTerm(`${p.name_sv} (${p.name_latin})`);
-                    setFilteredPlants([]);
-                  }}
-                >
-                  <div>
-                    <strong>{p.name_sv}</strong>
-                    {p.alias && p.alias.length > 0 && (
-                      <div style={{ fontSize: "0.8rem", color: "#666" }}>
-                        alias: {p.alias.join(", ")}
-                      </div>
-                    )}
-                    <div style={{ color: "#666" }}>({p.name_latin})</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.filteredPlants}>
+              <ul>
+                {filteredPlants.map((p) => (
+                  <li key={p.name_sv}>
+                    <label
+                      style={{
+                        border:
+                          selectedPlant?.name_sv === p.name_sv
+                            ? "2px solid #007B8A"
+                            : "1px solid #ccc",
+                        borderRadius: "6px",
+                        backgroundColor:
+                          selectedPlant?.name_sv === p.name_sv
+                            ? "#e0f7fa"
+                            : "#fff",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        className={`visuallly-hidden`}
+                        id={p.name_sv}
+                        value={p.name_sv}
+                        checked={selectedPlant?.name_sv === p.name_sv}
+                        onChange={() => {
+                          setSelectedPlant(p);
+                          setSearchTerm(`${p.name_sv} (${p.name_latin})`);
+                          setFilteredPlants([]);
+                        }}
+                      />
+
+                      <strong>{p.name_sv}</strong>
+                      <span style={{ color: "#666" }}>({p.name_latin})</span>
+
+                      {p.alias && p.alias.length > 0 && (
+                        <span style={{ fontSize: "0.8rem", color: "#666" }}>
+                          alias: {p.alias.join(", ")}
+                        </span>
+                      )}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
+        {filteredPlants.length === 0 && <p className={styles.error}>Inga växter matchar din sökning.</p>}
       </fieldset>
 
       <button type="submit">Spara växt till din lista</button>

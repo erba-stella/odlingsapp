@@ -8,7 +8,7 @@ export const PageHeader = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContentContainer}>
-          <h1>PAGE HEADER</h1>
+          <h1>SåPlanera</h1>
           {/*  Menu Desktop */}
           <nav
             aria-label="Main"

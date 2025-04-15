@@ -1,59 +1,210 @@
+/* DESIGN - COLORS AND TYPOGRAPHY */
+
+.header {
+    background-color: var(--color-header, #9ED36A);
+}
+
+.main {
+    --color-main-bg: transparent;
+    background-color: var(--color-main-bg);
+}
+
+.error {
+    color: var(--color-error);
+}
+
+/* SUBPAGES LAYOUT */
+
 .page {
     grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
 
-    /* --navlink-color: #333; */
-    /* transitions */
-    /* nav-menu: open/close */
-    --menu_open: 1s;
+    --content-area-w: min(75rem, 100%);
+    --side-margin-w: calc((100% - var(--content-area-w)) /2);
+    --content-padding-w: 3svw;
+
+    grid-template-columns:
+    [vw-start] 
+        var(--side-margin-w) 
+            [content-start]
+                1fr
+            [content-end] 
+        var(--side-margin-w) 
+    [vw-end];
+
+    grid-template-collumns: grid-template-columns: var(--g-columns);
+
+    /* Colors */
+    --filtered-plants-bg:rgb(241, 241, 241);
+
+    /* Transitions, animation timing */
+    --menu_open: .4s;
     --menu_close: calc(var(--ts__nav_open) * 0.66);
 }
 
 .page>.header {
     grid-row: header;
-    grid-column: 1/1;
-    z-index: 2;
+    grid-column: vw;
+    display: grid;
+    z-index: 20;
+    min-height: 5rem;
+    padding-inline: calc(var(--side-margin-w) + var(--content-padding-w));
 }
 
 .page>.navToggleMenu {
     grid-row: menu;
-    grid-column: 1/1;
+    grid-column: vw;
+    z-index: 10;
 }
 
 .page>.main {
     grid-row: header-end / rest-end;
-    grid-column: 1/1;
-}
-
-.main {
-    /* z-index: -3; */
-}
-
-
-:is(.header, .main) {
-    /* padding-inline: 2rem; */
-}
-
-.main {
-    background-color: var(--color-main);  
-}
-
-.header {
-    --header-height: 7rem;
-    /* height: var(--header-height); */
-    background-color: var(--color-header, #9ED36A);
+    grid-column: content;
     display: grid;
-    min-height: 5rem;
-    padding-inline: 2rem;
+    grid-template-columns: 
+        [full-width-start] 
+            var(--content-padding-w)
+                [inner-content-start]
+                    1fr
+                [inner-content-end] 
+            var(--content-padding-w) 
+        [full-width-end];
 }
 
-.header:is(.navmenu) {
-    font-size: var(--fs-600);
+.page>.main>*{
+    grid-column: inner-content;
 }
+
+.page>.main>.fullWidth{
+    grid-column: full-width;
+}
+
+.main h2 {
+    --padding-top: calc(var(--content-padding-w) * 1.5);
+    padding-block: var(--padding-top) var(--content-padding-w);
+}
+
+/* VAXLIST-PAGE SPECIFIC STYLING (move this later?) */
+
+/* FORM ADD PLANT */
+
+.addPlantSection {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.addPlantSection {
+    --filter-plant-resultbox-height: 10rem;
+    padding-inline: var(--content-padding-w);
+    background-color: var(--color-accent);
+    display: grid;
+    gap: var(--gap);
+    padding-block: var(--gap);
+}
+
+.addPlantForm {
+    width: clamp(300px, 100%, 450px);
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
+    gap: var(--gap, 1rem);
+    padding-block: var(--gap, 1rem);
+    padding-inline: clamp(8px, 7svw - 20px, 15px );
+    /* background-color: var(--color-surface-secondary-2); */
+    margin-inline: auto;
+    height: 30rem;
+}
+
+.addPlantForm fieldset>*{
+    margin-top: .5rem;
+}
+.addPlantForm fieldset>input{
+    margin-top: 0;
+}
+
+.addPlantForm button {
+    width: 66%;
+    margin-inline: auto;
+}
+
+.comboboxWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 
+Input:
+.examples-combobox-filtering .combobox[data-active-item] {
+    outline-width: 2px;
+}
+*/
+.checkboxGroup {
+    margin-bottom: calc(var(--gap) * 0.66);
+}
+
+.checkboxGroup {
+    margin-bottom: calc(var(--gap) * 0.66);
+}
+
+
+.checkboxGroup {
+    display: flex;
+    gap: var(--gap);
+    flex-wrap: wrap;  
+}
+
+.checkboxGroup>label {
+    display: flex;
+    width: min-content;
+    gap: .3rem;
+}
+
+.filteredPlants {
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.filteredPlants ul {
+    list-style: none;
+    padding: 0.3rem;
+    position: absolute;
+    max-height: var(--filter-plant-resultbox-height, 300px);
+    overflow: auto;
+    width: 100%; 
+    background-color: var(--filtered-plants-bg,rgb(210, 202, 202));
+    border-radius:  var(--form-border-radius);
+}
+
+.filteredPlants li {
+    width: 100%;
+}
+
+.filteredPlants label {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--gap);
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+}
+
+.filteredPlants input[type="checkbox"]{
+  width: min-content;
+}
+
+
+/* HEADER CONTENT */
 
 .headerContentContainer {
     display: flex;
     align-items: center;
     gap: var(--gap);
+}
+
+.header:is(.navmenu) {
+    font-size: var(--fs-600);
 }
 
 .navmenu li {
@@ -88,7 +239,6 @@
         display: none;
     }
 }
-
 
 /* HAMBURGER - NavToggleButton */
 

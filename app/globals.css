@@ -65,6 +65,10 @@ a, input, button, select, option {
   cursor: pointer;
 }
 
+fieldset {
+  border: none;
+}
+
 /* performance enhancements */
 section, article, footer {
   contain: content;
@@ -79,14 +83,15 @@ section, article, footer {
 :root {
 
   /* FONTS */
-
-  --font-base: "Open Sans", "Segoe UI", Tahoma, sans-serif;
-  --font-heading: "Open Sans", "Segoe UI", Tahoma, sans-serif;
+  --font-base: var(--font-2);
+ 
   /* font-sizes */
   --fs-small: 0.75rem;
-  --fs-medium: 1rem;
-  --fs-large: 1.25rem;
-  --fs-xlarge: 1.5rem;
+  --fs-regular: 1rem;
+  --fs-h4: 1.2rem;
+  --fs-h3: 1.75rem;
+  --fs-h2: 2.65rem;
+  --fs-h1: 1.56rem;
 
 /* SPACING and SIZING */
 
@@ -94,6 +99,7 @@ section, article, footer {
 --min-click-target-size: 44px;
 --gap: 1rem;
 --button-border-radius: .5rem;
+--form-border-radius: .4rem;
 
 
   /* COLOR */
@@ -105,9 +111,11 @@ section, article, footer {
   /* --color-inverse */
 
   /* Backgrounds */
-  --color-bg: #D6D6D6;
+  --color-bg:rgb(233, 232, 232);
   --color-surface: #f9f9f9;
-  --color-surface-secondary:rgb(207, 202, 221);
+  /* --color-surface-primary:rgba(206, 226, 186, 0.64); */
+  --color-surface-secondary:rgb(147, 139, 171);
+  --color-surface-secondary-2:rgb(220, 216, 232);
 
     /* Text */
   --color-text: #1a1a1a;
@@ -116,11 +124,12 @@ section, article, footer {
 
   /* Specifics */
   --color-header: var(--color-primary);
-  --color-main: inherit;
+  --color-main-bg: var(--color-accent);
 
   --color-navlink: var(--color-text);
   --color-navlink-current: var(--color-text-muted);
 
+  --color-error:rgb(166, 0, 0);
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -143,27 +152,36 @@ section, article, footer {
 body {
   color: var(--color-text);
   background: var(--color-bg);
-  font-family: var(--font-base);
+  font-family: var(--font-3);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-large);
+  font-family: var(--font-1);
+  font-size: var(--fs-h1);
   color: var(--color-heading);
 }
 
 h2 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-xlarge);
+  font-family: var(--font-3);
+  font-size: var(--fs-h2);
   color: var(--color-heading);
+  font-weight: 600;
 }
 
 h3 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-large);
+  font-family: var(--font-3);
+  font-size: var(--fs-h3);
   color: var(--color-heading);
+  font-weight: 700;
+}
+
+h4, legend {
+  font-family: var(--font-3);
+  font-size: var(--fs-h4);
+  color: var(--color-heading);
+  font-weight: 700;
 }
 
 a {
@@ -180,19 +198,10 @@ select,
 textarea {
 	display: block;
 	width: 100%;
-	margin: 0 0 0.5em;
-}
-
-label {
-  display: flex;
-  gap: var(--gap);
-  align-items: center
-}
-
-input[type="radio"]{
-  width: min-content;
-  display: flex;
-  justify-self: center;
+  border: 1px solid rgb(195, 195, 195);
+  border-radius: var(--form-border-radius, 6px);
+  background-color: rgb(255, 255, 255);
+  padding: 0.3rem;
 }
 
 table {
