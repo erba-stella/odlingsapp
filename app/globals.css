@@ -79,14 +79,15 @@ section, article, footer {
 :root {
 
   /* FONTS */
+--font-base: var(--font-2);
 
-  --font-base: "Open Sans", "Segoe UI", Tahoma, sans-serif;
-  --font-heading: "Open Sans", "Segoe UI", Tahoma, sans-serif;
-  /* font-sizes */
+    /* font-sizes */
   --fs-small: 0.75rem;
-  --fs-medium: 1rem;
-  --fs-large: 1.25rem;
-  --fs-xlarge: 1.5rem;
+  --fs-regular: 1rem;
+  --fs-h4: 1.2rem;
+  --fs-h3: 1.75rem;
+  --fs-h2: 2.65rem;
+  --fs-h1: 1.56rem;
 
 /* SPACING and SIZING */
 
@@ -143,27 +144,36 @@ section, article, footer {
 body {
   color: var(--color-text);
   background: var(--color-bg);
-  font-family: var(--font-base);
+  font-family: var(--font-3);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-large);
+  font-family: var(--font-1);
+  font-size: var(--fs-h1);
   color: var(--color-heading);
 }
 
 h2 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-xlarge);
+  font-family: var(--font-3);
+  font-size: var(--fs-h2);
   color: var(--color-heading);
+font-weight: 600;
 }
 
 h3 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-large);
+  font-family: var(--font-3);
+  font-size: var(--fs-h3);
   color: var(--color-heading);
+  font-weight: 700;
+}
+
+h4, legend {
+  font-family: var(--font-3);
+  font-size: var(--fs-h4);
+  color: var(--color-heading);
+font-weight: 700;
 }
 
 a {
