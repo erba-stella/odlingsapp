@@ -3,6 +3,7 @@ export interface PlantData {
   name_sv: string;
   name_latin: string;
   alias: string[];
+  icon_name?: string;
   category: string;
   start_seeds_indoors?: { min: number; max: number };
   plant_seedlings_outdors?: { min: number; max: number };
@@ -10,10 +11,7 @@ export interface PlantData {
 }
 
 export interface CustomPlant {
-  id: string;
-  name_sv: string;
-  name_latin: string;
   created: string;
-  alias?: string[];
-  category?: string;
+  customName: string;
+  linkedTo: PlantData;
 };
