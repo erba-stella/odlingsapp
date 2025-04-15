@@ -1,5 +1,7 @@
 # ICONS
 
+"icon_name": "chilli",
+
 ### beet
 LICENSE: CC0 License, Public Domain
 https://www.svgrepo.com/svg/280782/beet
@@ -60,9 +62,17 @@ https://www.svgrepo.com/svg/276209/onion
 LICENSE: CC0 License, Public Domain
 https://www.svgrepo.com/svg/268906/paprika
 
+### pak-choi
+LICENSE: Apache License
+https://www.svgrepo.com/svg/396869/leafy-green
+
 ### peas
 LICENSE: Public Domain
 https://www.svgrepo.com/svg/475212/peas
+
+### potato
+LICENSE: Public Domain
+https://www.svgrepo.com/svg/475219/potato
 
 ### radish
 LICENSE: CC0 License, Public Domain
@@ -88,7 +98,9 @@ https://www.svgrepo.com/svg/120941/tomato
 LICENSE: CC0 License, Public Domain
 https://www.svgrepo.com/svg/268898/turnip
 
-
+### leafy-green
+LICENSE: MIT License
+https://www.svgrepo.com/svg/406043/leafy-green
 
 ## License info:
 
