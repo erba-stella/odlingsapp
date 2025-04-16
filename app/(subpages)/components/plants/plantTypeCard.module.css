@@ -1,21 +1,33 @@
 .cardWrapper {
+  --list-item-height: 2rem;
+  --num-list-items: 1; /* fallback/default */
   margin-bottom: 1rem;
 }
 
-/* Reset knapputseendet */
+/* 
+TODO: remember vars:
+
+--plant-card-bg
+--plant-card-bg-hover
+--plant-card-bg-hover
+*/
+
 .card {
-  all: unset;
   cursor: pointer;
   width: 100%;
   display: block;
-  background: #f7f7f7;
+  background: var(--plant-card-bg, #f7f7f7);
   border-radius: 12px;
   padding: 1rem;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.card:hover {
-  background:rgb(239, 239, 255);
+.card:is(:hover,:focus-visible),
+.card[aria-expanded="true"] {
+  background: var(--plant-card-bg-hover, rgb(239, 239, 255));
+  transform: scale(1.01);
+  outline-offset: -.2rem;
+  outline: var(--plant-card-bg, #f7f7f7) auto .2rem;
 }
 
 .topRow {
@@ -43,11 +55,29 @@
   font-size: 0.9rem;
 }
 
+/* Expandable list of plants */
+
 .varietyList {
   margin-top: 0.5rem;
   padding-left: 1.5rem;
 }
 
 .varietyItem {
-  margin: 0.25rem 0;
+  height: var(--list-item-height);
+	align-content: center;
+}
+
+/* Expandable list: open/close transition */
+
+.varietyList {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.7s ease;
+}
+
+.varietyList[data-expanded="true"] {
+  opacity: 1;
+  max-height:  calc(var(--list-item-height) * var(--num-list-items));
+  overflow: auto;
 }

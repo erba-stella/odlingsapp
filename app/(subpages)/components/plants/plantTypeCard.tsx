@@ -45,15 +45,22 @@ export const PlantTypeCard = ({
         </header>
       </div>
 
-      {expanded && (
-        <ul className={styles.varietyList}>
-          {plants.map((plant) => (
-            <li key={plant.created} className={styles.varietyItem}>
-              {plant.customName}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={styles.varietyList}
+        data-expanded={expanded}
+        aria-hidden={!expanded}
+        style={
+          {
+            "--num-list-items": `${plants.length}`,
+          } as React.CSSProperties
+        }
+      >
+        {plants.map((plant) => (
+          <li key={plant.created} className={styles.varietyItem}>
+            {plant.customName}
+          </li>
+        ))}
+      </ul>
     </article>
   );
 };
