@@ -1,0 +1,53 @@
+.cardWrapper {
+  margin-bottom: 1rem;
+}
+
+/* Reset knapputseendet */
+.card {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  background: #f7f7f7;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: background 0.2s ease;
+}
+
+.card:hover {
+  background:rgb(239, 239, 255);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.varietyCount {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.varietyList {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.varietyItem {
+  margin: 0.25rem 0;
+}
