@@ -68,7 +68,11 @@
                 [inner-content-end] 
             var(--content-padding-w) 
         [full-width-end];
+    grid-template-rows: [heading-start] auto [heading-end listarea-start] 1fr [listarea-end];
 }
+
+.main h2 { grid-row: heading}
+.vaxtlistaSection, .addPlantSection {grid-row: listarea }
 
 .page>.main>*{
     grid-column: inner-content;
@@ -88,9 +92,10 @@
 /* FORM ADD PLANT */
 
 .addPlantSection {
-    position: absolute;
-    width: 100%;
+    position: fixed;
     bottom: 0;
+    width: 100%;
+    transform: translateY(90%);
 }
 
 .addPlantSection {
