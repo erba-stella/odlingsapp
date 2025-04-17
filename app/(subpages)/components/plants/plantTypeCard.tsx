@@ -9,14 +9,16 @@ import { PlantCardProps, CustomPlant } from "@/lib/interfaces";
 
 export const PlantTypeCard = ({
   plantType,
-  icon,
   plants,
 }: PlantCardProps): React.ReactElement => {
   // Expand list of plants/varieties
   const [expanded, setExpanded] = useState(false);
   // Select plant (open in modal for details)
   const [selectedPlant, setSelectedPlant] = useState<CustomPlant | null>(null);
-
+  
+  console.log("plants", plants);
+  console.log("plant Icon", plants[0]?.linkedTo.icon_name);
+  
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -63,12 +65,14 @@ export const PlantTypeCard = ({
         >
           <header className={styles.topRow}>
             <span className={styles.iconWrapper}>
+              
               <PlantIcon
-                type={icon}
+                type={plants[0].linkedTo.icon_name}
                 width="48"
                 height="48"
                 aria-hidden="true"
               />
+              
             </span>
             <hgroup className={styles.content}>
               <h3 className={styles.title}>{plantType}</h3>

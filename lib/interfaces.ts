@@ -1,4 +1,4 @@
-import { PlantIconType } from "@/app/(subpages)/components/icons/plantIcons"
+// import { PlantIconType } from "@/app/(subpages)/components/icons/plantIcons"
 
 export interface PlantData {
   id: string;
@@ -15,11 +15,10 @@ export interface PlantData {
 export interface CustomPlant {
   created: string;
   customName: string;
-  linkedTo?: PlantData;
+  linkedTo: PlantData;
 };
 
 export interface PlantCardProps {
   plantType: string;
-  icon: PlantIconType;
   plants: CustomPlant[];
 }
