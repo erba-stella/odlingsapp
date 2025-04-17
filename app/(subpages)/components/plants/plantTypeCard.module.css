@@ -67,6 +67,11 @@ TODO: remember vars:
 	align-content: center;
 }
 
+.varietyItem button {
+  border: none;
+}
+
+
 /* Expandable list: open/close transition */
 
 .varietyList {
