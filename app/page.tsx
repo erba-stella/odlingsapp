@@ -1,6 +1,6 @@
 // import Image from "next/image";
 import styles from "./page.module.css";
-import { PlantIcon } from "@/app/components/icons/plant_icons";
+import { PlantIcon } from "@/app/(subpages)/components/icons/plantIcons";
 
 export default function Home() {
   return (

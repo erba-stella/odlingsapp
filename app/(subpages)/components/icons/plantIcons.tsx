@@ -1,11 +1,31 @@
 import { type SVGProps } from "react";
 
 export type PlantIconType =
-    "beet" | "broccoli" | "cabbage" | "carrot" | "cauliflower" |
-    "chili" | "corn" | "cucumber" | "cucumbers" | "dill" |
-    "eggplant" | "herb" | "melon" | "onion" | "paprika" |
-    "peas" | "radish" | "salad" | "seedling" | "squash" |
-    "tomato" | "turnip";
+  | "beet"
+  | "broccoli"
+  | "cabbage"
+  | "carrot"
+  | "cauliflower"
+  | "chili"
+  | "corn"
+  | "cucumber"
+  | "cucumbers"
+  | "dill"
+  | "eggplant"
+  | "herb"
+  | "melon"
+  | "onion"
+  | "paprika"
+  | "pak-choi"
+  | "peas"
+  | "potato"
+  | "radish"
+  | "salad"
+  | "seedling"
+  | "squash"
+  | "tomato"
+  | "turnip"
+  | "leafy-green";
 
 interface PlantIconProps extends SVGProps<SVGSVGElement> {
   plant?: PlantIconType;

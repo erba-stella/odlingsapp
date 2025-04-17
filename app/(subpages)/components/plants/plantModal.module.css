@@ -1,0 +1,30 @@
+
+/* Plant Modal */
+
+.modal {
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: var(--box-shadow);
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  transition: opacity 0.3s ease;
+}
+
+.modal h2, .modal h3 {
+  padding: 0;
+  line-height: 1.1;
+}
+
+.modal::backdrop {
+  background: var(--color-backdrop, rgba(0, 0, 0, 0.5));
+}
+
+.modalContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

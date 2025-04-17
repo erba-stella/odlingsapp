@@ -131,6 +131,10 @@ section, article, footer {
 
   --color-error:rgb(166, 0, 0);
 
+  /* Modal */
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+  --box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: var(--color-text);
