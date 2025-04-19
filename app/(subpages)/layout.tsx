@@ -1,5 +1,5 @@
 
-import { PageHeader } from "@/app/(subpages)/components/header/page_header"
+import { PageHeader } from "@/app/(subpages)/components/header/header"
 import styles from "./subpages.module.css"
 
 export default function PagesLayout({
@@ -8,7 +8,10 @@ export default function PagesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`global-container ${styles.page}`}>
+    <div
+      className={`global-container ${styles.page}`}
+      data-id="global-container"
+    >
       <PageHeader />
       {children}
     </div>

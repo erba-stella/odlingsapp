@@ -1,4 +1,4 @@
-import { NavLink } from "./nav_link";
+import { NavLink } from "./navLink";
 
 export const NavList = () => {
   return (
