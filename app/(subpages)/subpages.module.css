@@ -1,5 +1,15 @@
 /* DESIGN - COLORS AND TYPOGRAPHY */
 
+.page {
+
+    /* Colors */
+    --filtered-plants-bg:rgb(241, 241, 241);
+
+    /* Transitions, animation timing */
+    --menu_open: .4s;
+    --menu_close: calc(var(--ts__nav_open) * 0.66);
+}
+
 .header {
     background-color: var(--color-header, #9ED36A);
 }
@@ -13,7 +23,13 @@
     color: var(--color-error);
 }
 
-/* SUBPAGES LAYOUT */
+.header h1 {
+    letter-spacing: .2rem;
+}
+
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Common global layout for all subpages
+*/
 
 .page {
     grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
@@ -32,13 +48,6 @@
     [vw-end];
 
     grid-template-collumns: grid-template-columns: var(--g-columns);
-
-    /* Colors */
-    --filtered-plants-bg:rgb(241, 241, 241);
-
-    /* Transitions, animation timing */
-    --menu_open: .4s;
-    --menu_close: calc(var(--ts__nav_open) * 0.66);
 }
 
 .page>.header {
@@ -59,6 +68,13 @@
 .page>.main {
     grid-row: header-end / rest-end;
     grid-column: content;
+}
+
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Main content layout 
+*/
+
+.main {
     display: grid;
     grid-template-columns: 
         [full-width-start] 
@@ -68,30 +84,47 @@
                 [inner-content-end] 
             var(--content-padding-w) 
         [full-width-end];
-    grid-template-rows: [heading-start] auto [heading-end listarea-start] 1fr [listarea-end];
+    grid-template-rows: 
+        [pageintro-start] 
+            auto 
+        [pageintro-end maincontent-start] 
+            1fr 
+        [maincontent-end];
 }
 
-.main h2 { grid-row: heading}
-.vaxtlistaSection, .addPlantSection {grid-row: listarea }
-
-.page>.main>*{
+.main>*{
     grid-column: inner-content;
 }
 
-.page>.main>.fullWidth{
+.main>.fullWidth{
     grid-column: full-width;
 }
 
-.main h2 {
-    --padding-top: calc(var(--content-padding-w) * 1.5);
-    padding-block: var(--padding-top) var(--content-padding-w);
+.sectionPageIntro {
+    grid-row: pageintro
+} 
+
+.sectionPageMainContent {
+    grid-row: maincontent 
 }
+
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Main content layout 
+*/
+.sectionPageIntro {
+    padding-block: var(--gap);
+}
+
+.sectionPageIntro>*+* {
+    padding-block: calc(var(--gap) * .25);
+}
+
 
 /* VAXLIST-PAGE SPECIFIC STYLING (move this later?) */
 
 /* FORM ADD PLANT */
 
-.addPlantSection {
+.sectionFormContainer {
     position: fixed;
     bottom: 0;
     width: 100%;
