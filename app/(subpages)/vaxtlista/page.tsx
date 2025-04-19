@@ -4,6 +4,13 @@ import styles from "@/app/(subpages)/subpages.module.css";
 // import { AddPlantForm } from "@/app/(subpages)/components/form/addPlantForm";
 import { AddPlantForm } from "@/app/(subpages)/components/form/addPlantForm";
 import { PlantList } from "@/app/(subpages)/components/plants/plantList";
+import { ToggleMenuButton } from "@/app/(subpages)/components/ui/buttons/toggleButtons/toggleMenuButton"
+import{ Loader } from "@/app/(subpages)/components/ui/loader"
+
+// import {
+//   fetchPlantData,
+//   // fetchPlantCategoryData,
+// } from "@/data-access/fetch-data";
 
 
 export const metadata: Metadata = {
@@ -21,7 +28,16 @@ export default function VaxtlistaPage() {
       <section className={`${styles.vaxtlistaSection}`}>
         <PlantList />
       </section>
-      <section className={`${styles.addPlantSection} ${styles.fullWidth}`}>
+
+      <section
+        id="form-container"
+        className={`${styles.sectionFormContainer} ${styles.fullWidth}`}
+      >
+        <ToggleMenuButton
+          controls="form-container"
+          iconStyle="plus"
+          label="Spara växt"
+        />
         <AddPlantForm />
         {/* <Suspense fallback={<div>Loading nice data...</div>}>
          
