@@ -109,6 +109,15 @@
     padding-bottom: 5rem; 
 }
 
+.sectionPageMainContent {
+  --sz__card-min-width: 18rem;
+  display: grid;
+  column-gap: calc(var(--gap) * 1.6);
+  align-content: start;
+    grid-template-columns: repeat(auto-fit, minmax(var(--sz__card-min-width), 1fr));
+
+}
+
 /*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
     Main content layout 
 */
