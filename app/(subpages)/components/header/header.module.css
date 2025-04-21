@@ -1,5 +1,13 @@
 
 /* HEADER CONTENT */
+.header h1 {
+    letter-spacing: .15rem;
+}
+
+.header a {
+    font-weight: 600;
+    color: var(--color-heading);
+}
 
 .headerContentContainer {
     display: flex;
@@ -13,10 +21,13 @@
 
 .navmenu li {
   list-style: none;
+  padding: .15rem;
 }
 
 .navmenu a {
     color: var(--color-navlink);
+    font-weight: 600;
+    color: var(--color-heading);
 }
 
 .navmenu a[aria-current="page"]  {

@@ -116,14 +116,16 @@ fieldset {
   --color-text: #1a1a1a;
   --color-text-muted: #666666;
   --color-heading: #004072;
+  /* --color-heading: rgb(73, 50, 130); */
 
   /* Specifics */
   --color-header: var(--color-primary);
+  
   --color-main-bg: var(--color-accent);
 
     --color-form-bg: rgb(249, 200, 24);
 
-  --color-navlink: var(--color-text);
+  --color-navlink: var(--color-heading);
   --color-navlink-current: var(--color-text-muted);
 
   --color-error:rgb(166, 0, 0);
