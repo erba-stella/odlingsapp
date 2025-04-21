@@ -1,3 +1,122 @@
 .page {
   min-height: 100svh;
 }
+
+.page ul {
+  padding-inline-start: 1.2rem;
+}
+
+.main {
+  --main-width: min(92svw, 560px);
+  --logo-width: min(var(--main-width), 40svh);
+  width: 100%;
+  margin-inline: auto;
+}
+
+.main h2 {
+  font-size: var(--fs-h3);
+  line-height: 1; 
+}
+
+.sectionGetGoing h2 {
+  font-size: var(--fs-h2);
+}
+
+.sectionPageIntro,
+.sectionGetGoing {
+  padding-block: var(--gap);
+  display: grid;
+  gap: var(--gap);
+  align-content: start;
+}
+
+.sectionGetGoing {
+  padding-block: calc(var(--gap) * 2);
+}
+
+.sectionPageIntro section {
+  padding-block: .5rem;
+}
+
+.sectionPageIntro section>* {
+  padding-block: .5rem;
+}
+
+.anchorLink {
+  display: block;
+  justify-items: center;
+  display: grid;
+  place-self: center;
+  align-self: end;
+  width: 70%;
+  border-radius: 20px;
+  /* background: #65548f; */
+}
+.anchorLink em {
+  padding:  1rem 2rem;
+  border-radius: 20px;
+  
+  background:rgba(255, 255, 255, 0.4);
+  background: var(--color-form-bg);
+  /* color: white; */
+  font-weight: 800;
+}
+
+.anchorLink svg {
+  width: 6rem;
+  fill: #65548f;
+  linecap: round;
+}
+
+a.button {
+  padding:  .5rem 1rem;
+  border-radius: 20px;
+  background: #65548f;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+
+.logo {
+  width: var(--logo-width, 25rem);
+  aspect-ratio: 1/1;
+  margin-inline: auto;
+  display: grid;
+  place-content: center;
+  align-items: end;
+}
+
+.logo>*{
+  grid-area: 1 / 1;
+}
+
+.logo h1 {
+  display: block;
+  --font-size: calc(var(--logo-width) * .217);
+  font-size: var(--font-size, 3rem);
+  line-height: 1;
+  color: #fecd57;
+  color: #9ed46a;
+}
+/* @media (max-width: 1700px) and (orientation: portrait) { */
+@media (max-width: 1700px) {
+  .main {
+    --main-width: min(92svw, 560px);
+    --logo-width: min(var(--main-width), 40svh);
+    width: var(--logo-width);
+  }
+  /* 
+    Intro section 
+    (over the fold content on mobile) 
+  */
+  .sectionPageIntro {
+    padding-block: 2svh;
+    height: 100svh;
+    grid-template-rows: auto auto 1fr;
+  }
+
+}
+
+.sectionGetGoing {
+  min-height: 100lvh;
+}
