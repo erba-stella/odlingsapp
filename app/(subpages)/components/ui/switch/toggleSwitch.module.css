@@ -1,0 +1,81 @@
+/*  
+    A simple switch, a modified copy of this:
+    https://www.w3schools.com/howto/howto_css_switch.asp 
+*/
+
+/* The switch - the box around the slider */
+.toggleSwitch {
+  --width: 60px;
+  --width: 60px;
+  --height: 34px;
+  --slider-height: 26px;
+  --slider-translateX: 26px;
+  --border-radius: var(--height);
+  --outline: 3px;
+  --outline-offset: 1px;
+  --outline-spacing: calc(var(--outline) + var(--outline-offset));
+  --background-color: #ccc;
+  --background-color-checked:rgb(111, 207, 21);
+  --slider-color: white;
+  --outline-color: var(--color-outline, blue);
+  
+  position: relative;
+  display: inline-block;
+  width: var(--width);
+  height: var(--height);
+  margin-inline: var(--outline-spacing);
+}
+
+/* Hide default HTML checkbox */
+.toggleSwitch input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-color);
+  transition: .4s;
+  border-radius: var(--border-radius);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--slider-height);
+  width: var(--slider-height);
+  --diff: calc(var(--height) - var(--slider-height));
+  left: calc(var(--diff) / 2);
+  bottom: calc(var(--diff) / 2);
+  background-color: var(--slider-color);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--background-color-checked);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--background-color-checked);
+}
+
+input:focus-visible + .slider {
+  outline-offset: var(--outline-offset);
+  outline: var(--outline) solid var(--outline-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(var(--slider-translateX));
+}

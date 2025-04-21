@@ -16,8 +16,8 @@ export const PlantTypeCard = ({
   // Select plant (open in modal for details)
   const [selectedPlant, setSelectedPlant] = useState<CustomPlant | null>(null);
   
-  console.log("plants", plants);
-  console.log("plant Icon", plants[0]?.linkedTo.icon_name);
+  // console.log("plants", plants);
+  // console.log("plant Icon", plants[0]?.linkedTo.icon_name);
   
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -47,9 +47,10 @@ export const PlantTypeCard = ({
     }
   }, [searchParams, plants, selectedPlant]);
 
+
   return (
     <>
-      <article className={styles.cardWrapper}>
+      <article className={styles.cardWrapper} id={plants[0].linkedTo.id}>
         <div
           className={`${styles.card} ${expanded ? styles.expanded : ""}`}
           onClick={handleToggle}
@@ -65,14 +66,12 @@ export const PlantTypeCard = ({
         >
           <header className={styles.topRow}>
             <span className={styles.iconWrapper}>
-              
               <PlantIcon
                 type={plants[0].linkedTo.icon_name}
                 width="48"
                 height="48"
                 aria-hidden="true"
               />
-              
             </span>
             <hgroup className={styles.content}>
               <h3 className={styles.title}>{plantType}</h3>

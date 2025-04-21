@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-
 type Props = {
   href: string;
   children: React.ReactNode;
@@ -15,7 +14,10 @@ export function NavLink({ href, children }: Props) {
 
   if (isActive) {
     return (
-      <a role="menuitem" aria-current="page">
+      <a
+        role="menuitem"
+        aria-current="page"
+      >
         {children}
       </a>
     );

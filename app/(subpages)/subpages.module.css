@@ -1,5 +1,15 @@
 /* DESIGN - COLORS AND TYPOGRAPHY */
 
+.page {
+
+    /* Colors */
+    --filtered-plants-bg:rgb(241, 241, 241);
+
+    /* Transitions, animation timing */
+    --menu_open: .4s;
+    --menu_close: calc(var(--ts__nav_open) * 0.66);
+}
+
 .header {
     background-color: var(--color-header, #9ED36A);
 }
@@ -13,7 +23,13 @@
     color: var(--color-error);
 }
 
-/* SUBPAGES LAYOUT */
+.header h1 {
+    letter-spacing: .2rem;
+}
+
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Common global layout for all subpages
+*/
 
 .page {
     grid-template-rows: [header-start] auto [header-end menu-start] auto [menu-end rest-start]  1fr [rest-end];
@@ -32,13 +48,6 @@
     [vw-end];
 
     grid-template-collumns: grid-template-columns: var(--g-columns);
-
-    /* Colors */
-    --filtered-plants-bg:rgb(241, 241, 241);
-
-    /* Transitions, animation timing */
-    --menu_open: .4s;
-    --menu_close: calc(var(--ts__nav_open) * 0.66);
 }
 
 .page>.header {
@@ -59,6 +68,13 @@
 .page>.main {
     grid-row: header-end / rest-end;
     grid-column: content;
+}
+
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Main content layout 
+*/
+
+.main {
     display: grid;
     grid-template-columns: 
         [full-width-start] 
@@ -68,56 +84,158 @@
                 [inner-content-end] 
             var(--content-padding-w) 
         [full-width-end];
-    grid-template-rows: [heading-start] auto [heading-end listarea-start] 1fr [listarea-end];
+    grid-template-rows: 
+        [pageintro-start] 
+            auto 
+        [pageintro-end maincontent-start] 
+            1fr 
+        [maincontent-end];
 }
 
-.main h2 { grid-row: heading}
-.vaxtlistaSection, .addPlantSection {grid-row: listarea }
-
-.page>.main>*{
+.main>*{
     grid-column: inner-content;
 }
 
-.page>.main>.fullWidth{
+.main>.fullWidth{
     grid-column: full-width;
 }
 
-.main h2 {
-    --padding-top: calc(var(--content-padding-w) * 1.5);
-    padding-block: var(--padding-top) var(--content-padding-w);
+.sectionFormContainer {
+    grid-column: full-width;
 }
 
-/* VAXLIST-PAGE SPECIFIC STYLING (move this later?) */
+.sectionPageIntro {
+    grid-row: pageintro;
+} 
 
-/* FORM ADD PLANT */
-
-.addPlantSection {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    transform: translateY(90%);
+.sectionPageMainContent {
+    grid-row: maincontent;
+    padding-bottom: 5rem; 
 }
 
-.addPlantSection {
-    --filter-plant-resultbox-height: 10rem;
-    padding-inline: var(--content-padding-w);
-    background-color: var(--color-accent);
-    display: grid;
-    gap: var(--gap);
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    Main content layout 
+*/
+.sectionPageIntro {
     padding-block: var(--gap);
 }
 
+.sectionPageIntro>*+* {
+    padding-block: calc(var(--gap) * .25);
+}
+
+
+/* VAXLIST-PAGE SPECIFIC STYLING (move this later?) */
+
+
+/* FORM AREA */
+
+/* Form area layout - position on page */
+.sectionFormContainer {
+    --filter-plant-resultbox-height: min-content;
+    --form-toggle-button-color: var(--color-form-bg);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--color-form-bg);
+}
+
+/* Form Toggle */
+.sectionFormContainer {
+    transform: translateY(0%);
+    transition-duration: var(--menu_close, .4s);
+    transition-timing-function: ease-in;
+}
+
+.sectionFormContainer:has(button[aria-haspopup="menu"][aria-expanded="false"]){
+    transform: translateY(93%);
+    transition-duration: var(--menu_open, .4s);
+    background-color:rgba(51, 51, 51, 0.7);
+    background-color:rgba(202, 206, 190, 0.7);
+}
+
+.sectionFormContainer button[aria-haspopup="menu"]{
+    position: relative;
+    transition-duration: var(--menu_close, .6s);
+    transition-timing-function: ease-in-out;
+    transform: translateY(20%);
+}
+
+.sectionFormContainer button[aria-haspopup="menu"][aria-expanded="false"] {
+    transform: translateY(-30%);
+    margin-inline:auto;
+}
+
+.sectionFormContainer 
+button[aria-haspopup="menu"][aria-expanded="false"]:after {
+    content: "Lägg till växt";
+    width: 10rem;
+    display: block;
+    position: absolute;
+    /* left: -100%; */
+    font-weight: 700;
+    top: 30%;
+    left: 60%;
+}
+
+.sectionFormContainer button[aria-haspopup="menu"] {
+    background-color: var(--form-toggle-button-color,rgb(238, 223, 10));
+    border-radius: 50%;
+    height: 4rem;
+    border: .5rem var(--color-form-bg) solid;
+}
+
+
+
+/* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+
+Form area - inner content layout 
+
+*/
+
+/* LAYOUT: FORM CONTAINER */
+.sectionFormContainer {
+
+    display: grid;
+    /* Columns */
+    grid-template-columns: 
+    1fr 
+    [full-width-start]
+        var(--content-padding-w)
+            [content-start]
+            clamp(180px, calc(100svw - var(--content-padding-w) *2), 450px)
+            [content-end]
+        var(--content-padding-w)
+    [full-width-end]
+    1fr; 
+    /* Rows */
+    grid-template-rows: 
+        [top-row-start] 
+         4rem
+        [top-row-end name-row-start]
+         4rem 
+        [name-row-end combobox-row-start]
+         4rem 
+        [combobox-row-end switch-row-start]
+         7rem 
+        [switch-row-end]
+         4rem 
+         3rem
+         1fr;
+}
+
+.sectionFormContainer * {
+    grid-column: content;
+    max-width: 100%;
+    font-weight: 600;
+}
+
 .addPlantForm {
-    width: clamp(300px, 100%, 450px);
-    display: flex;
-    flex-direction: column;
-    /* align-items: start; */
-    gap: var(--gap, 1rem);
-    padding-block: var(--gap, 1rem);
-    padding-inline: clamp(8px, 7svw - 20px, 15px );
-    /* background-color: var(--color-surface-secondary-2); */
-    margin-inline: auto;
-    height: 30rem;
+    display: contents;
 }
 
 .addPlantForm fieldset>*{
@@ -127,10 +245,32 @@
     margin-top: 0;
 }
 
-.addPlantForm button {
-    width: 66%;
-    margin-inline: auto;
+.addPlantForm .checkboxToggle {
+    justify-self: end;
 }
+
+.addPlantForm button[type="submit"] {
+    justify-self: end;
+    width: 50%;
+}
+
+/* CHECKBOX-GROUPS */
+
+.checkboxGroup {
+    display: flex;
+    gap: var(--gap);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.checkboxGroup>label {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
+
+
+/* COMBOBOX - INPUT and LISTBOX  */
 
 .comboboxWrapper {
     display: flex;
@@ -138,39 +278,26 @@
     flex-direction: column;
 }
 
-/* 
-Input:
-.examples-combobox-filtering .combobox[data-active-item] {
-    outline-width: 2px;
-}
-*/
-.checkboxGroup {
-    margin-bottom: calc(var(--gap) * 0.66);
-}
-
-.checkboxGroup {
-    margin-bottom: calc(var(--gap) * 0.66);
-}
-
-
-.checkboxGroup {
-    display: flex;
-    gap: var(--gap);
-    flex-wrap: wrap;  
-}
-
-.checkboxGroup>label {
-    display: flex;
-    width: min-content;
-    gap: .3rem;
-}
+/* COMBOBOX: LISTBOX */
 
 .filteredPlants {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     position: relative;
+    opacity: 1;
+    transition: opacity .5s ease .2s;
+}
+
+.filteredPlants:has(ul:empty)  {
+    opacity: 0;
+    background-color: transparant;
+}
+
+.filteredPlants ul:empty  {
+    opacity: 0;
 }
 
 .filteredPlants ul {
+    z-index: 300;
     list-style: none;
     padding: 0.3rem;
     position: absolute;
@@ -193,126 +320,58 @@ Input:
     padding: 0.5rem;
     margin-bottom: 0.3rem;
     cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #e0f7fa;
 }
 
 .filteredPlants input[type="checkbox"]{
-  width: min-content;
+  /* width: min-content; */
+  all: unset;
 }
 
+.sectionSavePlant {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap);
+}
 
-/* HEADER CONTENT */
+.validationMsg {
+    padding: .5rem;
+    /* border-inline-start: 3px solid var(--color-error); */
+}
 
-.headerContentContainer {
+.validationMsg li {
+    list-style: none;
+    padding-inline: .5rem;
+    border-inline-start: 3px solid var(--color-error);
+}
+
+.sectionSaved {
+    margin-block: 2rem;
+    padding-block: 1rem;
+    border-top: 1px solid rgb(174, 174, 173);
+}
+
+.sectionSaved ul {
+    padding-block: .5rem;
+}
+
+.sectionSaved li {
     display: flex;
     align-items: center;
     gap: var(--gap);
+    margin-block: var(--gap);
 }
 
-.header:is(.navmenu) {
-    font-size: var(--fs-600);
+.sectionSaved li>* {
+    flex-basis: 30%;
 }
 
-.navmenu li {
-  list-style: none;
+
+.sectionSaved a {
+    color: blue;
+    background-color: #fefefe;
+    padding: .05rem .5rem;
+    border-radius: .4rem;
 }
-
-.navmenu a {
-    color: var(--color-navlink);
-}
-
-.navmenu a[aria-current="page"]  {
-    color: var(--color-navlink-current);
-}
-
-.navmenu.desktop {
-    margin-inline-start: auto;
-}
-
-.navmenu.desktop ul {
-    display: flex;
-    gap: var(--gap);
-}
-
-@media (max-width: 600px) {
-    .navmenu.desktop {
-        display: none;
-    }
-}
-
-@media (min-width: 601px) {
-    .navToggleButton, .navToggleMenu {
-        display: none;
-    }
-}
-
-/* HAMBURGER - NavToggleButton */
-
-.navToggleButton {
-    height: max(4em, var(--min-click-target-size));
-    aspect-ratio: 1 / 1;
-    background-color: transparent;
-    border-radius: var(--button-border-radius);
-    border-radius: 50%;
-    margin-inline-start: auto;
-    border: none;
-}
-
-.navToggleIcon {
-    width: 2.6em;
-    height: 2.6em;
-    margin: 0 auto;
-    stroke-width: .5em;
-    stroke-linecap: round;
-    stroke: currentColor;
-    fill: none;
-    stroke: var(--color-icon, #333);
-    transition: var(--hover-transition);
-}
-
-/* "HAMBURGER"-icon to "CLOSE"-icon transition */
-
-.navToggleIcon path {
-    transition: .3s ease-in;
-    transform-origin: 50% 50%;
-    opacity: 1;
-}
-
-.navToggleButton[aria-expanded="true"] path:nth-of-type(1) {
-    transform:translateY(20%);
-    scale:0% 0%;
-    opacity: 0;
-}
-
-.navToggleButton[aria-expanded="true"] path:nth-of-type(2) {
-    transform:rotate(45deg)
-}
-
-.navToggleButton[aria-expanded="true"] path:nth-of-type(3) {
-    transform:rotate(-45deg)
-}
-
-.navToggleButton[aria-expanded="true"] path:nth-of-type(4) {
-    transform:translateY(-20%);
-    scale:0% 0%;
-    opacity: 0;
-}
-
-.navToggleMenu {
-    width: 100%;
-    background: yellow;
-    padding: 2rem;
-}
-
-/* close nav-menu */
-.navToggleMenu {
-    transform: translateY(-100%);
-    transition-duration: var(--menu_close, .4s);
-    transition-timing-function: ease-in;
-}
-
-/* open nav-menu */
-.page:has(.navToggleButton[aria-expanded="true"]) .navToggleMenu {
-    transform: translateY(0%);
-    transition-duration: var(--menu_open, .4s);
-    transition-timing-function: ease-out;
-} 

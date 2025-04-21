@@ -69,12 +69,6 @@ fieldset {
   border: none;
 }
 
-/* performance enhancements */
-section, article, footer {
-  contain: content;
-  content-visibility: auto;
-  contain-intrinsic-size: auto var(--intrrinsic-size, 80swh);
-}
 
 /* 
     GLOBAL VARIABLES 
@@ -98,6 +92,7 @@ section, article, footer {
 --flow-space: 1rem;
 --min-click-target-size: 44px;
 --gap: 1rem;
+--outline: 0.1875rem;
 --button-border-radius: .5rem;
 --form-border-radius: .4rem;
 
@@ -125,6 +120,8 @@ section, article, footer {
   /* Specifics */
   --color-header: var(--color-primary);
   --color-main-bg: var(--color-accent);
+
+    --color-form-bg: rgb(249, 200, 24);
 
   --color-navlink: var(--color-text);
   --color-navlink-current: var(--color-text-muted);
@@ -216,8 +213,6 @@ table {
 	width: 100%;
 }
 
-
-
 /* 
   LAYOUT 
 */
@@ -249,6 +244,12 @@ table {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+
+*:focus-visible {
+ outline: var(--outline) solid blue;
+ z-index: 2000;
 }
 
 /*  tab-focus-visible class for keyboard-only links/skip links 
