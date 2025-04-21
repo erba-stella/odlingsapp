@@ -3,7 +3,7 @@ import "./globals.css";
 import { font1, font2, font3 } from "@/fonts/fonts";
 
 export const metadata: Metadata = {
-  title: "OdlingsPlanera",
+  title: "SåPlanera",
   description: "En liten odlingsplaneringsapp gjord som ett skolprojekt på Lexicon frontend utbildning",
 };
 
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="sv">
       <body
         className={`
         ${font1.variable}

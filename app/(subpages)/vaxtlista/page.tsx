@@ -6,36 +6,29 @@ import { PlantList } from "@/app/(subpages)/components/plants/plantList";
 import { ToggleMenuButton } from "@/app/(subpages)/components/ui/buttons/toggleButtons/toggleMenuButton"
 import{ Loader } from "@/app/(subpages)/components/ui/loader"
 
-// import {
-//   fetchPlantData,
-//   // fetchPlantCategoryData,
-// } from "@/data-access/fetch-data";
-
 
 export const metadata: Metadata = {
-  title: "Min växtlista",
+  title: "Växtlista",
 };
 
 export default function VaxtlistaPage() {
   // Hämta plantor från API - för att få alla planttyper
 
- 
-
   return (
     <main className={styles.main}>
       <div className={styles.sectionPageIntro}>
-      <h2>Min växtlista</h2>
+        <h2>Min Växtlista</h2>
         <section>
           <p>Det här är en kort introduktion till innehållet på sidan.</p>
         </section>
       </div>
 
-      <section className={`${styles.sectionPageMainContent}`} id="form-container">
+      <section
+        className={`${styles.sectionPageMainContent}`}
+        id="form-container"
+      >
         <Suspense fallback={<Loader />}>
-          {
-            
-          }
-        <PlantList />
+          <PlantList />
         </Suspense>
       </section>
 
@@ -48,10 +41,9 @@ export default function VaxtlistaPage() {
           iconStyle="plus"
           label="Spara växt"
         />
-        <AddPlantForm />
-        {/* <Suspense fallback={<div>Loading nice data...</div>}>
-         
-        </Suspense> */}
+        <Suspense fallback={<Loader />}>
+          <AddPlantForm />
+        </Suspense>
       </section>
     </main>
   );
