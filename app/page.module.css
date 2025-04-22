@@ -18,19 +18,19 @@
   line-height: 1; 
 }
 
-.sectionGetGoing h2 {
+.sectionGetStarted h2 {
   font-size: var(--fs-h2);
 }
 
 .sectionPageIntro,
-.sectionGetGoing {
+.sectionGetStarted {
   padding-block: var(--gap);
   display: grid;
   gap: var(--gap);
   align-content: start;
 }
 
-.sectionGetGoing {
+.sectionGetStarted {
   padding-block: calc(var(--gap) * 2);
 }
 
@@ -117,6 +117,6 @@ a.button {
 
 }
 
-.sectionGetGoing {
+.sectionGetStarted {
   min-height: 100lvh;
 }
