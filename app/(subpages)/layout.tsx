@@ -1,5 +1,5 @@
 
-import { PageHeader } from "@/app/(subpages)/components/header/header"
+import { PageHeader } from "@/app/components/header/header"
 import styles from "./subpages.module.css"
 
 export default function PagesLayout({

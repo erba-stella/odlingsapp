@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import styles from "@/app/(subpages)/subpages.module.css";
-import { AddPlantForm } from "@/app/(subpages)/components/form/addPlantForm";
-import { PlantList } from "@/app/(subpages)/components/plants/plantList";
-import { ToggleMenuButton } from "@/app/(subpages)/components/ui/buttons/toggleButtons/toggleMenuButton"
-import{ Loader } from "@/app/(subpages)/components/ui/loader"
+import { AddPlantForm } from "@/app/components/form/addPlantForm";
+import { PlantList } from "@/app/components/plants/plantList";
+import { ToggleMenuButton } from "@/app/components/ui/buttons/toggleButtons/toggleMenuButton"
+import{ Loader } from "@/app/components/ui/loader"
 
 
 export const metadata: Metadata = {

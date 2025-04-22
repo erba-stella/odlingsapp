@@ -7,7 +7,7 @@ import Link from "next/link";
 import { fetchPlantData } from "@/data-access/fetch-data";
 import { CustomPlant, PlantData } from "@/lib/interfaces";
 import { useLocalStorage } from "@/lib/utils/localstorage";
-import { ToggleSwitch } from "@/app/(subpages)/components/ui/switch/toggleSwitch";
+import { ToggleSwitch } from "@/app/components/ui/switch/toggleSwitch";
 
 
 export const AddPlantForm = () => {

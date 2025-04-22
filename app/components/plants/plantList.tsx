@@ -1,5 +1,5 @@
 "use client";
-import { PlantTypeCard } from "@/app/(subpages)/components/plants/plantTypeCard";
+import { PlantTypeCard } from "@/app/components/plants/plantTypeCard";
 import { useEffect, useState } from "react";
 import { CustomPlant } from "@/lib/interfaces";
 import { useSearchParams } from "next/navigation";
