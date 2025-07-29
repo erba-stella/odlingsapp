@@ -1,43 +1,60 @@
 import styles from "./page.module.css";
 import { SmoothScrollLink } from "@/app/components/ui/links/smoothScrollLink";
-import { LogoIcon } from "@/app/components/icons/logoIcon";
+import { Logo } from "@/app/components/icons/logoIcon";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className={`global-container ${styles.page}`}>
       <main className={styles.main}>
-        
         {/* Intro section */}
-        <div className={styles.sectionPageIntro}>
-          <div className={styles.logo}>
-            <LogoIcon aria-hidden="true" />
-            <h1>SåPlanera</h1>
-          </div>
+        <div
+          className={`
+            ${styles.sectionPageIntro} 
+            `}
+        >
+          {/* Logo image */}
+          <Logo />
 
-          <section>
+          {/* Page intro */}
+          <section
+            className={`
+            ${styles.textSection}
+            ${styles.pageIntroText} 
+            `}
+          >
             <h2>Håll koll på dina sådder!</h2>
             <ul>
-              <li>
-                Spara dina plantor dolor sit amet consectetur adipisicing elit.
-              </li>
-              <li>Se tider för sådd och utplantering i ditt område</li>
+              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+              <li>Placeat ut corporis amet repudiandae!</li>
             </ul>
           </section>
+        </div>
 
-          <SmoothScrollLink targetId="getStarted" className={styles.anchorLink}>
-            <em>KOM IGÅNG</em>
-            <svg viewBox="0 0 1024 1024">
-              <path d="m903 256 57 50-448 462L64 306l57-50 391 403z" />
-            </svg>
+        {/* Scroll link */}
+        <div id="getStarted" className={styles.scrollLinkWrapper}>
+          <SmoothScrollLink targetId="getStarted" className={styles.scrollLink}>
+            <em>
+              Kom igång!
+              <svg className={styles.arrowDown} viewBox="0 0 100 100">
+                <path
+                  d="M78 36 50 64 22 35a2 2 0 0 0-3 3l29 30a2 2 0 0 0 2 0h2l29-30a2 2 0 1 0-3-2z"
+                />
+              </svg>
+            </em>
           </SmoothScrollLink>
         </div>
 
-        <section className={styles.sectionGetStarted} id="getStarted">
+        <section
+          className={`
+            ${styles.section}
+            ${styles.sectionGetStarted} 
+            `}
+        >
           <h2>Var odlar du?</h2>
           <p>
-            Lorem eligendi, animi asperiores voluptatem voluptate ipsum ea earum
-            illo doloribus:
+            Ange odlingsort för att se lokalt anpassade tider för sådd och
+            utplantering.
           </p>
           <label>
             Ort
@@ -45,17 +62,18 @@ export default function Home() {
           </label>
 
           <h2>Spara dina växter</h2>
-          <p>
+          {/* <p>
             Lorem ipsum, dolor sit amet consec tetur adipisicing elit. Nostrum
             nisi facere ratione eligendi, voluptatem voluptate ipsum earum illo
             doloribus?
-          </p>
+          </p> */}
 
           <Link href="/vaxtlista" className={`${styles.button}`}>
             Skapa Växtlista
           </Link>
         </section>
       </main>
+      <footer></footer>
     </div>
   );
 }

@@ -69,15 +69,11 @@ fieldset {
   border: none;
 }
 
-
 /* 
     GLOBAL VARIABLES 
 */
 
 :root {
-
-  /* FONTS */
-  --font-base: var(--font-2);
  
   /* font-sizes */
   --fs-small: 0.75rem;
@@ -96,7 +92,6 @@ fieldset {
 --button-border-radius: .5rem;
 --form-border-radius: .4rem;
 
-
   /* COLOR */
 
   /* Base colors */
@@ -108,6 +103,7 @@ fieldset {
   /* Backgrounds */
   --color-bg:rgb(233, 232, 232);
   --color-surface: #f9f9f9;
+  --color-surface-transparent:rgba(249, 249, 249, 0.56);
   /* --color-surface-primary:rgba(206, 226, 186, 0.64); */
   --color-surface-secondary:rgb(147, 139, 171);
   --color-surface-secondary-2:rgb(220, 216, 232);
@@ -116,19 +112,29 @@ fieldset {
   --color-text: #1a1a1a;
   --color-text-muted: #666666;
   --color-heading: #004072;
-  /* --color-heading: rgb(73, 50, 130); */
+  --color-heading:rgb(111, 96, 81);
 
   /* Specifics */
   --color-header: var(--color-primary);
-  
   --color-main-bg: var(--color-accent);
-
-    --color-form-bg: rgb(249, 200, 24);
-
+  --color-form-bg: rgb(249, 200, 24);
   --color-navlink: var(--color-heading);
   --color-navlink-current: var(--color-text-muted);
-
   --color-error:rgb(166, 0, 0);
+
+  /* SVG icons */
+  --fill-brown: #965353;
+  --fill-brown:rgb(134, 118, 102);
+  --fill-brown-shadow: #7f4545;
+  --fill-brown-shadow:rgb(126, 101, 101);
+  --fill-green: #9ed36a;
+  --fill-green:rgb(154, 198, 77);
+  --fill-skin: #eac6bb;
+  --fill-skin:rgb(241, 188, 171);
+  --fill-skin-shadow: #dbada2;
+  --fill-yellow: #fecd57;
+  --fill-blue-sky:rgb(137, 220, 231);
+  --fill-blue-muted:rgb(179, 212, 217);
 
   /* Modal */
   --color-backdrop: rgba(0, 0, 0, 0.5);
@@ -147,7 +153,6 @@ fieldset {
   }
 }
 
-
 /* 
     BASE STYLING 
 */
@@ -155,26 +160,27 @@ fieldset {
 body {
   color: var(--color-text);
   background: var(--color-bg);
-  font-family: var(--font-3);
+  font-family: var(--font-base);
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-  font-family: var(--font-1);
+  font-family: var(--font-logo);
   font-size: var(--fs-h1);
   color: var(--color-heading);
 }
 
 h2 {
-  font-family: var(--font-3);
+  font-family: var(--font-heading);
   font-size: var(--fs-h2);
   color: var(--color-heading);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 h3 {
-  font-family: var(--font-3);
+  font-family: var(--font-heading);
   font-size: var(--fs-h3);
   color: var(--color-heading);
   font-weight: 700;
@@ -190,6 +196,14 @@ h4, legend {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+ul {
+  padding-inline-start: 1.2rem;
+}
+
+li {
+  padding-block-end: .25rem;
 }
 
 button {
@@ -222,12 +236,6 @@ table {
 .global-container {
   min-height: 100svh;
   display: grid;
-}
-
-.card-container > * {
-  padding: clamp(.75rem, 3%, 2rem);
-  /* prevent overflow */
-  word-break: break-word;
 }
 
 /* 

@@ -1,24 +1,49 @@
 import {
  Pacifico,
- Open_Sans,
- Nunito
+  Open_Sans,
+//  Caveat,
+  // Nunito,
+//  Merienda,
+  //  Nunito_Sans
+  // Dancing_Script
+  // Playfair_Display,
+ Shantell_Sans
 } from "next/font/google";
 
-export const font1 = Pacifico({
-  variable: "--font-1",
+export const font_logo = Pacifico({
+  variable: "--font-logo",
   weight: ["400"],
   style: ["normal"],
   subsets: ["latin"],
   display: "swap",
 });
 
-export const font2 = Open_Sans({
-  variable: "--font-2",
+// export const font_heading = Nunito_Sans({
+//   variable: "--font-heading",
+//   subsets: ["latin"],
+// });
+
+// export const font_heading = Merienda({
+//   variable: "--font-heading",
+//   subsets: ["latin"],
+// });
+
+// export const font_heading = Dancing_Script({
+//   variable: "--font-heading",
+//   subsets: ["latin"],
+// });
+
+// export const font_heading = Caveat({
+//   variable: "--font-heading",
+//   subsets: ["latin"],
+// });
+
+export const font_heading = Shantell_Sans({
+  variable: "--font-heading",
   subsets: ["latin"],
 });
 
-export const font3 = Nunito({
-  variable: "--font-3",
+export const font_base = Open_Sans({
+  variable: "--font-base",
   subsets: ["latin"],
-}
-)
+});
