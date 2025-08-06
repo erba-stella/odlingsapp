@@ -1,14 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TransitionLink } from "./transitionLink";
 
 type Props = {
   href: string;
   children: React.ReactNode;
 };
 
-export function NavLink({ href, children }: Props) {
+export const NavLink = ({ href, children }: Props) => {
   const pathname = usePathname();
   const isActive = pathname === href || pathname.startsWith(href + "/");
 
@@ -24,8 +24,11 @@ export function NavLink({ href, children }: Props) {
   }
 
   return (
-    <Link role="menuitem" href={href}>
-      {children}
-    </Link>
+    <TransitionLink
+      href={href}
+      role="menuitem"
+    >
+        {children}
+    </TransitionLink>
   );
 }

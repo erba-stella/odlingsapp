@@ -10,6 +10,7 @@ interface IconParams {
 interface ButtonParams extends IconParams {
   controls: string;
   label: string;
+  className?: string;
   onClickAction?: () => void;
 };
 
@@ -42,12 +43,14 @@ export const ToggleOpenCloseIcon = ({
 export const ToggleMenuButton = ({
   iconStyle,
   controls,
+  className,
   label,
   onClickAction,
 }: ButtonParams) => {
   return (
     <>
       <ToggleMenuButtonWrapper
+        className={className}
         onClickAction={onClickAction}
         aria-controls={controls}
         aria-haspopup="menu"

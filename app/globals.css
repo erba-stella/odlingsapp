@@ -1,6 +1,7 @@
 /* 
-    RESET 
+    RESET & BASE STYLES
 */
+
 *,
 *::before,
 *::after {
@@ -14,7 +15,7 @@
   font: inherit;
 }
 
-/* min body height */
+/* min body height / max body width */
 body {
   min-height: 100svh;
 }
@@ -29,11 +30,13 @@ body {
 img,
 picture,
 svg,
-video {
+video,
+canvas {
   display: block;
   max-width: 100%;
 }
 
+/* svg animation and transforms */
 svg {
   transform-origin: 50% 50%;
 }
@@ -42,7 +45,7 @@ svg * {
   transform-box: fill-box;
 }
 
-/* make headings wrap better */
+/* better text wrapping  */
 :is(h1, h2, h3, h4, h5, h6) {
   text-wrap: balance;
   hyphens: manual;
@@ -52,93 +55,104 @@ p,
 li,
 figcaption {
   text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
   max-width: 55ch;
-  hyphens: manual;
 }
 
 /* 
-hyphens: manual -  insert soft hyphen character: &shy
-https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
+  hyphens: manual -  insert soft hyphen character: &shy
+  https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
 */
 
-a, input, button, select, option {
+a,
+input,
+button,
+select,
+option {
   cursor: pointer;
 }
 
+/* remove default link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* remove default form styles */
+input,
+select,
+textarea,
+button,
 fieldset {
+  font: inherit;
+  color: inherit;
+  background: transparent;
   border: none;
 }
 
 /* 
-    GLOBAL VARIABLES 
+    COLOR THEME
 */
 
 :root {
- 
-  /* font-sizes */
-  --fs-small: 0.75rem;
-  --fs-regular: 1rem;
-  --fs-h4: 1.2rem;
-  --fs-h3: 1.75rem;
-  --fs-h2: 2.65rem;
-  --fs-h1: 1.56rem;
+  /* COLOR THEME */
 
-/* SPACING and SIZING */
+  /* theme colors */
+  --color-primary: oklch(0.76 0.19 127);
 
---flow-space: 1rem;
---min-click-target-size: 44px;
---gap: 1rem;
---outline: 0.1875rem;
---button-border-radius: .5rem;
---form-border-radius: .4rem;
+  --color-secondary-100: oklch(0.999 0.1 595);
+  --color-secondary-200: oklch(0.99 0.1 595);
+  --color-secondary-500: oklch(0.5 0.1 595);
+  --color-secondary-600: oklch(0.42 0.14 595);
+  --color-secondary-700: oklch(0.36 0.14 595);
 
-  /* COLOR */
+  --color-accent: oklch(0.76 0.15 86.2);
 
-  /* Base colors */
-  --color-primary: #9ED36A;
-  --color-secondary: #65558F;
-  --color-accent: #FECD57;
-  /* --color-inverse */
+  /* neutrals */
+  --color-neutral-100: oklch(0.97 0.03 30);
+  --color-neutral-200: oklch(0.94 0.03 30);
+  --color-neutral-500: oklch(0.5 0.03 30);
+  --color-neutral-600: oklch(0.42 0.03 30);
+  --color-neutral-700: oklch(0.36 0.03 30);
+  --color-neutral-900: oklch(0.2 0.03 30);
+
+  --color-navlink-currentXXX: oklch(
+    from var(--color-heading) calc(l - 0.17) c h / 1
+  );
+
+  --color-surface-body: oklch(0.95 0.02 20);
+  --color-surface-base: oklch(0.9 0.02 27);
+  --color-surface-front: oklch(0.9995 0.03 30);
+
+    /* Functional */
+  --color-focus-outline: oklch(0.6 0.45  595);
+  --color-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
 
   /* Backgrounds */
-  --color-bg:rgb(233, 232, 232);
-  --color-surface: #f9f9f9;
-  --color-surface-transparent:rgba(249, 249, 249, 0.56);
-  /* --color-surface-primary:rgba(206, 226, 186, 0.64); */
-  --color-surface-secondary:rgb(147, 139, 171);
-  --color-surface-secondary-2:rgb(220, 216, 232);
+  --color-bg: var(--color-surface-body);
 
-    /* Text */
-  --color-text: #1a1a1a;
-  --color-text-muted: #666666;
-  --color-heading: #004072;
-  --color-heading:rgb(111, 96, 81);
+  /* Text - base colors */
+  --color-text-light: var(--color-neutral-500);
+  --color-text-medium: var(--color-neutral-600);
+  --color-text-dark: var(--color-neutral-700);
+  --color-text-black: var(--color-neutral-700);
 
-  /* Specifics */
-  --color-header: var(--color-primary);
-  --color-main-bg: var(--color-accent);
-  --color-form-bg: rgb(249, 200, 24);
-  --color-navlink: var(--color-heading);
-  --color-navlink-current: var(--color-text-muted);
-  --color-error:rgb(166, 0, 0);
+
 
   /* SVG icons */
-  --fill-brown: #965353;
-  --fill-brown:rgb(134, 118, 102);
-  --fill-brown-shadow: #7f4545;
-  --fill-brown-shadow:rgb(126, 101, 101);
-  --fill-green: #9ed36a;
-  --fill-green:rgb(154, 198, 77);
-  --fill-skin: #eac6bb;
-  --fill-skin:rgb(241, 188, 171);
+  --fill-brown: rgb(134, 118, 102);
+  --fill-brown-shadow: rgb(126, 101, 101);
+  --fill-green: rgb(154, 198, 77);
+  --fill-skin: rgb(241, 188, 171);
   --fill-skin-shadow: #dbada2;
   --fill-yellow: #fecd57;
-  --fill-blue-sky:rgb(137, 220, 231);
-  --fill-blue-muted:rgb(179, 212, 217);
+  --fill-blue-sky: rgb(137, 220, 231);
+  --fill-blue-muted: rgb(179, 212, 217);
 
   /* Modal */
-  --color-backdrop: rgba(0, 0, 0, 0.5);
-  --box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+  --color-backdrop: var(--color-neutral-900);
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -153,12 +167,44 @@ fieldset {
   }
 }
 
+@media (prefers-contrast: more) {
+  .contrast {
+    outline: 2px solid black;
+  }
+}
+
+:root {
+  /* font-sizes */
+  --fs-small: 0.95rem;
+  --fs-regular: 1rem;
+  --fs-h4: 0.75rem;
+  --fs-h3: 0.8rem;
+  --fs-h2: 1.5rem;
+  --fs-h1: 2.5rem;
+
+  /* SPACING and SIZING */
+
+  --flow-space: 1rem;
+  --min-click-target-size: 44px;
+  --gap: 1.5rem;
+  --outline: 0.1875rem;
+  --button-border-radius: 0.5rem;
+  --form-border-radius: 0.4rem;
+
+  /* Global layout spacing */
+  --content-area-width: min(80rem, 100%);
+  --side-margin-width: calc((100% - var(--content-area-width)) / 2);
+  --content-padding-inline: min(40px, 4.5vw);
+  --content-padding-block: min(40px);
+}
+
 /* 
     BASE STYLING 
 */
 
 body {
-  color: var(--color-text);
+  color: var(--color-text-light);
+  font-size: var(--fs-regular);
   background: var(--color-bg);
   font-family: var(--font-base);
   font-weight: 500;
@@ -169,24 +215,25 @@ body {
 h1 {
   font-family: var(--font-logo);
   font-size: var(--fs-h1);
-  color: var(--color-heading);
+  color: var(--color-text-light);
 }
 
 h2 {
   font-family: var(--font-heading);
   font-size: var(--fs-h2);
-  color: var(--color-heading);
-  font-weight: 700;
+  color: var(--color-text-light);
+  font-weight: 900;
 }
 
 h3 {
   font-family: var(--font-heading);
   font-size: var(--fs-h3);
-  color: var(--color-heading);
+  color: var(--color-text-medium);
   font-weight: 700;
 }
 
-h4, legend {
+h4,
+legend {
   font-family: var(--font-3);
   font-size: var(--fs-h4);
   color: var(--color-heading);
@@ -198,13 +245,20 @@ a {
   text-decoration: none;
 }
 
-ul {
+/* a {
+    font-weight: 700;
+    text-decoration: wavy underline; 
+    text-underline-offset: 0.2em;
+    color: var(--color-secondary);
+  } */
+
+/* ul {
   padding-inline-start: 1.2rem;
 }
 
 li {
   padding-block-end: .25rem;
-}
+} */
 
 button {
   cursor: pointer;
@@ -213,8 +267,8 @@ button {
 input,
 select,
 textarea {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
   border: 1px solid rgb(195, 195, 195);
   border-radius: var(--form-border-radius, 6px);
   background-color: rgb(255, 255, 255);
@@ -222,11 +276,21 @@ textarea {
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	margin-bottom: 1em;
-	max-width: 100%;
-	width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1em;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* 
+  PAGE TRANSITIONS
+*/
+
+body {
+  transition-property: opacity, background-color, transform, filter;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 /* 
@@ -242,7 +306,7 @@ table {
   INTERACTIONS / UTILITY CLASSES
 */
 
-.flow>*+* {
+.flow > * + * {
   margin-block-start: var(--flow-space, 1em);
 }
 
@@ -256,23 +320,21 @@ table {
   width: 1px;
 }
 
-
 *:focus-visible {
- outline: var(--outline) solid blue;
- z-index: 2000;
+  outline: .24rem dashed var(--color-focus-outline, blue);
+  z-index: 2000;
 }
 
-/*  tab-focus-visible class for keyboard-only links/skip links 
-    from: https://a11y-blog.dev/en/articles/understanding-a-skip-link/
+/* 
+  PAGE TRANSITIONS
 */
-.tab-focus-visible {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(-100%);
 
-  /* Show keyboard focus */
-  &:focus-visible {
-    transform: translateY(0%);
-  }
+body main {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+body.page-transition main {
+  transition: opacity 0.2s ease;
+  opacity: 0;
 }

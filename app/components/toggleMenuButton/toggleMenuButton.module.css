@@ -10,15 +10,13 @@
 /* TOGGLE ICON  */
 
 .icon {
-    width: var(--toggleIcon-width) 2.6em;
-    height: 2.6em;
+    width: var(--toggleMenuIcon-width, 2.6em);
+    height: var(--toggleMenuIcon-height, 2.6em);
     margin: 0 auto;
     stroke-width: .6em;
     stroke-linecap: round;
-    stroke: currentColor;
     fill: none;
-    stroke: var(--color-icon, #333);
-    transition: var(--hover-transition);
+    stroke: var(----toggleMenuIcon-color, currentColor);
 }
 
 /* Add/Plus icon ( + ) */

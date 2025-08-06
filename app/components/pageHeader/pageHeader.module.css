@@ -1,0 +1,296 @@
+.header {
+  /* colors */
+  --color-background: var(--color-secondary-200);
+  --color-body-background: var(--color-bg);
+  --color-text-light: var(--color-neutral-500);
+  --color-text-medium: var(--color-neutral-600);
+  --color-text-dark: var(--color-neutral-700);
+  --color-text-link-light: var(--color-secondary-600);
+  --color-text-link-medium: var(--color-secondary-700);
+
+  /* border radius for desktop menu current link */
+  --border-radius: 0.9rem;
+  --border-radius-invert: calc(var(--border-radius) * 0.5);
+
+  /* base styling header */
+  background-color: var(--color-background);
+  font-family: var(--font-heading);
+  font-size: var(--fs-regular);
+
+  /* min-height: 5em; */
+
+  /* header grid layout  */
+  position: relative;
+  & > * {
+    position: relative;
+  }
+  display: grid;
+  align-items: center;
+  z-index: 30;
+
+  --header-margin: calc(
+    var(--side-margin-width) + var(--content-padding-inline)
+  );
+  grid-template-columns: var(--header-margin) auto auto repeat(12, 1fr) var(
+      --header-margin
+    );
+  grid-template-rows: 4.6em auto;
+
+  & > h1 {
+    z-index: 20;
+    grid-row: 1;
+    grid-column: 2 / 3;
+    letter-spacing: 0.15rem;
+    font-size: var(--fs-h1);
+  }
+
+  & > .navmenu.desktop {
+    grid-column: 5 / -2;
+    grid-row: 1;
+  }
+
+  & > .toggleMenuButton {
+    grid-column: 5 / -2;
+    grid-row: 1;
+  }
+
+  & > .navToggleMenu {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    z-index: -2;
+  }
+
+  /*  tab-focus-visible class for keyboard-only links/skip links 
+    from: https://a11y-blog.dev/en/articles/understanding-a-skip-link/
+*/
+  & > .skipLink {
+    position: absolute;
+    grid-column: 2 / 4;
+    height: 100%;
+    bottom: -80%;
+    left: 5%;
+    transform: translateY(-500%);
+    width: max-content;
+    padding: 0 2.5rem;
+    border-radius: 3rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-link-light);
+    font-weight: 700;
+    font-size: var(--fs-regular);
+    background: var(--color-background);
+
+    /* Show keyboard focus */
+    &:focus-visible {
+      transform: translateY(0%);
+      outline-offset: -0.55rem;
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background);
+    z-index: -1;
+  }
+}
+
+.navmenu {
+  &,
+  ul,
+  li {
+    height: 100%;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+  }
+  li {
+    list-style: none;
+    font-family: var(--font-heading);
+  }
+  a {
+    font-weight: 600;
+    display: flex;
+    gap: 0.22rem;
+    padding-inline: 1.5rem;
+    align-items: center;
+    color: var(--color-text-medium);
+    &:hover {
+      color: var(--color-text-dark);
+    }
+  }
+  svg {
+    stroke-width: 0.27em;
+  }
+  a[aria-current="page"] {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.navmenu.desktop {
+  margin-inline-start: auto;
+  a {
+    height: calc(100% - 1rem);
+    margin-top: 1rem;
+    transition: color 0.7s ease-in-out;
+    &:hover {
+      color: var(--color-text-link-medium);
+    }
+    &:focus-visible {
+      border-radius: 1rem;
+      outline-offset: -0.55rem;
+      color: var(--color-text-link-light);
+    }
+  }
+  /* styling for the current page link on desktop */
+  a[aria-current="page"] {
+    position: relative;
+
+    /* creating the border radius*/
+    background: var(--color-body-background);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      height: var(--border-radius-invert);
+      width: var(--border-radius-invert);
+      bottom: 0;
+      background-image: radial-gradient(
+        circle at var(--circle-position),
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) var(--border-radius-invert),
+        var(--color-body-background) var(--border-radius-invert)
+      );
+    }
+
+    &:before {
+      left: calc(0px - var(--border-radius-invert));
+      --circle-position: 0px 0px;
+    }
+    &:after {
+      right: calc(0px - var(--border-radius-invert));
+      --circle-position: var(--border-radius-invert) 0px;
+    }
+  }
+}
+
+.navmenu.mobile {
+  ul {
+    justify-content: center;
+  }
+  a {
+    padding-block: 1rem;
+    font-weight: 700;
+    color: var(--color-text-link-light);
+    &:hover {
+      color: var(--color-text-link-medium);
+    }
+    &[aria-current="page"] {
+      color: var(--color-text-light);
+    }
+    &:focus-visible {
+      border-radius: 1rem;
+      outline-offset: -0.1rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .navmenu.mobile {
+    ul {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .navmenu.desktop, .skipLink {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .toggleMenuButton,
+  .navToggleMenu {
+    display: none;
+  }
+}
+
+.toggleMenuButton {
+  font-size: var(--fs-regular);
+  color: var(--color-text-light);
+  height: max(4em, var(--min-click-target-size, 44px));
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  border-radius: var(--button-border-radius, 0.3rem);
+  margin-inline-start: auto;
+  transition: background-color 0.2s ease-in-out;
+  border: none;
+  border-radius: 100%;
+  & svg {
+    stroke-width: 0.7em;
+  }
+  &:active {
+    background-color: var(--color-body-background);
+    background-color: color-mix(
+      in srgb,
+      var(--color-body-background),
+      transparent 65%
+    );
+  }
+  &:focus-visible {
+    outline-offset: -0.3rem;
+  }
+}
+
+.navToggleMenu {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  padding: 2rem 0.2rem;
+  background-color: var(--color-background);
+}
+
+.navToggleMenu.menuClose {
+  transform: translateY(-100%);
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+  transition-delay: 0.15s;
+  & a {
+    transition-property: display opacity;
+    transition-behavior: allow-discrete;
+    display: none;
+    opacity: 0;
+    transition-duration: 0.2s;
+    transition-delay: 0s;
+  }
+}
+
+.navToggleMenu.menuOpen {
+  transform: translateY(0%);
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  & a {
+    transition-property: display opacity;
+    transition-behavior: allow-discrete;
+    display: flex;
+    opacity: 1;
+    transition-duration: 0.5s;
+    transition-delay: 0.3s;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
