@@ -11,6 +11,7 @@ export const SmoothScrollLink = ({
   className,
   children,
 }: SmoothScrollLinkProps) => {
+  
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const element = document.getElementById(targetId);

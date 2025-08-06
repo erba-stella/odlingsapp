@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { SmoothScrollLink } from "@/app/components/ui/links/smoothScrollLink";
+import { SmoothScrollLink } from "@/app/components/links/smoothScrollLink";
 import { Logo } from "@/app/components/icons/logoIcon";
 import Link from "next/link";
 
@@ -24,10 +24,10 @@ export default function Home() {
             `}
           >
             <h2>Håll koll på dina sådder!</h2>
-            <ul>
-              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-              <li>Placeat ut corporis amet repudiandae!</li>
-            </ul>
+            <p>
+              Här kan du lägga till dina växter och hålla koll på när de ska
+              sås, planteras ut och skördas.
+            </p>
           </section>
         </div>
 
@@ -37,9 +37,7 @@ export default function Home() {
             <em>
               Kom igång!
               <svg className={styles.arrowDown} viewBox="0 0 100 100">
-                <path
-                  d="M78 36 50 64 22 35a2 2 0 0 0-3 3l29 30a2 2 0 0 0 2 0h2l29-30a2 2 0 1 0-3-2z"
-                />
+                <path d="M78 36 50 64 22 35a2 2 0 0 0-3 3l29 30a2 2 0 0 0 2 0h2l29-30a2 2 0 1 0-3-2z" />
               </svg>
             </em>
           </SmoothScrollLink>
