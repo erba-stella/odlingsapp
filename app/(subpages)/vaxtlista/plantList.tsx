@@ -1,5 +1,5 @@
 "use client";
-import { PlantTypeCard } from "@/app/components/plants/plantTypeCard";
+import { PlantListItem } from "@/app/(subpages)/vaxtlista/plantListItem";
 import { useEffect, useState } from "react";
 import { CustomPlant } from "@/lib/interfaces";
 import { useSearchParams } from "next/navigation";
@@ -18,8 +18,7 @@ export const PlantList = () => {
   if (plantCreated && plantCreated !== prevSavedPlant)
     setSavedPlant(plantCreated);
 
-
-    // hämta plantor från local storage
+  // hämta plantor från local storage
   useEffect(() => {
       console.log("savedPlant", savedPlant);
       const storedPlants = localStorage.getItem("my-plant-list");
@@ -47,10 +46,8 @@ export const PlantList = () => {
   return (
     <>
       {Object.entries(groupedByCategory).map(([plantType, plants], i) => (
-        <PlantTypeCard key={i} plantType={plantType} plants={plants} />
+        <PlantListItem key={i} plantType={plantType} plants={plants} />
       ))}
     </>
   );
 };
-
-// icon={plants[0]?.linkedTo.icon_name ?? "cabbage"}

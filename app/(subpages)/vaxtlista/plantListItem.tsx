@@ -1,52 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import styles from "./plantTypeCard.module.css";
-import { PlantIcon } from "../icons/plantIcons";
-import { PlantModal } from "./plantModal";
-import { PlantCardProps, CustomPlant } from "@/lib/interfaces";
+import React, { useState } from "react";
+import styles from "./plantListItem.module.css";
+import { PlantIcon } from "@/app/components/icons/plantIcons";
+import { PlantCardProps } from "@/lib/interfaces";
+import Link from "next/link";
 
-export const PlantTypeCard = ({
+export const PlantListItem = ({
   plantType,
   plants,
 }: PlantCardProps): React.ReactElement => {
-  // Expand list of plants/varieties
+  
   const [expanded, setExpanded] = useState(false);
-  // Select plant (open in modal for details)
-  const [selectedPlant, setSelectedPlant] = useState<CustomPlant | null>(null);
   
-  // console.log("plants", plants);
-  // console.log("plant Icon", plants[0]?.linkedTo.icon_name);
-  
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
   const handleToggle = () => {
     setExpanded((prev) => !prev);
   };
-
-  const handleOpenModal = (plant: CustomPlant) => {
-    setSelectedPlant(plant);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("plant", plant.created);
-    router.replace(`?${params.toString()}`, { scroll: false });
-  };
-
-  const handleCloseModal = () => {
-    setSelectedPlant(null);
-  };
-
-  useEffect(() => {
-    const plantIdFromUrl = searchParams.get("plant");
-    if (plantIdFromUrl && !selectedPlant) {
-      const match = plants.find((p) => p.created === plantIdFromUrl);
-      if (match) {
-        setSelectedPlant(match);
-      }
-    }
-  }, [searchParams, plants, selectedPlant]);
-
 
   return (
     <>
@@ -95,20 +64,17 @@ export const PlantTypeCard = ({
         >
           {plants.map((plant) => (
             <li key={plant.created} className={styles.varietyItem}>
-              <button
-                type="button"
+              <Link
+                href={`./plant/${plant.id}`}
                 className={styles.varietyButton}
-                onClick={() => handleOpenModal(plant)}
+                passHref
               >
                 {plant.customName}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
       </article>
-      {selectedPlant && (
-        <PlantModal plant={selectedPlant} onClose={handleCloseModal} />
-      )}
     </>
   );
 };

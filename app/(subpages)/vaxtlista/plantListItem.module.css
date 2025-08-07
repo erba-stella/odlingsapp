@@ -4,14 +4,6 @@
   margin-bottom: 1rem;
 }
 
-/* 
-TODO: remember vars:
-
---plant-card-bg
---plant-card-bg-hover
---plant-card-bg-hover
-*/
-
 .card {
   cursor: pointer;
   width: 100%;

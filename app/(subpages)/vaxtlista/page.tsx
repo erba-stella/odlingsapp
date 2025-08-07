@@ -1,50 +1,35 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import styles from "@/app/(subpages)/subpages.module.css";
-import { AddPlantForm } from "@/app/components/form/addPlantForm";
-import { PlantList } from "@/app/components/plants/plantList";
-import { ToggleMenuButton } from "@/app/components/ui/buttons/toggleButtons/toggleMenuButton"
+import { PlantList } from "@/app/(subpages)/vaxtlista/plantList";
 import{ Loader } from "@/app/components/ui/loader"
-
+import { PageContentWrapper } from "@/app/components/pageContentWrapper";
 
 export const metadata: Metadata = {
   title: "Växtlista",
 };
 
 export default function VaxtlistaPage() {
-  // Hämta plantor från API - för att få alla planttyper
 
   return (
-    <main className={styles.main}>
-      <div className={styles.sectionPageIntro}>
-        <h2>Min Växtlista</h2>
-        <section>
-          <p>Det här är en kort introduktion till innehållet på sidan.</p>
+    <PageContentWrapper
+      title="Min Växtlista"
+      intro={
+        <p>
+          Här kan du lägga till dina växter och hålla koll på när de ska sås,
+          planteras ut och skördas.
+        </p>
+      }
+    >
+        <section
+          className={`${styles.sectionPageMainContent}`}
+          id="form-container"
+        >
+          <Suspense fallback={<Loader />}>
+            <PlantList />
+          </Suspense>
         </section>
-      </div>
-
-      <section
-        className={`${styles.sectionPageMainContent}`}
-        id="form-container"
-      >
-        <Suspense fallback={<Loader />}>
-          <PlantList />
-        </Suspense>
-      </section>
-
-      <section
-        id="form-container"
-        className={`${styles.sectionFormContainer} ${styles.fullWidth}`}
-      >
-        <ToggleMenuButton
-          controls="form-container"
-          iconStyle="plus"
-          label="Spara växt"
-        />
-        <Suspense fallback={<Loader />}>
-          <AddPlantForm />
-        </Suspense>
-      </section>
-    </main>
+     
+    </PageContentWrapper>
   );
 }

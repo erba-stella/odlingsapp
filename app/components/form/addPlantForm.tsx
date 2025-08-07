@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "@/app/(subpages)/subpages.module.css";
+import styles from "./plantForm.module.css";
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { fetchPlantData } from "@/data-access/fetch-data";
 import { CustomPlant, PlantData } from "@/lib/interfaces";
-import { useLocalStorage } from "@/lib/utils/localstorage";
-import { ToggleSwitch } from "@/app/components/ui/switch/toggleSwitch";
-
+import { useLocalStorage } from "@/lib/hooks/localstorage";
+import { ToggleSwitch } from "@/app/components/toggleSwitch";
+import { slug } from "@/lib/utils/textToSlug";
 
 export const AddPlantForm = () => {
   // Input values
@@ -124,9 +124,11 @@ export const AddPlantForm = () => {
     setSelectedPlant(null);
 
     const created = new Date().toISOString();
+    const id = `${slug(customName)}-${created}`;
     const newPlant = {
-      customName,
+      id,
       created,
+      customName,
       linkedTo: selectedPlant,
     };
 
