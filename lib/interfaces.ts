@@ -13,6 +13,7 @@ export interface PlantData {
 }
 
 export interface CustomPlant {
+  id: string;
   created: string;
   customName: string;
   linkedTo: PlantData;
