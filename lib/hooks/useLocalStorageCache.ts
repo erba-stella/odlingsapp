@@ -83,6 +83,42 @@ function memoizeSliceResult<S>(
 }
 
 /**
+ * Dispatch a storage change event (for same-tab updates).
+ */
+function dispatchStorageChange(key: string) {
+  window.dispatchEvent(
+    new CustomEvent("storage-change", { detail: { key } })
+  );
+}
+
+/**
+ * Subscribe to changes of a specific localStorage key.
+ * Handles both native "storage" events (cross-tab) and
+ * custom "storage-change" events (same tab).
+ */
+function subscribeToStorageKey(key: string, handler: () => void) {
+  const handleEvent = (event: Event) => {
+    if (event instanceof StorageEvent) {
+      // Native storage event → filter on key
+      if (event.key !== key) return;
+    } else if (event instanceof CustomEvent) {
+      // Custom same-tab event → filter on detail.key
+      if (event.detail?.key !== key) return;
+    }
+    handler();
+  };
+
+  window.addEventListener("storage", handleEvent);
+  window.addEventListener("storage-change", handleEvent);
+
+  return () => {
+    window.removeEventListener("storage", handleEvent);
+    window.removeEventListener("storage-change", handleEvent);
+  };
+}
+
+
+/**
  * Factory for a stable change handler
  * - Runs selector on new data
  * - Memoizes selected slice with stable references
@@ -188,23 +224,19 @@ export function useLocalStorageCache<T, S = T>(
     );
   }
 
-  // Subscribe to changes in storage
   const subscribe = (onChange: () => void) => {
     if (typeof window === "undefined") return () => {};
-    const handleChange = createChangeHandler(
+    return subscribeToStorageKey(
       key,
-      initialValue,
-      selector,
-      generatedSliceId,
-      compare,
-      onChange
+      createChangeHandler(
+        key,
+        initialValue,
+        selector,
+        generatedSliceId,
+        compare,
+        onChange
+      )
     );
-    window.addEventListener("storage", handleChange);
-    window.addEventListener("storage-change", handleChange);
-    return () => {
-      window.removeEventListener("storage", handleChange);
-      window.removeEventListener("storage-change", handleChange);
-    };
   };
 
   // Snapshot functions
@@ -229,8 +261,6 @@ export function useSetLocalStorageCache<T>(key: string, initialValue: T) {
     /** Update cache and notify subscribers (also across tabs) */
     GLOBAL_LOCALSTORAGE_CACHE[key] = newValue;
     localStorage.setItem(key, JSON.stringify(newValue));
-    window.dispatchEvent(
-      new CustomEvent("storage-change", { detail: { key } })
-    );
+    dispatchStorageChange(key);
   };
 }
