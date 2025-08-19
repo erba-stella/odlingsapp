@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+// import { useRef } from "react";
 import { useSyncExternalStore } from "react";
 import { isDeeplyEqual } from "@/lib/utils/isDeeplyEqual";
 
@@ -75,16 +75,9 @@ function memoizeSliceResult<S>(
 ): S {
   // Equal values → reuse stable reference
   const prevValue = GLOBAL_SLICE_CACHE_stableValue.get(sliceId) as S | undefined;
-  console.log('prevValue undefined?:', prevValue === undefined)
   if (prevValue !== undefined && compare(prevValue, newValue)) {
     return prevValue; // reuse stable reference
   }
-  console.log(
-    "saved to selecor result cache: ",
-    "sliceId: " + sliceId,
-    "newValue: ",
-    newValue
-  );
   GLOBAL_SLICE_CACHE_stableValue.set(sliceId, newValue);
   return newValue;
 }
@@ -173,7 +166,6 @@ export function useLocalStorageCache<T, S = T>(
 ): S {
   const {
     selector, // identity default
-    //initialValue = undefined as unknown as T,
     compare = isDeeplyEqual,
     sliceId,
   } = options;
@@ -198,6 +190,7 @@ export function useLocalStorageCache<T, S = T>(
 
   // Subscribe to changes in storage
   const subscribe = (onChange: () => void) => {
+    if (typeof window === "undefined") return () => {};
     const handleChange = createChangeHandler(
       key,
       initialValue,
@@ -214,22 +207,10 @@ export function useLocalStorageCache<T, S = T>(
     };
   };
 
-  // Snapshot functions - (returns the current snapshot of the external data you're subscribed to)
+  // Snapshot functions
   const getSnapshot = () =>
     GLOBAL_SLICE_CACHE_lastRawValue[generatedSliceId] as S;
-
-  const serverSnapshotRef = useRef<S>(undefined);
-  const getServerSnapshot = () => {
-    if (serverSnapshotRef.current === undefined) {
-      const ssrSlice = selectSlice(selector, initialValue);
-      serverSnapshotRef.current = memoizeSliceResult(
-        generatedSliceId,
-        ssrSlice,
-        compare
-      );
-    }
-    return serverSnapshotRef.current;
-  };
+  const getServerSnapshot = () => undefined as S;
 
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
