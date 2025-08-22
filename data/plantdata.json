@@ -1,11 +1,11 @@
 [
     {
-      "id": "b01",
+      "id": "basilika",
       "name_sv": "Basilika",
       "name_latin": "Ocimum basilicum",
       "alias": [],
       "icon_name": "herb",
-      "category": "Kryddväxter",
+      "tags": ["Kryddväxter"],
       "start_seeds_indoors": {
         "min": 6,
         "max": 6
@@ -20,12 +20,12 @@
       }
     },
     {
-      "id": "d02",
+      "id": "dill",
       "name_sv": "Dill",
       "name_latin": "Anethum graveolens",
       "alias": [],
       "icon_name": "dill",
-      "category": "Kryddväxter",
+      "tags": ["Kryddväxter"],
       "start_seeds_indoors": false,
       "plant_seedlings_outdors": false,
       "start_seeds_outdoors": {
@@ -34,12 +34,12 @@
       }
     },
     {
-      "id": "f03",
+      "id": "fankol",
       "name_sv": "Fänkål",
       "name_latin": "Foeniculum vulgare",
       "alias": [],
       "icon_name": "herb",
-      "category": "Kryddväxter",
+      "tags": ["Kryddväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -54,12 +54,12 @@
       }
     },
     {
-      "id": "p04",
+      "id": "persilja",
       "name_sv": "Persilja",
       "name_latin": "Petroselinum crispum",
       "alias": [],
       "icon_name": "herb",
-      "category": "Kryddväxter",
+      "tags": ["Kryddväxter"],
       "start_seeds_indoors": {
         "min": 9,
         "max": 10
@@ -74,12 +74,12 @@
       }
     },
     {
-      "id": "b05",
+      "id": "blomkal",
       "name_sv": "Blomkål",
       "name_latin": "Brassica oleracea",
       "alias": [],
       "icon_name": "cauliflower",
-      "category": "Kålväxter",
+      "tags": ["Kålväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -91,12 +91,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "b06",
+      "id": "broccoli",
       "name_sv": "Broccoli",
       "name_latin": "Brassica oleracea",
       "alias": [],
       "icon_name": "broccoli",
-      "category": "Kålväxter",
+      "tags": ["Kålväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -108,11 +108,11 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "k07",
+      "id": "kalrabbi",
       "name_sv": "Kålrabbi",
       "name_latin": "Brassica oleracea",
       "alias": [],
-      "category": "Kålväxter",
+      "tags": ["Kålväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -127,12 +127,12 @@
       }
     },
     {
-      "id": "h08",
+      "id": "huvudkal",
       "name_sv": "Huvudkål",
       "name_latin": "Brassica oleracea var. capitata",
       "alias": ["vitkål", "rödkål", "spetskål"],
       "icon_name": "cabbage",
-      "category": "Kålväxter",
+      "tags": ["Kålväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -144,11 +144,11 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "b09",
+      "id": "bladkal",
       "name_sv": "Bladkål",
       "name_latin": "Brassica oleracea",
       "alias": ["Grönkål", "Palmkål", "Svartkål"],
-      "category": "Kålväxter",
+      "tags": ["Kålväxter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -160,12 +160,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "g10",
+      "id": "gurka",
       "name_sv": "Gurka",
       "name_latin": "Cucumis sativus",
       "alias": [],
       "icon_name": "cucumber",
-      "category": "Gurkväxter",
+      "tags": ["Gurkväxter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -177,12 +177,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "m11",
+      "id": "melon",
       "name_sv": "Melon",
       "name_latin": "Cucumis melo",
       "alias": [],
       "icon_name": "melon",
-      "category": "Gurkväxter",
+      "tags": ["Gurkväxter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -194,12 +194,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "v12",
+      "id": "vattenmelon",
       "name_sv": "Vattenmelon",
       "name_latin": "Citrullus lanatus",
       "alias": [],
       "icon_name": "melon",
-      "category": "Gurkväxter",
+      "tags": ["Gurkväxter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -211,12 +211,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "m13",
+      "id": "morot",
       "name_sv": "Morot",
       "name_latin": "Daucus carota sativus",
       "alias": [],
       "icon_name": "carrot",
-      "category": "Rotgrönsaker",
+      "tags": ["Rotgrönsaker"],
       "start_seeds_indoors": false,
       "plant_seedlings_outdors": false,
       "start_seeds_outdoors": {
@@ -225,12 +225,12 @@
       }
     },
     {
-      "id": "r14",
+      "id": "radisa",
       "name_sv": "Rädisa",
       "name_latin": "Raphanus sativus var. sativus",
       "alias": [],
       "icon_name": "radish",
-      "category": "Rotgrönsaker",
+      "tags": ["Rotgrönsaker"],
       "start_seeds_indoors": false,
       "plant_seedlings_outdors": false,
       "start_seeds_outdoors": {
@@ -239,12 +239,12 @@
       }
     },
     {
-      "id": "b15",
+      "id": "beta",
       "name_sv": "Beta",
       "name_latin": "Beta vulgaris",
       "alias": ["rödbeta", "gulbeta", "polkabeta"],
       "icon_name": "beet",
-      "category": "Rotgrönsaker",
+      "tags": ["Rotgrönsaker"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -259,12 +259,12 @@
       }
     },
     {
-      "id": "b16",
+      "id": "bonor",
       "name_sv": "Bönor",
       "name_latin": "Phaseolus vulgaris",
       "alias": [],
       "icon_name": "peas",
-      "category": "Baljväxter",
+      "tags": ["Baljväxter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -279,12 +279,12 @@
       }
     },
     {
-      "id": "a17",
+      "id": "artor",
       "name_sv": "Ärtor",
       "name_latin": "Pisum sativum",
       "alias": ["Sockerärt", "Märgärt", "Gråärt", "Ärt"],
       "icon_name": "peas",
-      "category": "Baljväxter",
+      "tags": ["Baljväxter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -299,12 +299,12 @@
       }
     },
     {
-      "id": "c18",
+      "id": "chilli",
       "name_sv": "Chilli",
       "name_latin": "Capsicum annuum",
       "alias": ["Peppar"],
       "icon_name": "chilli",
-      "category": "Tomat, Paprika & Chilli",
+      "tags": ["Tomat, Paprika & Chilli"],
       "start_seeds_indoors": {
         "min": 8,
         "max": 8
@@ -316,11 +316,12 @@
       "start_seeds_outdoors": false
     },
     {
+      "id": "paprika",
       "name_sv": "Paprika",
       "name_latin": "Capsicum annuum",
       "alias": [],
       "icon_name": "paprika",
-      "category": "Tomat, Paprika & Chilli",
+      "tags": ["Tomat, Paprika & Chilli"],
       "start_seeds_indoors": {
         "min": 8,
         "max": 8
@@ -332,12 +333,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "m19",
+      "id": "majs",
       "name_sv": "Majs",
       "name_latin": "Zea mays",
       "alias": [],
       "icon_name": "corn",
-      "category": "Övrigt",
+      "tags": [],
       "start_seeds_indoors": {
         "min": 2,
         "max": 4
@@ -349,12 +350,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "m20",
+      "id": "mangold",
       "name_sv": "Mangold",
       "name_latin": "Beta vulgaris",
       "alias": ["Bladbeta"],
       "icon_name": "leafy-green",
-      "category": "Bladgrönsaker",
+      "tags": ["Bladgrönsaker"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -369,12 +370,12 @@
       }
     },
     {
-      "id": "p21",
+      "id": "pakchoi",
       "name_sv": "Pak Choi",
       "name_latin": "Brassica rapa chinensis",
       "alias": ["Sellerikål"],
       "icon_name": "pak-choi",
-      "category": "Asiatiska kålsorter",
+      "tags": ["Asiatiska kålsorter"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -386,12 +387,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "p22",
+      "id": "potatis",
       "name_sv": "Potatis",
       "name_latin": "Solanum tuberosum",
       "alias": [],
       "icon_name": "potato",
-      "category": "Rotknölar",
+      "tags": ["Rotknölar"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 6
@@ -406,12 +407,12 @@
       }
     },
     {
-      "id": "p23",
+      "id": "pumpa",
       "name_sv": "Pumpa",
       "name_latin": "Cucurbita pepo",
       "alias": [],
       "icon_name": "squash",
-      "category": "Squash",
+      "tags": ["Squash"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -423,12 +424,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "p24",
+      "id": "purjo",
       "name_sv": "Purjolök",
       "name_latin": "Allium ampeloprasum",
       "alias": [],
       "icon_name": "onion",
-      "category": "Lökväxter",
+      "tags": ["Lökväxter"],
       "start_seeds_indoors": {
         "min": 8,
         "max": 10
@@ -440,12 +441,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "s25",
+      "id": "sallad",
       "name_sv": "Sallad",
       "name_latin": "Lactuca sativa",
       "alias": [],
       "icon_name": "salad",
-      "category": "Bladgrönsaker",
+      "tags": ["Bladgrönsaker"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 5
@@ -460,11 +461,11 @@
       }
     },
     {
-      "id": "s26",
+      "id": "salladssenap",
       "name_sv": "Salladssenap",
       "name_latin": "Brassica juncea",
       "alias": [],
-      "category": "Asiatiska kålsorter",
+      "tags": ["Asiatiska kålsorter"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -479,11 +480,11 @@
       }
     },
     {
-      "id": "s27",
+      "id": "selleri",
       "name_sv": "Selleri",
       "name_latin": "Apium graveolens",
       "alias": [],
-      "category": "Övrigt",
+      "tags": [],
       "start_seeds_indoors": {
         "min": 10,
         "max": 12
@@ -495,12 +496,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "s28",
+      "id": "spenat",
       "name_sv": "Spenat",
       "name_latin": "Spinacia oleracea",
       "icon_name": "leafy-green",
       "alias": [],
-      "category": "Bladgrönsaker",
+      "tags": ["Bladgrönsaker"],
       "start_seeds_indoors": {
         "min": 4,
         "max": 6
@@ -515,11 +516,11 @@
       }
     },
     {
-      "id": "s29",
+      "id": "sommarsquash",
       "name_sv": "Sommarsquash",
       "name_latin": "Cucurbita pepo",
       "alias": ["Zuccini"],
-      "category": "Squash",
+      "tags": ["Squash"],
       "start_seeds_indoors": {
         "min": 3,
         "max": 4
@@ -531,12 +532,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "t30",
+      "id": "tomater",
       "name_sv": "Tomater",
       "name_latin": "Solanum lycopersicum",
       "alias": ["Tomat"],
       "icon_name": "tomato",
-      "category": "Tomat, Paprika & Chilli",
+      "tags": ["Tomat, Paprika & Chilli"],
       "start_seeds_indoors": {
         "min": 6,
         "max": 8
@@ -548,12 +549,12 @@
       "start_seeds_outdoors": false
     },
     {
-      "id": "a31",
+      "id": "aubergine",
       "name_sv": "Aubergine",
       "name_latin": "Solanum melongena",
       "alias": ["Äggplanta"],
       "icon_name": "eggplant",
-      "category": "Övrigt",
+      "tags": [],
       "start_seeds_indoors": {
         "min": 8,
         "max": 10

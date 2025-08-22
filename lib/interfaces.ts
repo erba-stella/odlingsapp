@@ -6,7 +6,7 @@ export interface PlantData {
   name_latin: string;
   alias: string[];
   icon_name?: string;
-  category: string;
+  tags: string[];
   start_seeds_indoors?: { min: number; max: number };
   plant_seedlings_outdors?: { min: number; max: number };
   start_seeds_outdoors?: { min: number; max: number };
