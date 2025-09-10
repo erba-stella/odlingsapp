@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { font_logo, font_heading, font_base } from "@/fonts/fonts";
+import { font_logo, font_heading, font_base } from "@/lib/fonts/fonts";
 
 export const metadata: Metadata = {
   title: "SåPlanera",

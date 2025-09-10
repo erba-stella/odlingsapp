@@ -10,7 +10,7 @@ const isPlainObject = (x: unknown) => {
 
 // === Deep equality check (only supports arrays, plain objects and primitive data types) ===
 export const isDeeplyEqual = (a: unknown, b: unknown): boolean => {
-  // === primitive data types or same reference objects ===
+  // === primitive values and same reference objects ===
   if (Object.is(a, b)) return true;
   if (
     typeof a !== "object" ||
@@ -51,6 +51,9 @@ export const isDeeplyEqual = (a: unknown, b: unknown): boolean => {
 };
 
 /*
-ref:
+refs:
 https://www.syncfusion.com/blogs/post/deep-compare-javascript-objects
+https://www.alexefimenko.com/posts/compare-objects
+https://medium.com/@pancemarko/deep-equality-in-javascript-determining-if-two-objects-are-equal-bf98cf47e934
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness
 */

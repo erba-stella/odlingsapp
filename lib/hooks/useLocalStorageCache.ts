@@ -1,7 +1,15 @@
 "use client";
-// import { useRef } from "react";
 import { useSyncExternalStore } from "react";
 import { isDeeplyEqual } from "@/lib/utils/isDeeplyEqual";
+
+/*
+a custom React hook for reactive localStorage state, that:
+- synchronizes component state with localStorage
+- supports selecting slices of stored data via a selector
+- memoizes selector results to ensure stable references and avoid unnecessary re-renders
+- syncs changes across tabs via storage events
+- includes a setter hook `useSetLocalStorageCache` for updating values
+*/
 
 /* ============================================================
    GLOBAL STATE (singleton caches & bookkeeping)
@@ -13,14 +21,12 @@ const GLOBAL_LOCALSTORAGE_CACHE: Record<string, unknown> = {};
 // Keep track of initialized localStorage keys
 const GLOBAL_INITIALIZED_KEYS = new Set<string>();
 
-
 // SLICE CACHE, Memoized slice result to reuse stable references:
 
 // `lastRawValue` = latest selector result (may be a new object instance)
 const GLOBAL_SLICE_CACHE_lastRawValue: Record<string, unknown> = {};
 // `stableValue`  = reference that is reused if values are considered "equal"
 const GLOBAL_SLICE_CACHE_stableValue = new Map<string, unknown>();
-
 
 // Keep track of selectors, when used to create unique slice ids
 const GLOBAL_SELECTOR_IDS = new WeakMap<(data: unknown) => unknown, string>();
@@ -74,7 +80,9 @@ function memoizeSliceResult<S>(
   compare: (a: S, b: S) => boolean
 ): S {
   // Equal values → reuse stable reference
-  const prevValue = GLOBAL_SLICE_CACHE_stableValue.get(sliceId) as S | undefined;
+  const prevValue = GLOBAL_SLICE_CACHE_stableValue.get(sliceId) as
+    | S
+    | undefined;
   if (prevValue !== undefined && compare(prevValue, newValue)) {
     return prevValue; // reuse stable reference
   }
@@ -86,9 +94,7 @@ function memoizeSliceResult<S>(
  * Dispatch a storage change event (for same-tab updates).
  */
 function dispatchStorageChange(key: string) {
-  window.dispatchEvent(
-    new CustomEvent("storage-change", { detail: { key } })
-  );
+  window.dispatchEvent(new CustomEvent("storage-change", { detail: { key } }));
 }
 
 /**
@@ -116,7 +122,6 @@ function subscribeToStorageKey(key: string, handler: () => void) {
     window.removeEventListener("storage-change", handleEvent);
   };
 }
-
 
 /**
  * Factory for a stable change handler
@@ -168,7 +173,7 @@ function generateSliceId<T, S>(
 // Slice selection with support for undefined storage value and full data subscription without selector
 function selectSlice<T, S>(
   selector: ((data: T) => S) | undefined,
-  storageValue: T,
+  storageValue: T
 ): S {
   // TODO: accept undefined selector, test and improve!
   if (storageValue === undefined || selector === undefined)
@@ -181,7 +186,7 @@ function selectSlice<T, S>(
    ============================================================ 
 */
 
-type UseSliceOptions<T, S> = {
+type SliceOptions<T, S> = {
   selector?: (data: T) => S; // default = identity
   //initialValue?: T; // default = undefined
   compare?: (a: S, b: S) => boolean; // default = Object.is
@@ -193,12 +198,12 @@ type UseSliceOptions<T, S> = {
  * - Returns stable references when data is equal (avoids unnecessary renders)
  * - Supports custom selectors and comparison functions
  * - Works across tabs (sync events dispatched)
-*/
+ */
 
 export function useLocalStorageCache<T, S = T>(
   key: string,
   initialValue: T = undefined as unknown as T, // default = undefined
-  options: UseSliceOptions<T, S> = {}
+  options: SliceOptions<T, S> = {}
 ): S {
   const {
     selector, // identity default
