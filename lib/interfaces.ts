@@ -15,11 +15,10 @@ export interface PlantData {
 export interface CustomPlant {
   id: string;
   created: string;
-  customName: string;
-  linkedTo: PlantData;
-};
+  name: string;
+  categoryId: string;
+}
 
-export interface PlantCardProps {
-  plantType: string;
-  plants: CustomPlant[];
+export interface CustomPlantExtended extends CustomPlant {
+  categoryData: PlantData;
 }
