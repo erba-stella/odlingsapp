@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from "react";
 import { fetchPlantData } from "@/data-access/fetch-data";
 import { PlantData } from "@/lib/interfaces";

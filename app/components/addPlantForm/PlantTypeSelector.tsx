@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import styles from "./plantForm.module.css";
 import { PlantData } from "@/lib/interfaces";
