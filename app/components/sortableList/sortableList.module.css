@@ -1,0 +1,42 @@
+
+.sortableList {
+  position: relative;
+  display: grid;
+  gap: .5em;
+  list-style: none;
+  width: 100%;
+  & [draggable="true"] {
+    cursor: ns-resize;
+  }
+  &>li {
+    padding: .75em 1em;
+    border-radius: .5em;
+    width: 100%;
+  }
+}
+
+.sortableItem {
+  background: var(--card-bg, #f4f4f4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  z-index: 1;
+}
+
+.sortableItem.isDragged {
+  opacity: 0.3;
+  outline: .15em dashed #3b82f6;
+  ooutline-offset: .75em;
+}
+
+.dragPreview {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--card-preview-bg, #fff);
+  box-shadow: 0 .5em 1em rgba(0,0,0,0.15);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.sortableList.onDrag .dragPreview {
+    translateX: 0.2;
+}

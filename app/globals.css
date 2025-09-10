@@ -15,6 +15,15 @@
   font: inherit;
 }
 
+/* keep the page clickable during transitions */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(*) {
+  animation-duration: .27s;
+}
+
 /* min body height / max body width */
 body {
   min-height: 100svh;
