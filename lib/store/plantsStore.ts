@@ -101,7 +101,6 @@ const usePlantCategories = () => {
             id: d.id,
             icon: d.icon_name || "",
           }))
-          .sort((a, b) => a.name.localeCompare(b.name, "sv"))
       ),
     }
   );
@@ -148,7 +147,7 @@ export function useEditPlantsStore() {
   const savePlantData = (newData: PlantData) => {
     setPlantData((oldData) => {
       const existingIndex = oldData.findIndex((d) => d.id === newData.id);
-      if (existingIndex === -1) return [...oldData, newData];
+      if (existingIndex === -1) return [newData, ...oldData];
       const updatedData = [...oldData];
       updatedData[existingIndex] = newData;
       return updatedData;

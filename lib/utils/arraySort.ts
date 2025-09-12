@@ -1,0 +1,1 @@
+export const sort = (n: string, arr: unknown[]) => arr.sort((a, b) => n.localeCompare(n, "sv"));
