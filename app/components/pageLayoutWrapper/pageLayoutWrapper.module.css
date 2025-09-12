@@ -1,0 +1,49 @@
+.main {
+  margin-block: var(--gap, 1rem);
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.main:has(> .sidePanel) {
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto;
+  & > .sidePanel {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+  & > .intro {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  & > .contentArea {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+  }
+}
+
+.intro {
+  padding-inline: var(--content-padding-inline); 
+  padding-block: var(--content-padding-block) ;
+
+  & > * + * {
+    padding-block: calc(var(--gap, 1rem) * 0.25);
+  }
+}
+
+.sidePanel {
+  margin-inline-end: var(--content-padding-inline, 1rem);
+  padding: 1rem;
+  margin-block: var(--content-padding-block);
+
+  background-color: var(--color-surface-base);
+  border-radius: var(--radius, 8px);
+}
+
+.content {
+  padding-inline: calc(var(--content-padding-inline) - 1rem); 
+  padding-block: var(--content-padding-block) ;
+  &>* {
+    padding-inline: 1rem;
+  }
+  background-color: var(--color-surface-base);
+}

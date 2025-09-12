@@ -21,6 +21,7 @@ const defaultId = crypto.randomUUID();
 
 const SortableList = ({
   listId = defaultId,
+  className,
   dragMarginBlock = 100,
   dragMarginInline = 20,
   listOrder,
@@ -28,12 +29,13 @@ const SortableList = ({
   children,
 }: {
   listId?: string;
+  className?: string;
   dragMarginBlock?: number;
   dragMarginInline?: number;
   listOrder?: string[];
   onOrderChange?: (ids: string[]) => void;
   children: ReactNode;
-  }) => {
+}) => {
   console.log("SortableList render", listId);
   // Manage children and order state
   const [order, setOrder] = useState<string[]>(() => {
@@ -79,7 +81,7 @@ const SortableList = ({
   const [previewY, setPreviewY] = useState<number | null>(null);
 
   // Refs to display and position the drag preview
-  const listRef = useRef<HTMLUListElement | null>(null);
+  const listRef = useRef<HTMLOListElement | null>(null);
   const listRectRef = useRef<DOMRect | null>(null);
   const previewRef = useRef<HTMLLIElement | null>(null);
   const invisibleDragImage = useRef<HTMLElement | null>(null);
@@ -165,62 +167,58 @@ const SortableList = ({
   const handleDropOrEnd = () => {
     if (!draggedItemId) return;
     document.startViewTransition(() => {
-      flushSync(() => { 
+      flushSync(() => {
         setDraggedItemId(null);
         setPreviewY(null);
-      }); 
-     });
-    
+      });
+    });
+
     // Notify parent of order change
     if (onOrderChange) onOrderChange(order);
   };
 
   return (
-    
-      <ul
-        className={`${styles.sortableList} ${
-          draggedItemId ? styles.onDrag : ""
-        }`}
-        ref={listRef}
-      >
+    <ol
+      className={`${styles.sortableList} ${draggedItemId ? styles.onDrag : ""} ${className ? className : ""}`}
+      ref={listRef}
+    >
       {order.map((orderId) => {
         const child = childMap.get(orderId);
         if (!child) return null;
-        const id = child.props.id;
-          return (
-            <li
-              key={id}
-              id={id}
-              draggable={childMap.size > 1}
-              onDragStart={(e) => handleDragStart(e, id)}
-              onDrag={handleDrag}
-              onDragOver={(e) => handleDragOver(e, id)}
-              onDrop={handleDropOrEnd}
-              onDragEnd={handleDropOrEnd}
-              className={`${styles.sortableItem} ${
-                draggedItemId === id ? styles.isDragged : ""
-              }`}
-              // style={{ viewTransitionName: `item-${id}` }}
-            >
-              {child.props.children}
-            </li>
-          );
-        })}
-
-        {draggedItemId && previewY !== null && (
+        const { id } = child.props;
+        return (
           <li
-            ref={previewRef}
-            className={styles.dragPreview}
-            style={{
-              viewTransitionName: `preview-${listId}`,
-              transform: `translateY(calc(-50% + ${previewY}px))`,
-            }}
+            key={id}
+            id={id}
+            draggable={childMap.size > 1}
+            onDragStart={(e) => handleDragStart(e, id)}
+            onDrag={handleDrag}
+            onDragOver={(e) => handleDragOver(e, id)}
+            onDrop={handleDropOrEnd}
+            onDragEnd={handleDropOrEnd}
+            className={`${styles.sortableItem} ${
+              draggedItemId === id ? styles.isDragged : ""
+            }`}
+            // style={{ viewTransitionName: `item-${id}` }}
           >
-            {childMap.get(draggedItemId)?.props.children}
+            {child.props.children}
           </li>
-        )}
-      </ul>
-    
+        );
+      })}
+
+      {draggedItemId && previewY !== null && (
+        <li
+          ref={previewRef}
+          className={styles.dragPreview}
+          style={{
+            viewTransitionName: `preview-${listId}`,
+            transform: `translateY(calc(-50% + ${previewY}px))`,
+          }}
+        >
+          {childMap.get(draggedItemId)?.props.children}
+        </li>
+      )}
+    </ol>
   );
 };
 SortableList.Item = Item;
