@@ -1,7 +1,7 @@
 "use client";
 
+import cn from "@/lib/utils/classNames";
 import styles from "./toggleMenuButton.module.css";
-import cx from "classnames";
 import { useState, useRef } from "react";
 
 export const ToggleMenuButtonWrapper = ({
@@ -27,7 +27,7 @@ export const ToggleMenuButtonWrapper = ({
   return (
     <button
       ref={btnRef}
-      className={cx(styles.button, className)}
+      className={cn(styles.button, className)}
       aria-expanded={isOpen}
       onClick={handleClick}
       {...props}

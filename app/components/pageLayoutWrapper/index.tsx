@@ -1,6 +1,8 @@
 // Wrapper for consistent page layout
 // This component is used to wrap the main content of a page, including an optional side panel and intro section.
 import styles from "./pageLayoutWrapper.module.css";
+import cn from "@/lib/utils/classNames";
+
 type Props = {
   title: string;
   intro?: React.ReactNode;
@@ -27,7 +29,10 @@ export const PageLayoutWrapper = (props: Props) => {
       {sidePanel ? (
         <aside className={styles.sidePanel}>{sidePanel}</aside>
       ) : null}
-      <div className={`${styles.contentArea} ${contentStyles}`}>
+      <div className={cn(
+        styles.contentArea,
+        contentStyles
+      )}>
         {children}
       </div>
     </main>

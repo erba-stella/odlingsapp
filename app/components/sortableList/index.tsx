@@ -10,6 +10,7 @@ import {
 import { flushSync } from "react-dom";
 import { softClamp } from "@/lib/utils/softClamp";
 import styles from "./sortableList.module.css";
+import cn from "@/lib/utils/classNames";
 
 type SortableItemProps = {
   id: string;
@@ -179,7 +180,11 @@ const SortableList = ({
 
   return (
     <ol
-      className={`${styles.sortableList} ${draggedItemId ? styles.onDrag : ""} ${className ? className : ""}`}
+      className={cn(
+        styles.sortableList,
+        draggedItemId && styles.onDrag,
+        className && className
+      )}
       ref={listRef}
     >
       {order.map((orderId) => {
@@ -196,9 +201,10 @@ const SortableList = ({
             onDragOver={(e) => handleDragOver(e, id)}
             onDrop={handleDropOrEnd}
             onDragEnd={handleDropOrEnd}
-            className={`${styles.sortableItem} ${
-              draggedItemId === id ? styles.isDragged : ""
-            }`}
+            className={cn(
+              styles.sortableItem,
+              draggedItemId === id && styles.isDragged
+            )}
             // style={{ viewTransitionName: `item-${id}` }}
           >
             {child.props.children}

@@ -7,7 +7,7 @@ import { MobileMenuStoreProvider } from "./mobileMenuStore";
 import useClickOutside from "@/lib/hooks/useClickOutside";
 import useFocusOutside from "@/lib/hooks/useFocusOutside";
 import styles from "./pageHeader.module.css";
-import cx from "classnames";
+import cn from "@/lib/utils/classNames";
 
 export const MobileNavToggleMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,11 +48,11 @@ export const MobileNavToggleMenu = () => {
       <MobileMenuStoreProvider closeMenu={() => setIsOpen(false)}>
         <div
           id="navToggleMenu"
-          className={cx(styles.navToggleMenu, 
+          className={cn(styles.navToggleMenu, 
             isOpen && styles.menuOpen,
             !isOpen && styles.menuClose)}
         >
-          <nav className={cx(styles.navmenu, styles.mobile)} aria-label="Main">
+          <nav className={cn(styles.navmenu, styles.mobile)} aria-label="Main">
             <NavList />
           </nav>
         </div>
