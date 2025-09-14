@@ -1,5 +1,5 @@
 import styles from "./pageHeader.module.css";
-import cx from "classnames";
+import cn from "@/lib/utils/classNames"
 import { NavList } from "./NavList";
 import { MobileNavToggleMenu } from "./MobileNavToggleMenu";
 
@@ -9,10 +9,7 @@ export const PageHeader = ({
   className?: string;
 }) => {
   return (
-    <header id="page-header" className={cx(className, styles.header)}>
-      {/* Mobile */}
-      <MobileNavToggleMenu />
-
+    <header id="page-header" className={cn(className, styles.header)}>
       <h1>SåPlanera</h1>
 
       {/* Visually hidden link for skip navigation */}
@@ -21,9 +18,12 @@ export const PageHeader = ({
       </a>
 
       {/* Desktop */}
-      <nav aria-label="Main" className={cx(styles.navmenu, styles.desktop)}>
+      <nav aria-label="Main" className={cn(styles.navmenu, styles.desktop)}>
         <NavList />
-      </nav>  
+      </nav>
+
+      {/* Mobile */}
+      <MobileNavToggleMenu />
     </header>
   );
 };
