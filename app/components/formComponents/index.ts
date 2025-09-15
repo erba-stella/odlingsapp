@@ -1,4 +1,4 @@
-export { AddPlantForm } from "./AddPlantForm";
+export { AddPlantForm } from "./AddPlantFormX";
 export { PlantNameInput } from "./PlantNameInput";
 export { PlantTypeSelector } from "./PlantTypeSelector";
 export { ValidationMessages } from "./ValidationMessages";

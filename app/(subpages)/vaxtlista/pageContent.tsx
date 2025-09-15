@@ -2,7 +2,7 @@
 import { usePlantsStore } from "@/lib/store/plantsStore";
 import { PlantListSection } from "./plantListSection";
 import { Loader } from "@/app/components/ui/loader";
-import { AddPlantCategoryForm } from "@/app/components/addPlantForm/AddPlantCategoryForm";
+import { AddPlantCategoryForm } from "@/app/components/addPlantCategoryForm";
 
 export const PageContent = () => {
  const { getPlantCategories } = usePlantsStore();
