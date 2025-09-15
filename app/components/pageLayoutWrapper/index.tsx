@@ -1,7 +1,7 @@
 // Wrapper for consistent page layout
 // This component is used to wrap the main content of a page, including an optional side panel and intro section.
 import styles from "./pageLayoutWrapper.module.css";
-import cn from "@/lib/utils/classNames";
+import cn from "@/lib/utils/addClassNames";
 
 type Props = {
   title: string;

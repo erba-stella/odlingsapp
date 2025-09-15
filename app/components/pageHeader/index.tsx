@@ -1,5 +1,5 @@
 import styles from "./pageHeader.module.css";
-import cn from "@/lib/utils/classNames"
+import cn from "@/lib/utils/addClassNames"
 import { NavList } from "./NavList";
 import { MobileNavToggleMenu } from "./MobileNavToggleMenu";
 
