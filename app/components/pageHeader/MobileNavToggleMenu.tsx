@@ -7,7 +7,7 @@ import { MobileMenuStoreProvider } from "./mobileMenuStore";
 import useClickOutside from "@/lib/hooks/useClickOutside";
 import useFocusOutside from "@/lib/hooks/useFocusOutside";
 import styles from "./pageHeader.module.css";
-import cn from "@/lib/utils/classNames";
+import cn from "@/lib/utils/addClassNames";
 
 export const MobileNavToggleMenu = () => {
   const [isOpen, setIsOpen] = useState(false);

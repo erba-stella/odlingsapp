@@ -3,7 +3,7 @@ import { usePlantsStore, useEditPlantsStore } from "@/lib/store/plantsStore";
 import SortableList from "@/app/components/sortableList";
 import { useLocalStorageCache, useSetLocalStorageCache } from "@/lib/hooks/useLocalStorageCache";
 import { Suspense } from "react";
-import AddPlantForm from "./addPlantForm";
+import { AddPlantForm } from "@/app/components/addPlantForm";
 
 type Props = {
   categoryId: string;
@@ -47,7 +47,6 @@ export const PlantListSection = ({
       <h2>{categoryName}</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <SortableList
-          className="cardList"
           listId={categoryId}
           listOrder={listOrder}
           onOrderChange={handleOrderChange}
@@ -58,7 +57,11 @@ export const PlantListSection = ({
             </SortableList.Item>
           ))}
         </SortableList>
-        <AddPlantForm onSubmit={handleAddPlant} styles="" />
+        <AddPlantForm
+          plantCategory={categoryName}
+          onSubmit={handleAddPlant}
+          styling=""
+        />
       </Suspense>
     </section>
   );

@@ -14,10 +14,7 @@
 
   /* performance */
   contain: content;
-  & > section {
+  & > section, & > form {
     contain: content;
-    &:hover {
-      contain: none;
-    }
   }
 }

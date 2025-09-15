@@ -1,6 +1,6 @@
 "use client";
 
-import cn from "@/lib/utils/classNames";
+import cn from "@/lib/utils/addClassNames";
 import styles from "./toggleMenuButton.module.css";
 import { useState, useRef } from "react";
 
