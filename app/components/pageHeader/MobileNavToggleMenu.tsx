@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavList } from "./NavList";
 import { ToggleOpenCloseIcon } from "@/app/components/toggleMenuButton";
 import { MobileMenuStoreProvider } from "./mobileMenuStore";
-import useClickOutside from "@/lib/hooks/useClickOutside";
-import useFocusOutside from "@/lib/hooks/useFocusOutside";
+import { useInteractionOutside } from "@/lib/hooks/useInteractionOutside";
 import styles from "./pageHeader.module.css";
 import cn from "@/lib/utils/addClassNames";
 
@@ -20,16 +19,9 @@ export const MobileNavToggleMenu = () => {
     }
   }, []);
 
-  useClickOutside({
+  useInteractionOutside({
     ref: headerRef as React.RefObject<HTMLElement>,
     action: () => {
-      if (isOpen) setIsOpen(false);
-    },
-  });
-
-  useFocusOutside({
-    ref: headerRef as React.RefObject<HTMLElement>,
-    onFocusOut: () => {
       if (isOpen) setIsOpen(false);
     },
   });
