@@ -1,0 +1,127 @@
+.wrapper {
+  --openButton-bg-color: pink;
+  --width-closed: 3rem;
+  --height-closed: 3rem;
+  --duration-open: 0.75s;
+  --duration-close: 0.45s;
+  --duration-small: calc(var(--duration-form-open) / 2);
+  display: grid;
+  position: relative;
+  margin-block: 0.5rem;
+
+  /* Layout & styling: form & open-button */
+
+  & > * {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+
+  & > .openButton {
+    justify-self: end;
+    width: var(--width-closed);
+    height: var(--height-closed);
+    border-radius: var(--height-closed);
+    z-index: 2;
+  }
+
+  & > .form {
+    width: 100%;
+    z-index: 1;
+  } 
+
+  /* outline will follow the form on open/close transition */
+  &:focus-within {
+    & .form { outline: var(--outline); opacity: 1;}
+    & .openButton { outline: none; }
+  }
+}
+
+.wrapper.closed {
+  grid-template-columns: 1fr 0fr var(--width-closed);
+  & > * {
+      border-radius: var(--height-closed);
+      background-color: var(--openButton-bg-color);
+  }
+
+  &.saved {
+    & > .openButton {
+      transition: 
+      background-color var(--duration-close) ease-in-out,
+      opacity var(--duration-close) ease-in-out;
+      transition-delay: .25s;
+    }
+  }
+
+  
+  &.empty {
+    transition: grid-template-columns var(--duration-close) cubic-bezier(0.37, 0.07, 0.14, 0.77);
+    
+    & > .form {
+      transition: 
+      border-radius calc(var(--duration-close) * .25) ease-out, 
+      background-color calc(var(--duration-close) * .25) ease-out calc(var(--duration-close) * .5);      
+    }
+
+    & > .openButton {
+      --transition: calc(var(--duration-close) * .25) linear calc(var(--duration-close) * .75);
+      transition: 
+      background-color var(--transition),
+      opacity var(--transition);
+    }
+  }  
+}
+
+
+.wrapper.open {
+  grid-template-columns: 0fr 1fr var(--width-closed);
+  transition: grid-template-columns var(--duration-open)
+  cubic-bezier(1, 0.18, 0.5, 0.88);
+
+  & > .openButton {
+    opacity: 0.7;
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  &:has( input:valid:not(:placeholder-shown) ) > .openButton {
+    opacity: 0;
+  }
+
+  & > .form {
+    /* opacity: 1; */
+    transition: 
+    border-radius calc(var(--duration-open) * .333) ease, 
+    background-color calc(var(--duration-open) * .333) ease;
+    transition-delay: calc(var(--duration-open) * .333);
+  }
+}
+
+/* inner styling (children of form & open-button) */
+
+.openButton,
+.form {
+  justify-items: center;
+  align-content: center;
+}
+
+.form {
+  overflow: hidden;
+
+  & > input {
+    background-color: transparent;
+    display: block;
+    width: 100%;
+  }
+
+  .closed > & {
+    & > input {
+      opacity: 0;
+    }
+  }
+
+  .open > & > input {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+    transition-delay: var(--duration-open);
+  }
+}

@@ -9,11 +9,11 @@
   padding: 0.75em 1em;
   border-radius: 0.5em;
   width: 100%;
-  background: var(--color-card-bg, #f4f4f4);
+  background-color: var(--color-card-bg, #f4f4f4);
   filter: var(--drop-shadow-narrow);
 
   &.lifted {
-    background: var(--color-card-lifted-bg, #ffffff);
+    background-color: var(--color-card-lifted-bg, #ffffff);
     filter: var(--drop-shadow-lifted);
   }
 
@@ -21,5 +21,31 @@
     opacity: 0.3;
     outline: var(--outline);
     outline-offset: 0.05em;
+    filter: none;
   }
+
+  &.focusable {
+    filter: none;
+    background-color: color-mix(in hsl, var(--color-card-bg, #f4f4f4), transparent 65%);
+    transition: background-color .25s ease;
+    &:focus-within {
+      outline: var(--outline);
+      outline-offset: 0.05em;
+    }
+    & *:focus {
+      outline: none;
+    }
+    &:has( input ) {
+      padding: 0;
+      &>input {
+        padding: 0.75em 1em;
+      }
+    }
+    &:has( input:valid:not(:placeholder-shown) ) {
+      background-color: var(--color-card-bg, #f4f4f4);
+      filter: var(--drop-shadow-narrow);
+    }
+    
+  }
+  
 }

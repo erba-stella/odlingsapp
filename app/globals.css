@@ -59,8 +59,9 @@
   --color-surface-elevated: oklch(0.985 0.02 10);
   --color-surface-front: oklch(0.999 0.02 10);
 
-  /* Functional */
+  /* base outline */
   --color-focus-outline: oklch(0.6 0.45  595);
+  --outline: .15em dashed var(--color-focus-outline);
 
   /* Backgrounds */
   --color-bg: var(--color-surface-body);
@@ -78,9 +79,6 @@
    --card-bg-clr-elevated: oklch(
     from var(--color-surface-base) calc(l - 0.05) c h / 1
   );
-
-  /* base outline */
-  --outline: .15em dashed var(--color-focus-outline);
 
   /* Text - base colors */
   --color-text-light: var(--color-neutral-500);
@@ -323,10 +321,7 @@ table {
 }
 
 *:focus-visible {
-  outline: .24rem dashed var(--color-focus-outline, blue);
+  position: relative;
+  outline: var(--outline);
   z-index: 2000;
 }
-
-/* Design blocks */
-
-

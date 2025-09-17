@@ -2,8 +2,9 @@
 import { usePlantsStore, useEditPlantsStore } from "@/lib/store/plantsStore";
 import SortableList from "@/app/components/sortableList";
 import { useLocalStorageCache, useSetLocalStorageCache } from "@/lib/hooks/useLocalStorageCache";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import { AddPlantForm } from "@/app/components/addPlantForm";
+import { CustomPlant } from "@/lib/interfaces";
 
 type Props = {
   categoryId: string;
@@ -20,6 +21,9 @@ export const PlantListSection = ({
   const { getPlantsInCategory } = usePlantsStore();
   const plants = getPlantsInCategory(categoryId);
 
+  // keep track of the latest new plant added to list
+  const newPlantRef = useRef<CustomPlant | null>(null);
+
   // Storing the order of plants in the list in local storage
   const KEY = `listOrder-${categoryId}`, INITIAL = plants.map((p) => p.id) || [];
   const listOrder = useLocalStorageCache<string[]>( KEY, INITIAL);
@@ -32,12 +36,13 @@ export const PlantListSection = ({
   // Adding a new plant to the category
   const { savePlant } = useEditPlantsStore();
   const handleAddPlant = (name: string) => {
-    const newPlant = {
+    const newPlant: CustomPlant = {
       id: crypto.randomUUID(),
       name,
       created: new Date().toISOString(),
       categoryId,
     };
+    newPlantRef.current = newPlant;
     savePlant(newPlant);
     setListOrder((prev) => [...prev, newPlant.id]);
   };
@@ -45,6 +50,11 @@ export const PlantListSection = ({
   return (
     <section>
       <h2>{categoryName}</h2>
+
+      <p aria-live="polite" className="visually-hidden">
+        {newPlantRef.current &&
+          `${newPlantRef.current.name} har lagts till i listan ${categoryName}`}
+      </p>
       <Suspense fallback={<div>Loading...</div>}>
         <SortableList
           listId={categoryId}

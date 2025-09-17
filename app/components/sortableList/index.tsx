@@ -10,7 +10,9 @@ import {
 import { flushSync } from "react-dom";
 import { softClamp } from "@/lib/utils/softClamp";
 import styles from "./sortableList.module.css";
-import cn from "@/lib/utils/classNames";
+import { cardStyles } from "@/app/components/styles";
+import cn from "@/lib/utils/addClassNames";
+
 
 type SortableItemProps = {
   id: string;
@@ -18,26 +20,28 @@ type SortableItemProps = {
 };
 
 export const Item = ({ children }: SortableItemProps) => <>{children}</>;
+
+
 const defaultId = crypto.randomUUID();
 
-const SortableList = ({
-  listId = defaultId,
-  className,
-  dragMarginBlock = 100,
-  dragMarginInline = 20,
-  listOrder,
-  onOrderChange,
-  children,
-}: {
+type SortableListProps = {
   listId?: string;
-  className?: string;
   dragMarginBlock?: number;
   dragMarginInline?: number;
   listOrder?: string[];
   onOrderChange?: (ids: string[]) => void;
   children: ReactNode;
-}) => {
-  console.log("SortableList render", listId);
+};
+
+const SortableList = ({
+  listId = defaultId,
+  dragMarginBlock = 100,
+  dragMarginInline = 20,
+  listOrder,
+  onOrderChange,
+  children,
+}: SortableListProps) => {
+  
   // Manage children and order state
   const [order, setOrder] = useState<string[]>(() => {
     return (
@@ -181,9 +185,9 @@ const SortableList = ({
   return (
     <ol
       className={cn(
+        cardStyles.cardList,
         styles.sortableList,
-        draggedItemId && styles.onDrag,
-        className && className
+        draggedItemId && styles.onDrag
       )}
       ref={listRef}
     >
@@ -203,7 +207,8 @@ const SortableList = ({
             onDragEnd={handleDropOrEnd}
             className={cn(
               styles.sortableItem,
-              draggedItemId === id && styles.isDragged
+              cardStyles.card,
+              draggedItemId === id && cardStyles.placeholder
             )}
             // style={{ viewTransitionName: `item-${id}` }}
           >
@@ -215,7 +220,7 @@ const SortableList = ({
       {draggedItemId && previewY !== null && (
         <li
           ref={previewRef}
-          className={styles.dragPreview}
+          className={cn(styles.dragPreview, cardStyles.card, cardStyles.lifted)}
           style={{
             viewTransitionName: `preview-${listId}`,
             transform: `translateY(calc(-50% + ${previewY}px))`,
