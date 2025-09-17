@@ -11,7 +11,6 @@ export function AddPlantForm({
   onSubmit,
 }: {
   plantCategory: string;
-  styling?: string;
   onSubmit: (plant: string) => void;
   }) {
   const [open, setOpen] = useState(false);

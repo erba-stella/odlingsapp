@@ -70,7 +70,6 @@ export const PlantListSection = ({
         <AddPlantForm
           plantCategory={categoryName}
           onSubmit={handleAddPlant}
-          styling=""
         />
       </Suspense>
     </section>
