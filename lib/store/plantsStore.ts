@@ -156,7 +156,7 @@ export function useEditPlantsStore() {
 
   const deletePlant = (plantId: string) => {
     setPlants((oldPlants) => {
-      const newPlants = oldPlants.filter((plant) => plant.id === plantId);
+      const newPlants = oldPlants.filter((plant) => plant.id !== plantId);
       const deletedPlant = oldPlants.find((plant) => plant.id === plantId);
       if (!deletedPlant) return oldPlants; 
 
@@ -166,7 +166,7 @@ export function useEditPlantsStore() {
           (plant) => plant.categoryId === deletedPlant.categoryId
         );
         if (isCategoryUsed) return oldData;
-        return oldData.filter((data) => data.id !== plantId);
+        return oldData.filter((data) => data.id !== deletedPlant.categoryId);
       });
 
       return newPlants;
