@@ -12,7 +12,7 @@ import { softClamp } from "@/lib/utils/softClamp";
 import styles from "./sortableList.module.css";
 import { cardStyles } from "@/app/components/styles";
 import cn from "@/lib/utils/addClassNames";
-
+import { startViewTransition } from "@/lib/utils/startViewTransition";
 
 type SortableItemProps = {
   id: string;
@@ -20,7 +20,6 @@ type SortableItemProps = {
 };
 
 export const Item = ({ children }: SortableItemProps) => <>{children}</>;
-
 
 const defaultId = crypto.randomUUID();
 
@@ -41,7 +40,7 @@ const SortableList = ({
   onOrderChange,
   children,
 }: SortableListProps) => {
-  
+
   // Manage children and order state
   const [order, setOrder] = useState<string[]>(() => {
     return (
@@ -68,6 +67,7 @@ const SortableList = ({
         )
       )
     );
+
     // Update order to match new children while preserving existing order
     setOrder((prev) => {
       const newIds = (
@@ -78,6 +78,19 @@ const SortableList = ({
       // Add any new ids that were not in the previous order
       const addedNew = newIds.filter((id) => !filteredPrev.includes(id));
       return [...filteredPrev, ...addedNew];
+    });
+
+    startViewTransition(() => {
+      setOrder((prev) => {
+        const newIds = (
+          Children.toArray(children) as ReactElement<SortableItemProps>[]
+        ).map((c) => c.props.id);
+        // Keep the previous order but remove any ids that are no longer present
+        const filteredPrev = prev.filter((id) => newIds.includes(id));
+        // Add any new ids that were not in the previous order
+        const addedNew = newIds.filter((id) => !filteredPrev.includes(id));
+        return [...filteredPrev, ...addedNew];
+      });
     });
   }, [children]);
 
@@ -151,20 +164,18 @@ const SortableList = ({
 
     if (!draggedItemId || draggedItemId === targetId) return;
 
-    // reorder items, use flushSync to make sure DOM updates are done before view transition
-    document.startViewTransition(() => {
-      flushSync(() => {
-        setOrder((prev) => {
-          const newOrder = [...prev];
-          const from = newOrder.indexOf(draggedItemId);
-          const to = newOrder.indexOf(targetId);
+    // reorder items
+    startViewTransition(() => {
+      setOrder((prev) => {
+        const newOrder = [...prev];
+        const from = newOrder.indexOf(draggedItemId);
+        const to = newOrder.indexOf(targetId);
 
-          if (from === -1 || to === -1) return prev;
+        if (from === -1 || to === -1) return prev;
 
-          newOrder.splice(from, 1);
-          newOrder.splice(to, 0, draggedItemId);
-          return newOrder;
-        });
+        newOrder.splice(from, 1);
+        newOrder.splice(to, 0, draggedItemId);
+        return newOrder;
       });
     });
   };
@@ -210,7 +221,7 @@ const SortableList = ({
               cardStyles.card,
               draggedItemId === id && cardStyles.placeholder
             )}
-            // style={{ viewTransitionName: `item-${id}` }}
+            style={{ viewTransitionName: `item-${id}` }}
           >
             {child.props.children}
           </li>
