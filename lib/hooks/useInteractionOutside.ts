@@ -1,8 +1,8 @@
 /*
 - catches click, touch, drag and focus movements outside the ref-element (including keyboard navigation)
 */
-
-import { useEffect } from "react";
+"use client";
+import useEventOutside from "@/lib/hooks/useEventOutside";
 
 type UseInteractOutsideProps = {
   ref: React.RefObject<HTMLElement>;
@@ -13,29 +13,21 @@ export function useInteractionOutside({
   ref,
   action,
 }: UseInteractOutsideProps) {
-  useEffect(() => {
-    if (typeof window === "undefined") return; // Ensure this runs only in the browser
+  useEventOutside({
+    eventType: "focusin",
+    containerRef: ref as React.RefObject<HTMLElement>,
+    action,
+  });
 
-    const handlePointer = (event: MouseEvent | TouchEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        action();
-      }
-    };
+  useEventOutside({
+    eventType: "mousedown",
+    containerRef: ref as React.RefObject<HTMLElement>,
+    action,
+  });
 
-    const handleFocus = (event: FocusEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        action();
-      }
-    };
-
-    document.addEventListener("mousedown", handlePointer);
-    document.addEventListener("touchstart", handlePointer);
-    document.addEventListener("focusin", handleFocus);
-
-    return () => {
-      document.removeEventListener("mousedown", handlePointer);
-      document.removeEventListener("touchstart", handlePointer);
-      document.removeEventListener("focusin", handleFocus);
-    };
-  }, [ref, action]);
+  useEventOutside({
+    eventType: "touchstart",
+    containerRef: ref as React.RefObject<HTMLElement>,
+    action,
+  });
 }

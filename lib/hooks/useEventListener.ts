@@ -1,32 +1,33 @@
 /*
-    custom hook from
+    custom hook (modified) from
     https://github.com/WebDevSimplified/useful-custom-react-hooks/blob/main/src/13-useEventListener/useEventListener.js
 
 */
-import { useEffect, useRef } from "react"
+'use client'
+import { useEffect, useRef } from "react";
 
 interface Options {
   eventType: string;
-  callback: (event: Event) => void;
-  element?: EventTarget | null;
+  action: (e: Event) => void;
+  element?: EventTarget | undefined;
 }
 
-export default function useEventListener(
-  eventType: Options["eventType"],
-  callback: Options["callback"],
-  element: Options["element"] = window
-): void {
-  const callbackRef = useRef<Options["callback"]>(callback);
+export default function useEventListener({
+  eventType,
+  action,
+  element,
+}: Options): void {
+  const callbackRef = useRef<Options["action"]>(action);
 
   useEffect(() => {
-    callbackRef.current = callback;
-  }, [callback]);
+    callbackRef.current = action;
+  }, [action]);
 
   useEffect(() => {
-    if (element == null) return;
+    const elem = element || window;
     const handler = (e: Event) => callbackRef.current(e);
-    element.addEventListener(eventType, handler);
+    elem.addEventListener(eventType, handler);
 
-    return () => element.removeEventListener(eventType, handler);
+    return () => elem.removeEventListener(eventType, handler);
   }, [eventType, element]);
 }
