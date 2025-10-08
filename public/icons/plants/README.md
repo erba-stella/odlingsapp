@@ -1,6 +1,5 @@
 # ICONS
 
-"icon_name": "chilli",
 
 ### beet
 LICENSE: CC0 License, Public Domain
@@ -49,6 +48,10 @@ https://www.svgrepo.com/svg/276199/eggplant
 ### herb
 LICENSE: Apache License
 https://www.svgrepo.com/svg/396636/herb
+
+### leek
+LICENSE: Public Domain
+https://www.svgrepo.com/svg/475201/leek
 
 ### melon
 LICENSE: MIT License

@@ -428,7 +428,7 @@
       "name_sv": "Purjolök",
       "name_latin": "Allium ampeloprasum",
       "alias": [],
-      "icon_name": "onion",
+      "icon_name": "leek",
       "tags": ["Lökväxter"],
       "start_seeds_indoors": {
         "min": 8,
