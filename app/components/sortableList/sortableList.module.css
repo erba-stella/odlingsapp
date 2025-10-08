@@ -9,6 +9,7 @@
 .sortableItem {
   position: relative;
   z-index: 1;
+  view-transition-class: card;
 }
 
 .dragPreview {
@@ -18,11 +19,23 @@
   pointer-events: none;
   z-index: 1000;
   translate: 0 0;
-  animation: dragStart .25s ease forwards;
+  animation: dragStart 0.25s ease forwards;
 }
 
 @keyframes dragStart {
   100% {
-    translate: .15em 0;   
+    translate: 0.15em 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onDrag {
+    .sortableItem {
+      view-transition-name: none;
+    }
+    .dragPreview {
+      view-transition-name: none;
+      animation: none;
+    }
   }
 }

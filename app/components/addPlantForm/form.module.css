@@ -1,10 +1,11 @@
 .wrapper {
-  --openButton-bg-color: pink;
+  --openButton-bg-color: oklch(0.89 0.08 20);
   --width-closed: 3rem;
   --height-closed: 3rem;
-  --duration-open: 0.75s;
+  --duration-open: 0.5s;
   --duration-close: 0.45s;
   --duration-small: calc(var(--duration-form-open) / 2);
+  --border-radius-closed: 3rem;
   display: grid;
   position: relative;
   margin-block: 0.5rem;
@@ -20,62 +21,76 @@
     justify-self: end;
     width: var(--width-closed);
     height: var(--height-closed);
-    border-radius: var(--height-closed);
+    border-radius: var(--border-radius-closed);
     z-index: 2;
   }
 
   & > .form {
     width: 100%;
     z-index: 1;
-  } 
+  }
 
   /* outline will follow the form on open/close transition */
   &:focus-within {
-    & .form { outline: var(--outline); opacity: 1;}
-    & .openButton { outline: none; }
+    & .form {
+      outline: var(--outline);
+      opacity: 1;
+    }
+    & .openButton {
+      outline: none;
+    }
   }
 }
 
 .wrapper.closed {
   grid-template-columns: 1fr 0fr var(--width-closed);
   & > * {
-      border-radius: var(--height-closed);
-      background-color: var(--openButton-bg-color);
+    border-radius: var(--border-radius-closed); 
+  }
+  & > .openButton {
+    background-color: var(--openButton-bg-color);
   }
 
   &.saved {
+    /* view-transition-name: none; */
+    transition: grid-template-columns var(--duration-close)
+      cubic-bezier(0.37, 0.07, 0.14, 0.77);
+    transition-delay: .5s;
+
+    & > * {
+      transition: border-radius var(--duration-close) ease-out;
+      transition-delay: calc(var(--duration-close) + .5s);
+    }
+
     & > .openButton {
-      transition: 
-      background-color var(--duration-close) ease-in-out,
-      opacity var(--duration-close) ease-in-out;
-      transition-delay: .25s;
+      transition: background-color var(--duration-close) ease-in-out,
+        opacity var(--duration-close) ease-in-out;
+      transition-delay: calc(var(--duration-close) + .5s);
     }
   }
 
-  
   &.empty {
-    transition: grid-template-columns var(--duration-close) cubic-bezier(0.37, 0.07, 0.14, 0.77);
-    
+    transition: grid-template-columns var(--duration-close)
+      cubic-bezier(0.37, 0.07, 0.14, 0.77);
+
     & > .form {
-      transition: 
-      border-radius calc(var(--duration-close) * .25) ease-out, 
-      background-color calc(var(--duration-close) * .25) ease-out calc(var(--duration-close) * .5);      
+      transition: border-radius calc(var(--duration-close) * 0.25) ease-out,
+        background-color calc(var(--duration-close) * 0.25) ease-out
+          calc(var(--duration-close) * 0.5);
     }
 
     & > .openButton {
-      --transition: calc(var(--duration-close) * .25) linear calc(var(--duration-close) * .75);
-      transition: 
-      background-color var(--transition),
-      opacity var(--transition);
+      --transition: calc(var(--duration-close) * 0.25) linear
+        calc(var(--duration-close) * 0.75);
+      transition: background-color var(--transition), opacity var(--transition);
     }
-  }  
+  }
 }
-
 
 .wrapper.open {
   grid-template-columns: 0fr 1fr var(--width-closed);
   transition: grid-template-columns var(--duration-open)
-  cubic-bezier(1, 0.18, 0.5, 0.88);
+    cubic-bezier(1, 0.18, 0.5, 0.88);
 
   & > .openButton {
     opacity: 0.7;
@@ -83,16 +98,21 @@
     pointer-events: none;
   }
 
-  &:has( input:valid:not(:placeholder-shown) ) > .openButton {
+  &:has(input:valid:not(:placeholder-shown)) > .openButton {
     opacity: 0;
   }
 
   & > .form {
     /* opacity: 1; */
-    transition: 
-    border-radius calc(var(--duration-open) * .333) ease, 
-    background-color calc(var(--duration-open) * .333) ease;
-    transition-delay: calc(var(--duration-open) * .333);
+    transition: border-radius calc(var(--duration-open) * 0.333) ease,
+      background-color calc(var(--duration-open) * 0.333) ease;
+    transition-delay: calc(var(--duration-open) * 0.333);
+  }
+
+  &:not(:focus-within) .form {
+    outline: var(--outline);
+    outline-color: var(--color-card-bg);
+    outline-offset: 0.05em;
   }
 }
 
@@ -123,5 +143,21 @@
     opacity: 1;
     transition: opacity 0.3s ease-in;
     transition-delay: var(--duration-open);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    transition: none;
+    &.closed {
+      grid-template-columns: 0fr 1fr var(--width-closed);
+      & > * {
+        background-color: transparent;
+        transition: none;
+      }
+      & > .openButton {
+        background-color: var(--openButton-bg-color);
+      }
+    }
   }
 }

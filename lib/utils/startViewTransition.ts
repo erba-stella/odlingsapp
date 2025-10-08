@@ -2,10 +2,7 @@ import { flushSync } from "react-dom";
 
 // helper for view transitions
 export const startViewTransition = (func: () => void) => {
-  const reduceMotion = window.matchMedia(
-    `(prefers-reduced-motion: reduce)`
-  ).matches;
-  if (!document.startViewTransition || reduceMotion) {
+  if (!document.startViewTransition) {
     func();
     return;
   }

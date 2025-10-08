@@ -7,7 +7,6 @@ import {
   ReactElement,
   Children,
 } from "react";
-import { flushSync } from "react-dom";
 import { softClamp } from "@/lib/utils/softClamp";
 import styles from "./sortableList.module.css";
 import { cardStyles } from "@/app/components/styles";
@@ -67,19 +66,7 @@ const SortableList = ({
         )
       )
     );
-
     // Update order to match new children while preserving existing order
-    setOrder((prev) => {
-      const newIds = (
-        Children.toArray(children) as ReactElement<SortableItemProps>[]
-      ).map((c) => c.props.id);
-      // Keep the previous order but remove any ids that are no longer present
-      const filteredPrev = prev.filter((id) => newIds.includes(id));
-      // Add any new ids that were not in the previous order
-      const addedNew = newIds.filter((id) => !filteredPrev.includes(id));
-      return [...filteredPrev, ...addedNew];
-    });
-
     startViewTransition(() => {
       setOrder((prev) => {
         const newIds = (
@@ -119,7 +106,6 @@ const SortableList = ({
   }, []);
 
   const handleDragStart = (e: React.DragEvent, id: string) => {
-    e.stopPropagation();
     setDraggedItemId(id);
 
     if (listRef.current) {
@@ -182,11 +168,9 @@ const SortableList = ({
 
   const handleDropOrEnd = () => {
     if (!draggedItemId) return;
-    document.startViewTransition(() => {
-      flushSync(() => {
-        setDraggedItemId(null);
-        setPreviewY(null);
-      });
+    startViewTransition(() => {
+      setDraggedItemId(null);
+      setPreviewY(null);
     });
 
     // Notify parent of order change
@@ -200,6 +184,8 @@ const SortableList = ({
         styles.sortableList,
         draggedItemId && styles.onDrag
       )}
+      style={{ viewTransitionName: `ol-${listId}` }}
+      data-animation="list"
       ref={listRef}
     >
       {order.map((orderId) => {
@@ -221,6 +207,7 @@ const SortableList = ({
               cardStyles.card,
               draggedItemId === id && cardStyles.placeholder
             )}
+            data-animation="draggable"
             style={{ viewTransitionName: `item-${id}` }}
           >
             {child.props.children}
@@ -236,6 +223,7 @@ const SortableList = ({
             viewTransitionName: `preview-${listId}`,
             transform: `translateY(calc(-50% + ${previewY}px))`,
           }}
+          data-animation="drag-preview"
         >
           {childMap.get(draggedItemId)?.props.children}
         </li>
