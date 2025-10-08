@@ -144,7 +144,7 @@ export function useEditPlantsStore() {
     });
   };
 
-  const savePlantData = (newData: PlantData) => {
+  const savePlantCategory = (newData: PlantData) => {
     setPlantData((oldData) => {
       const existingIndex = oldData.findIndex((d) => d.id === newData.id);
       if (existingIndex === -1) return [newData, ...oldData];
@@ -161,17 +161,17 @@ export function useEditPlantsStore() {
       if (!deletedPlant) return oldPlants; 
 
       // Optionally, also delete related plant data if no other plants use it
-      setPlantData((oldData) => {
-        const isCategoryUsed = newPlants.some(
-          (plant) => plant.categoryId === deletedPlant.categoryId
-        );
-        if (isCategoryUsed) return oldData;
-        return oldData.filter((data) => data.id !== deletedPlant.categoryId);
-      });
+      // setPlantData((oldData) => {
+      //   const isCategoryUsed = newPlants.some(
+      //     (plant) => plant.categoryId === deletedPlant.categoryId
+      //   );
+      //   if (isCategoryUsed) return oldData;
+      //   return oldData.filter((data) => data.id !== deletedPlant.categoryId);
+      // });
 
       return newPlants;
     });
   };
 
-  return { savePlant, savePlantData, deletePlant };
+  return { savePlant, savePlantCategory, deletePlant };
 }
