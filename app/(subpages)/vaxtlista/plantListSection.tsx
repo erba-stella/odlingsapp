@@ -1,10 +1,15 @@
 "use client";
 import { usePlantsStore, useEditPlantsStore } from "@/lib/store/plantsStore";
 import SortableList from "@/app/components/sortableList";
-import { useLocalStorageCache, useSetLocalStorageCache } from "@/lib/hooks/useLocalStorageCache";
-import { Suspense, useRef } from "react";
+import {
+  useLocalStorageCache,
+  useSetLocalStorageCache,
+} from "@/lib/hooks/useLocalStorageCache";
+import { useRef } from "react";
 import { AddPlantForm } from "@/app/components/addPlantForm";
 import { CustomPlant } from "@/lib/interfaces";
+import { PlantCardContent } from "@/app/components/plantCardContent";
+import { PlantIcon } from "@/app/components/icons/plantIcon";
 
 type Props = {
   categoryId: string;
@@ -21,12 +26,14 @@ export const PlantListSection = ({
   const { getPlantsInCategory } = usePlantsStore();
   const plants = getPlantsInCategory(categoryId);
 
-  // keep track of the latest new plant added to list
+  // keep track of the latest changes: new plant added to list / deleted from list
   const newPlantRef = useRef<CustomPlant | null>(null);
+  // const deletedPlantRef = useRef<CustomPlant | null>(null);
 
   // Storing the order of plants in the list in local storage
-  const KEY = `listOrder-${categoryId}`, INITIAL = plants.map((p) => p.id) || [];
-  const listOrder = useLocalStorageCache<string[]>( KEY, INITIAL);
+  const KEY = `listOrder-${categoryId}`,
+    INITIAL = plants.map((p) => p.id) || [];
+  const listOrder = useLocalStorageCache<string[]>(KEY, INITIAL);
   const setListOrder = useSetLocalStorageCache<string[]>(KEY, INITIAL);
 
   const handleOrderChange = (newOrder: string[]) => {
@@ -35,9 +42,9 @@ export const PlantListSection = ({
 
   // Adding a new plant to the category
   const { savePlant } = useEditPlantsStore();
-  const handleAddPlant = (name: string) => {
+  const handleAddPlant = (name: string, id: string) => {
     const newPlant: CustomPlant = {
-      id: crypto.randomUUID(),
+      id,
       name,
       created: new Date().toISOString(),
       categoryId,
@@ -47,31 +54,43 @@ export const PlantListSection = ({
     setListOrder((prev) => [...prev, newPlant.id]);
   };
 
+  // Deleting plant
+  const { deletePlant } = useEditPlantsStore();
+  const handleDelete = (plantId: string) => {
+    deletePlant(plantId);
+  };
+
   return (
-    <section>
-      <h2>{categoryName}</h2>
+    <section
+      style={{ viewTransitionName: `section-${categoryName}` }}
+    >
+      <h2>
+        {categoryName}
+        <PlantIcon width={15} height={15} type={categoryIcon} />
+      </h2>
 
       <p aria-live="polite" className="visually-hidden">
         {newPlantRef.current &&
           `${newPlantRef.current.name} har lagts till i listan ${categoryName}`}
       </p>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SortableList
-          listId={categoryId}
-          listOrder={listOrder}
-          onOrderChange={handleOrderChange}
-        >
-          {plants.map((plant) => (
-            <SortableList.Item key={plant.id} id={plant.id}>
-              {plant.name} {categoryIcon}
-            </SortableList.Item>
-          ))}
-        </SortableList>
-        <AddPlantForm
-          plantCategory={categoryName}
-          onSubmit={handleAddPlant}
-        />
-      </Suspense>
+
+      <SortableList
+        listId={categoryId}
+        listOrder={listOrder}
+        onOrderChange={handleOrderChange}
+      >
+        {plants.map((plant) => (
+          <SortableList.Item key={plant.id} id={plant.id}>
+            <PlantCardContent
+              id={plant.id}
+              onDelete={() => {
+                handleDelete(plant.id);
+              }}
+            />
+          </SortableList.Item>
+        ))}
+      </SortableList>
+      <AddPlantForm plantCategory={categoryName} onSubmit={handleAddPlant} />
     </section>
   );
 };

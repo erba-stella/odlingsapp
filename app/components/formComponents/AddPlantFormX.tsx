@@ -25,7 +25,7 @@ export const AddPlantForm = () => {
    >(null);
  
 
-  const { savePlant, savePlantData } = useEditPlantsStore();
+  const { savePlant, savePlantCategory } = useEditPlantsStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ export const AddPlantForm = () => {
     setSavedPlants([newPlant, ...savedPlants]);
 
     savePlant(newPlant);
-    savePlantData(selectedPlant);
+    savePlantCategory(selectedPlant);
 
     // reset form
     setCustomName("");

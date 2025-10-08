@@ -26,26 +26,33 @@
 
   &.focusable {
     filter: none;
-    background-color: color-mix(in hsl, var(--color-card-bg, #f4f4f4), transparent 65%);
-    transition: background-color .25s ease;
+    background-color: color-mix(
+      in hsl,
+      var(--color-card-bg, #f4f4f4),
+      transparent 65%
+    );
+    
+    transition: background-color 0.25s ease;
+
     &:focus-within {
       outline: var(--outline);
       outline-offset: 0.05em;
     }
+    &:not(:focus-within) {
+      background-color: transparent;
+    }
     & *:focus {
       outline: none;
     }
-    &:has( input ) {
+    &:has(input) {
       padding: 0;
-      &>input {
+      & > input {
         padding: 0.75em 1em;
       }
     }
-    &:has( input:valid:not(:placeholder-shown) ) {
+    &:has(input:valid:not(:placeholder-shown)) {
       background-color: var(--color-card-bg, #f4f4f4);
       filter: var(--drop-shadow-narrow);
     }
-    
   }
-  
 }
