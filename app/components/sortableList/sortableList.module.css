@@ -9,7 +9,6 @@
 .sortableItem {
   position: relative;
   z-index: 1;
-  view-transition-class: card;
 }
 
 .dragPreview {
