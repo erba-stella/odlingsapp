@@ -24,9 +24,9 @@ export const PlantListSection = ({
   const { getPlantsInCategory } = usePlantsStore();
   const plants = getPlantsInCategory(categoryId);
 
-  // keep track of the latest changes: new plant added to list / deleted from list
+  // Give aria-live user feedback for latest changes: new plant added to list / deleted from list
   const newPlantRef = useRef<CustomPlant | null>(null);
-  // const deletedPlantRef = useRef<CustomPlant | null>(null);
+  const deletedPlantRef = useRef<CustomPlant | null>(null);
 
   const { listOrder, setListOrder } = useListOrder(categoryId);
 
@@ -55,18 +55,27 @@ export const PlantListSection = ({
     deletePlant(plantId);
   };
 
+  const sectionId = `section-${categoryId}`;
+
   return (
     <section
-      style={{ viewTransitionName: `section-${categoryName}` }}
+      aria-labelledby={sectionId} // made to be a landmark region with aria-labelledby
+      style={{ viewTransitionName: sectionId }}
+      data-animation="motion-section"
     >
-      <h2>
+      <h2 id={sectionId}>
         {categoryName}
         <PlantIcon width={15} height={15} type={categoryIcon} />
       </h2>
 
+      {/* TODO: improve and break out as component (aria-live feedback): */}
       <p aria-live="polite" className="visually-hidden">
         {newPlantRef.current &&
           `${newPlantRef.current.name} har lagts till i listan ${categoryName}`}
+      </p>
+      <p aria-live="polite" className="visually-hidden">
+        {deletedPlantRef.current &&
+          `${deletedPlantRef.current.name} har raderats från listan ${categoryName}`}
       </p>
 
       <SortableList
