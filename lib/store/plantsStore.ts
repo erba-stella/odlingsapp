@@ -4,6 +4,7 @@ import {
   useSetLocalStorageCache,
 } from "@/lib/hooks/useLocalStorageCache";
 import { CustomPlant, PlantData } from "@/lib/interfaces";
+import { select } from "./stableSelectorUtil";
 
 /* ============================================================
     Constants: localStorage keys and initial values
@@ -14,15 +15,6 @@ const PLANTS_INITIAL: CustomPlant[] = [];
 const PLANT_DATA_KEY = "plantData";
 const PLANT_DATA_INITIAL: PlantData[] = [];
 
-/* ============================================================
-   Util for stable selectors
-    - Selector functions should preferably be defined outside the hook,
-      to avoid unnecessary rerenders and weirdness
-*/
-
-function select<T, S>(fn: (data: T) => S) {
-  return fn;
-}
 
 /* ============================================================
    HOOK: subscribe to all plants - basic usage

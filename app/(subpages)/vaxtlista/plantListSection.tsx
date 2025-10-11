@@ -1,15 +1,13 @@
 "use client";
 import { usePlantsStore, useEditPlantsStore } from "@/lib/store/plantsStore";
 import SortableList from "@/app/components/sortableList";
-import {
-  useLocalStorageCache,
-  useSetLocalStorageCache,
-} from "@/lib/hooks/useLocalStorageCache";
 import { useRef } from "react";
 import { AddPlantForm } from "@/app/components/addPlantForm";
 import { CustomPlant } from "@/lib/interfaces";
 import { PlantCardContent } from "@/app/components/plantCardContent";
 import { PlantIcon } from "@/app/components/icons/plantIcon";
+import { useListOrder } from "@/lib/store/plantListOrderStore";
+
 
 type Props = {
   categoryId: string;
@@ -30,11 +28,7 @@ export const PlantListSection = ({
   const newPlantRef = useRef<CustomPlant | null>(null);
   // const deletedPlantRef = useRef<CustomPlant | null>(null);
 
-  // Storing the order of plants in the list in local storage
-  const KEY = `listOrder-${categoryId}`,
-    INITIAL = plants.map((p) => p.id) || [];
-  const listOrder = useLocalStorageCache<string[]>(KEY, INITIAL);
-  const setListOrder = useSetLocalStorageCache<string[]>(KEY, INITIAL);
+  const { listOrder, setListOrder } = useListOrder(categoryId);
 
   const handleOrderChange = (newOrder: string[]) => {
     setListOrder(newOrder);
@@ -51,7 +45,8 @@ export const PlantListSection = ({
     };
     newPlantRef.current = newPlant;
     savePlant(newPlant);
-    setListOrder((prev) => [...prev, newPlant.id]);
+    const prev = listOrder || [];
+    setListOrder([...prev, newPlant.id]);
   };
 
   // Deleting plant
