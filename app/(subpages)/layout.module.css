@@ -1,0 +1,39 @@
+/*  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    - Main grid layout for all subpages
+*/
+
+.container {
+
+  display: grid;
+  min-height: 100lvh;
+
+  grid-template-rows:
+    [header-start] auto
+    [header-end content-start] 1fr
+    [content-end footer-start] auto
+    [footer-end];
+
+  grid-template-columns:
+    [full-width-start]
+    var(--side-margin-width)
+    [content-start]
+    1fr
+    [content-end]
+    var(--side-margin-width)
+    [full-width-end];
+
+  & > .header {
+    grid-row: header;
+    grid-column: full-width;
+  }
+  & > .content {
+    grid-row: content;
+    grid-column: content;
+  }
+  & > .footer {
+    grid-row: footer;
+    grid-column: full-width;
+    padding: 18px var(--content-padding-inline);
+  }
+}
+

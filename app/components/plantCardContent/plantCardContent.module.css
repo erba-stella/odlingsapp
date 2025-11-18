@@ -1,0 +1,10 @@
+
+.contentWrapper {
+  display: flex;
+  gap: var(--flow-space);
+  align-items: baseline;
+
+  & > *:last-child {
+    margin-inline-start: auto;
+  }
+}

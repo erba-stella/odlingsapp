@@ -1,0 +1,141 @@
+
+.addPlantForm {
+    display: contents;
+}
+
+.addPlantForm fieldset>*{
+    margin-top: .5rem;
+}
+.addPlantForm fieldset>input{
+    margin-top: 0;
+}
+
+.addPlantForm .checkboxToggle {
+    justify-self: end;
+}
+
+.addPlantForm button[type="submit"] {
+    justify-self: end;
+    width: 50%;
+}
+
+/* CHECKBOX-GROUPS */
+
+.checkboxGroup {
+    display: flex;
+    gap: var(--gap);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.checkboxGroup>label {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
+
+
+/* COMBOBOX - INPUT and LISTBOX  */
+
+.comboboxWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* COMBOBOX: LISTBOX */
+
+.filteredPlants {
+    /* border: 1px solid #ccc; */
+    position: relative;
+    opacity: 1;
+    transition: opacity .5s ease .2s;
+}
+
+.filteredPlants:has(ul:empty)  {
+    opacity: 0;
+    background-color: transparant;
+}
+
+.filteredPlants ul:empty  {
+    opacity: 0;
+}
+
+.filteredPlants ul {
+    z-index: 300;
+    list-style: none;
+    padding: 0.3rem;
+    position: absolute;
+    max-height: var(--filter-plant-resultbox-height, 300px);
+    overflow: auto;
+    width: 100%; 
+    background-color: var(--filtered-plants-bg,rgb(210, 202, 202));
+    border-radius:  var(--form-border-radius);
+}
+
+.filteredPlants li {
+    width: 100%;
+}
+
+.filteredPlants label {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--gap);
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #e0f7fa;
+}
+
+.filteredPlants input[type="checkbox"]{
+  /* width: min-content; */
+  all: unset;
+}
+
+.sectionSavePlant {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap);
+}
+
+.validationMsg {
+    padding: .5rem;
+    /* border-inline-start: 3px solid var(--color-error); */
+}
+
+.validationMsg li {
+    list-style: none;
+    padding-inline: .5rem;
+    border-inline-start: 3px solid var(--color-error);
+}
+
+.sectionSaved {
+    margin-block: 2rem;
+    padding-block: 1rem;
+    border-top: 1px solid rgb(174, 174, 173);
+}
+
+.sectionSaved ul {
+    padding-block: .5rem;
+}
+
+.sectionSaved li {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    margin-block: var(--gap);
+}
+
+.sectionSaved li>* {
+    flex-basis: 30%;
+}
+
+.sectionSaved a {
+    color: blue;
+    background-color: #fefefe;
+    padding: .05rem .5rem;
+    border-radius: .4rem;
+}

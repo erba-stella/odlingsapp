@@ -1,0 +1,54 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { NavList } from "./NavList";
+import { ToggleOpenCloseIcon } from "@/app/components/toggleMenuButton";
+import { MobileMenuStoreProvider } from "./mobileMenuStore";
+import { useInteractionOutside } from "@/lib/hooks/useInteractionOutside";
+import styles from "./pageHeader.module.css";
+import cn from "@/lib/utils/addClassNames";
+
+export const MobileNavToggleMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const el = document.getElementById("page-header");
+      if (el) headerRef.current = el;
+    }
+  }, []);
+
+  useInteractionOutside({
+    ref: headerRef as React.RefObject<HTMLElement>,
+    action: () => {
+      if (isOpen) setIsOpen(false);
+    },
+  });
+
+  return (
+    <>
+      <button
+        className={styles.toggleMenuButton}
+        aria-expanded={isOpen}
+        aria-controls="navToggleMenu"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <ToggleOpenCloseIcon iconStyle="hamburger" />
+      </button>
+
+      <MobileMenuStoreProvider closeMenu={() => setIsOpen(false)}>
+        <div
+          id="navToggleMenu"
+          className={cn(styles.navToggleMenu, 
+            isOpen && styles.menuOpen,
+            !isOpen && styles.menuClose)}
+        >
+          <nav className={cn(styles.navmenu, styles.mobile)} aria-label="Main">
+            <NavList />
+          </nav>
+        </div>
+      </MobileMenuStoreProvider>
+    </>
+  );
+};

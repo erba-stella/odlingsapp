@@ -6,19 +6,19 @@ export interface PlantData {
   name_latin: string;
   alias: string[];
   icon_name?: string;
-  category: string;
+  tags: string[];
   start_seeds_indoors?: { min: number; max: number };
   plant_seedlings_outdors?: { min: number; max: number };
   start_seeds_outdoors?: { min: number; max: number };
 }
 
 export interface CustomPlant {
+  id: string;
   created: string;
-  customName: string;
-  linkedTo: PlantData;
-};
+  name: string;
+  categoryId: string;
+}
 
-export interface PlantCardProps {
-  plantType: string;
-  plants: CustomPlant[];
+export interface CustomPlantExtended extends CustomPlant {
+  categoryData: PlantData;
 }

@@ -1,3 +1,146 @@
+/* Design: fonts and colors */
+
+.main {
+   background: var(--color-surface-transparent);
+   font-weight: 500;
+
+   h2 {
+    font-size: var(--fs-h4);
+    font-size: 1.7rem;
+    line-height: 1;
+    font-weight: 600;
+    color: var(--color-heading);
+   }
+}
+
+.scrollLinkWrapper {
+  background-color: var(--fill-yellow);
+}
+/* .scrollLinkWrapper:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: -6svh;
+  width: 12svh;
+  height: 12svh;
+  border-radius: 50%;
+  background-color: var(--fill-blue-sky);
+} */
+
+.sectionGetStarted h2 {
+  font-size: var(--fs-h3);
+  letter-spacing: -0.1rem;
+  word-spacing: -0.2rem;
+}
+
+/* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+   Page Layout and spacing  
+   - main areas
+*/
+
 .page {
   min-height: 100svh;
+}
+
+.main {
+  width: 100%;
+  display: grid;
+  --content-width: min(92svw, 40svh);
+  grid-template-columns: 1fr [content-start] var(--content-width) [content-end] 1fr;
+  grid-template-rows: 
+  4svh
+  [section1-start]
+  78svh 
+  [section1-end section2-start]
+  18svh 
+  [section2-end section3-start]
+    auto
+  [section3-end];
+
+  /* Main sections of the page */
+
+.sectionPageIntro {
+  grid-column: content;
+  grid-row: section1;
+}
+
+.scrollLinkWrapper {
+  grid-column: 1/-1;
+  grid-row: section2;
+  align-content: center;
+}
+
+.sectionGetStarted {
+  grid-column: content;
+  grid-row: section3;
+  min-height: 100svh;
+}
+
+}
+
+/* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+   Page Sections - Layout and spacing  
+*/
+.sectionPageIntro,
+.sectionGetStarted {
+  display: grid;
+  gap: var(--gap);
+  align-content: start;
+}
+
+
+/* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+   Page Intro Section - Layout and spacing  
+   - this is the "over the fold"-content on small screens
+*/
+
+.sectionPageIntro section>* {
+  padding-block: .5rem;
+}
+
+/* Scroll link */
+
+.scrollLinkWrapper {
+    width: 100%;
+    position: relative;
+}
+
+.scrollLink {
+  justify-items: center;
+  display: flex;
+  place-self: center;
+  /* align-self: end; */
+
+  em {
+    /* padding:  1rem 2rem; */
+    border-radius: 1rem;
+    background: var(--color-surface); 
+    font-weight: 700;
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    border: var(--fill-yellow) .2rem solid;
+  }
+  
+}
+
+.arrowDown {
+    height: 30px;
+    stroke: blue;
+    stroke-width: .6em;
+  }
+
+.sectionGetStarted {
+  padding-block: calc(var(--gap) * 2);
+}
+
+
+
+
+a.button {
+  padding:  .5rem 1rem;
+  border-radius: 20px;
+  background: #65548f;
+  color: white;
+  font-weight: 800;
+  text-align: center;
 }

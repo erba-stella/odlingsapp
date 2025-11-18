@@ -1,0 +1,40 @@
+.brown {fill: var(--fill-brown,#965353) }
+.brownShadow { fill: var(--fill-brown-shadow, #7f4545)}
+.green {fill: var(--fill-green, #9ed36a) }
+.skin {fill: var(--fill-skin, #eac6bb)}
+.skinShadow {fill: var(--fill-skin-shadow, #dbada2)}
+.yellow { fill: var(--fill-yellow, #fecd57) }
+
+.logo {
+  background-color: var(--fill-blue-sky);
+   --logo-width: var(--content-width);
+}
+
+.logo h1 {
+  display: block;
+  --font-size: calc(var(--logo-width) * .22);
+  font-size: var(--font-size, 3rem);
+  line-height: 1;
+  color: var(--fill-blue-sky);
+}
+
+.logo {
+  width: var(--logo-width);
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  align-items: end;
+}
+
+.logo>*{
+  grid-area: 1 / 1;
+}
+
+.logo h1 {
+  font-size: calc(var(--logo-width) * .22);
+  transform: translateY(11px)
+}
+
+.logo svg {
+  transform: translateY(10px)
+}

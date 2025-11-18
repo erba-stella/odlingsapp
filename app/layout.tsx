@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import { font1, font2, font3 } from "@/fonts/fonts";
+import "@/app/styles/variables.css";
+import "@/app/styles/globals.css";
+import { font_logo, font_heading, font_base } from "@/lib/fonts/fonts";
 
 export const metadata: Metadata = {
   title: "SåPlanera",
@@ -16,9 +17,9 @@ export default function RootLayout({
     <html lang="sv">
       <body
         className={`
-        ${font1.variable}
-        ${font2.variable}
-        ${font3.variable}
+        ${font_logo.variable}
+        ${font_heading.variable}
+        ${font_base.variable}
         `}
       >
         {children}

@@ -1,0 +1,42 @@
+import { type SVGProps } from "react";
+import styles from "./logoIcon.module.css";
+
+
+export const LogoIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <path
+      className={styles.brown}
+      d="M505 277H391c-4 0-9 2-12 5L261 401a7 7 0 0 1-10 0L133 282c-3-3-8-5-12-5H7c-4 0-7 3-7 7v221c0 4 3 7 7 7h498c4 0 7-3 7-7V284c0-4-3-7-7-7z"
+    />
+    <path
+      className={styles.green}
+      d="M391 277c-4 0-9 2-12 5l-38 38h171v-36c0-4-3-7-7-7H391zm-220 43-38-38c-3-3-8-5-12-5H7c-4 0-7 3-7 7v36h171z"
+    />
+    <path
+      className={styles.skinShadow}
+      d="M389 67 239 3a32 32 0 1 0-25 59l90 37 85-32z"
+    />
+    <g className={styles.skin}>
+      <path d="M64 79c0 11 10 21 21 21h164V57H85c-11 0-21 10-21 22zm-21 53c0 12 9 21 21 21h163v-42H64c-12 0-21 9-21 21zm21 53c0 12 10 22 21 22h164v-43H85c-11 0-21 10-21 21zm43 54c0 11 9 21 21 21h163v-43H128c-12 0-21 10-21 22z" />
+      <path d="M347 57H215v43a5 5 0 1 1 0 11v42a5 5 0 0 1 0 11v43a5 5 0 1 1 0 10v43h132a101 101 0 1 0 0-203z" />
+    </g>
+    <path
+      className={styles.brownShadow}
+      d="M416 384a11 11 0 1 1-21 0 11 11 0 0 1 21 0zm42 75a11 11 0 1 1-21 0 11 11 0 0 1 21 0zm-95 0a11 11 0 1 1-22 0 11 11 0 0 1 22 0zm-96 0a11 11 0 1 1-22 0 11 11 0 0 1 22 0zM96 384a11 11 0 1 0 21 0 11 11 0 0 0-21 0zm-43 75a11 11 0 1 0 22 0 11 11 0 0 0-22 0zm96 0a11 11 0 1 0 22 0 11 11 0 0 0-22 0z"
+    />
+    <path
+      className={styles.yellow}
+      d="M256 281c-17 0-32 21-32 39a32 32 0 0 0 64 0c0-18-15-39-32-39z"
+    />
+  </svg>
+); 
+
+export const Logo = () => {
+  return (
+    <div className={styles.logo}>
+      <LogoIcon aria-hidden="true" />
+      <h1>SåPlanera</h1>
+    </div>
+  )
+  
+}
