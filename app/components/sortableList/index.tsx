@@ -179,13 +179,8 @@ const SortableList = ({
 
   return (
     <ol
-      className={cn(
-        cardStyles.cardList,
-        styles.sortableList,
-        draggedItemId && styles.onDrag
-      )}
-      style={{ viewTransitionName: `ol-${listId}` }}
-      data-animation="list"
+      className={cn(cardStyles.cardList, styles.sortableList)}
+      data-action={draggedItemId ? "dragging" : "none"}
       ref={listRef}
     >
       {order.map((orderId) => {
@@ -207,7 +202,7 @@ const SortableList = ({
               cardStyles.card,
               draggedItemId === id && cardStyles.placeholder
             )}
-            data-animation="draggable"
+            data-animation="sortable"
             style={{ viewTransitionName: `item-${id}` }}
           >
             {child.props.children}

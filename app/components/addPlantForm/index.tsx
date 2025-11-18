@@ -87,6 +87,10 @@ export function AddPlantForm({
         open ? styles.open : styles.closed,
         lastSavedValueRef.current ? styles.saved : styles.empty
       )}
+      style={{
+        viewTransitionName: `form-${plantCategory}`,
+      }}
+      data-animation="form-card"
     >
       <form
         ref={formRef}
@@ -95,9 +99,6 @@ export function AddPlantForm({
         aria-labelledby="add-plant-toggle"
         onSubmit={handleSubmitEvent}
         className={cn(cardStyles.card, cardStyles.focusable, styles.form)}
-        style={{
-          viewTransitionName: `form-${plantCategory}`,
-        }}
       >
         <label htmlFor="plant-input" className="visually-hidden">
           {`Lägg till ny växt i kategorin ${plantCategory}`}
@@ -116,6 +117,7 @@ export function AddPlantForm({
           style={{
             viewTransitionName: `input-${plantCategory}`,
           }}
+          data-animation="form-card-input"
         />
       </form>
       <button
@@ -129,6 +131,7 @@ export function AddPlantForm({
         aria-expanded={open}
         aria-controls="add-plant-form"
         style={{ viewTransitionName: `button-add-plant-${plantCategory}` }}
+        data-animation="form-card-button"
       >
         <span className="visually-hidden">{`Lägg till ${plantCategory}`}</span>
         <RiMenuAddLine aria-hidden="true" />

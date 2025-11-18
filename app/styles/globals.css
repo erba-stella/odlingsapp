@@ -1,0 +1,286 @@
+
+
+
+/* ==================================
+    RESET & BASE STYLES
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* remove default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+body {
+  min-height: 100svh;
+  line-height: 1.5; /* wcag */
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.global-container {
+  min-height: 100svh;
+  display: grid;
+}
+
+/* responsive images/videos */
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* svg animation and transforms */
+svg {
+  transform-origin: 50% 50%;
+}
+
+svg * {
+  transform-box: fill-box;
+}
+
+/* transform to height: auto in supported browsers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* better text wrapping  */
+:is(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 55ch;
+}
+
+a,
+input,
+button,
+select,
+option {
+  cursor: pointer;
+}
+
+/* remove default link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* remove default form styles */
+input,
+select,
+textarea,
+button,
+fieldset {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+/* ==================================
+    GLOBAL/BASE STYLING 
+*/
+
+body {
+  color: var(--color-text-contrast-mid);
+  font-size: var(--fs-regular);
+  background: var(--color-bg, red);
+  font-family: var(--font-base);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:is(h1, h2, h3, h4, legend) {
+  line-height: 1.1;
+  display: flex;
+  gap: var(--flow-space);
+  align-items: baseline;
+}
+
+h1, h2 {
+  color: var(--color-text-contrast-low);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 800;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  color: var(--color-text-contrast-mid);
+  font-weight: 700;
+}
+
+h4,
+legend {
+  font-family: var(--font-3);
+  font-size: var(--fs-h4);
+  color: var(--color-heading);
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1em;
+  max-width: 100%;
+  width: 100%;
+}
+
+*:focus-visible {
+  position: relative;
+  outline: var(--outline);
+  z-index: 2000;
+}
+
+/* 
+  INTERACTIONS / UTILITY CLASSES
+*/
+
+
+/* 
+  hyphens: manual -  insert soft hyphen character: &shy
+  https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
+*/
+.hyphens-manual {
+  hyphens: manual;
+}
+
+/* Accessibility */
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*  tab-focus-visible class for keyboard-only links/skip links 
+    from: https://a11y-blog.dev/en/articles/understanding-a-skip-link/
+*/
+.tab-focus-visible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+
+  /* Show keyboard focus */
+  &:focus-visible {
+    transform: translateY(0%);
+  }
+}
+
+/* 
+  TRANSITIONS/ANIMATION
+*/
+
+/* 
+  turn off the default root animation 
+  ref: https://developer.mozilla.org/en-US/docs/Web/API/ViewTransition#examples
+*/
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+/* 
+  create view transition classes for different animation types
+  (works in combination with unique view transition names)
+*/
+
+/* 
+  Basic animated page sections
+*/
+
+[data-animation="motion-section"] {
+  &,
+  & * {
+    view-transition-class: motion-section;
+  }
+}
+
+::view-transition-group(.motion-section) {
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.5s;
+}
+
+/* 
+Animation while dragging items to change sort order (only turned on during a drag-event) 
+*/
+[data-action="dragging"] {
+  & [data-animation="sortable"] {
+    view-transition-class: sortable;
+  }
+  & [data-animation="drag-preview"] {
+    view-transition-class: drag-preview;
+  }
+}
+
+::view-transition-group(.sortable) {
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-group(.drag-preview) {
+  animation: none;
+}
+
+/* 
+  reduced motion, general settings
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    view-transition-name: none !important;
+  }
+}

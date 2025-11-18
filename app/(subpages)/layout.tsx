@@ -20,11 +20,11 @@ export default function SubpagesLayout({
     </div>
   );
 }
-
+// TODO: footer
 const PageFooter = ({ className }: { className: string }) => {
   return (
     <footer className={className}>
-      <p>© 2023 Your Company Name. All rights reserved.</p>
+      <p>© footer content...</p>
     </footer>
   );
 };

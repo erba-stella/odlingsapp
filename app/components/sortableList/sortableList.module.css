@@ -26,15 +26,3 @@
     translate: 0.15em 0;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .onDrag {
-    .sortableItem {
-      view-transition-name: none;
-    }
-    .dragPreview {
-      view-transition-name: none;
-      animation: none;
-    }
-  }
-}
